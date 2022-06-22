@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "920456952490",
+    "project_id": "quizzapp-9609f",
+    "storage_bucket": "quizzapp-9609f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:920456952490:android:07ae927d2218b408032ed3",
+        "android_client_info": {
+          "package_name": "com.example.quizmaster"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "920456952490-i9prl3667h5eduu5oikdd7vgod0dmo7s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBqH1z1sh2v6efD0nf7i78-m_ziUxoEvjo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "920456952490-i9prl3667h5eduu5oikdd7vgod0dmo7s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
