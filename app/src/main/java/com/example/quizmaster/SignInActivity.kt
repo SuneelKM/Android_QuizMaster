@@ -27,27 +27,27 @@ class SignInActivity : AppCompatActivity() {
             val email = binding.emailEt.text.toString()
             val pass = binding.passET.text.toString()
 
-            if (email.isNotEmpty() && pass.isNotEmpty()) {
+                if (email.isEmpty())
+                    binding.emailEt.error = "Please enter a valid email"
+                else if (pass.isEmpty())
+                    binding.passET.error = "Please enter a valid password"
+
+           else {
 
                 firebaseAuth.signInWithEmailAndPassword(email, pass)
                     .addOnCompleteListener {
                         if (it.isSuccessful) {
                             val intent = Intent(this, MainActivity::class.java)
                             startActivity(intent)
-                        } else {
-//                            Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
                         }
                     }
                     .addOnFailureListener {
                         Toast.makeText(
                             this,
-                            "Failed to create user:${it.message}",
+                            "${it.message}",
                             Toast.LENGTH_LONG
                         ).show()
                     }
-            } else {
-                Toast.makeText(this, "Empty Fields Are not Allowed !!", Toast.LENGTH_SHORT).show()
-
             }
         }
     }
