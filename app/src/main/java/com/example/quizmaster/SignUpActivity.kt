@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.quizmaster.databinding.ActivitySignUpBinding
 import com.google.firebase.auth.FirebaseAuth
 
+
 class SignUpActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySignUpBinding
@@ -41,6 +42,9 @@ class SignUpActivity : AppCompatActivity() {
                     firebaseAuth.createUserWithEmailAndPassword(email, pass)
                         .addOnCompleteListener {
                             if (it.isSuccessful) {
+                                val user = firebaseAuth.currentUser
+                                user!!.sendEmailVerification()
+                                Toast.makeText(this, "Check your email address", Toast.LENGTH_LONG).show()
                                 val intent = Intent(this, SignInActivity::class.java)
                                 startActivity(intent)
                             }

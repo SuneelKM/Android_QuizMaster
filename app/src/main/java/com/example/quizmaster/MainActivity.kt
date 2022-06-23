@@ -3,6 +3,7 @@ package com.example.quizmaster
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Html
 import androidx.activity.viewModels
 import com.example.quizmaster.databinding.ActivityMainBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -32,7 +33,7 @@ class MainActivity : AppCompatActivity() {
 //            firebaseAuth.currentUser?.delete()
         }
 
-        vm.getQuestions("10","9","medium", "multiple")
+        vm.getQuestions("5","9","medium", "multiple")
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeBy(
