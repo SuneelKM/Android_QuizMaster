@@ -1,6 +1,9 @@
 package com.example.quizmaster
 
-class QuestionsRepository(val inter: RetroApiInterface) {
+import javax.inject.Inject
+
+
+class QuestionsRepository @Inject constructor (val inter: RetroApiInterface) {
 
     fun getQuestions(
         amount: String,
