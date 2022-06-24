@@ -4,5 +4,6 @@ data class UserScores(
     val date: String,
     val category: String,
     val level: String,
-    val points: String
+    val points: String,
+    val profile: String
 )

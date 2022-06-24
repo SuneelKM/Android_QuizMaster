@@ -39,7 +39,7 @@ class SignInActivity : AppCompatActivity() {
                     .addOnCompleteListener {
                         if (it.isSuccessful) {
                             val emailVerified = firebaseAuth.currentUser!!.isEmailVerified
-                            if(!emailVerified){
+                            if(emailVerified){
                                 val intent = Intent(this, MainActivity::class.java)
                                 startActivity(intent)
                             }
@@ -64,7 +64,7 @@ class SignInActivity : AppCompatActivity() {
 
         if (firebaseAuth.currentUser != null) {
             val emailVerified = firebaseAuth.currentUser!!.isEmailVerified
-            if(!emailVerified){
+            if(emailVerified){
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
             }

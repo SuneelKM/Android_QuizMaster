@@ -52,13 +52,13 @@ class MainActivity : AppCompatActivity() {
             )
 
         val date = SimpleDateFormat("dd MMM").format(Date())
-        setUserScores(date,"Science", "hard", "8/10")
+        setUserScores(date,"Science", "hard", "8/10", "avatar")
 
         getUserScores()
     }
 
-    private fun setUserScores(date:String, category: String, level: String, points: String) {
-        val userScores = UserScores(date,category,level, points)
+    private fun setUserScores(date:String, category: String, level: String, points: String, profile:String) {
+        val userScores = UserScores(date,category,level, points, profile)
         val database = Firebase.database
         val uid = firebaseAuth.uid
         val myRef = database.getReference("/Users/$uid/scores/${Date()}")
@@ -81,9 +81,10 @@ class MainActivity : AppCompatActivity() {
                     val category = score.child("category").value.toString()
                     val level = score.child("level").value.toString()
                     val points = score.child("points").value.toString()
+                    val profile = score.child("profile").value.toString()
 
                     // Added into an array so to be used in recycler view
-                    allScores.add(UserScores(date,category,level,points))
+                    allScores.add(UserScores(date,category,level,points,profile))
 
                 }
                 println(allScores)
