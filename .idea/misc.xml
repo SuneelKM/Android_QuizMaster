@@ -4,9 +4,16 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable/header_bg.xml" value="0.1785" />
+        <entry key="app/src/main/res/drawable/ic_baseline_account_circle_24.xml" value="0.296" />
+        <entry key="app/src/main/res/drawable/ic_baseline_language_24.xml" value="0.296" />
+        <entry key="app/src/main/res/drawable/ic_baseline_logout_24.xml" value="0.296" />
+        <entry key="app/src/main/res/drawable/ic_baseline_manage_history_24.xml" value="0.296" />
         <entry key="app/src/main/res/drawable/ic_baseline_menu_24.xml" value="0.313" />
+        <entry key="app/src/main/res/drawable/ic_baseline_menu_36.xml" value="0.296" />
         <entry key="app/src/main/res/drawable/ic_baseline_quiz_24.xml" value="0.148" />
+        <entry key="app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.296" />
         <entry key="app/src/main/res/drawable/ic_icons8_order_history_64__1_.xml" value="0.313" />
+        <entry key="app/src/main/res/drawable/ic_icons8_order_history_80.xml" value="0.296" />
         <entry key="app/src/main/res/drawable/ic_icons8_play_64.xml" value="0.1785" />
         <entry key="app/src/main/res/drawable/ic_icons8_rocket_64_adobe_express.xml" value="0.1295" />
         <entry key="app/src/main/res/drawable/ic_quiz.xml" value="0.148" />
