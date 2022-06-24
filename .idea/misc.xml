@@ -3,9 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.2947916666666667" />
-        <entry key="app/src/main/res/layout/activity_sign_in.xml" value="0.335" />
+        <entry key="app/src/main/res/drawable/header_bg.xml" value="0.1785" />
+        <entry key="app/src/main/res/drawable/ic_baseline_menu_24.xml" value="0.313" />
+        <entry key="app/src/main/res/drawable/ic_baseline_quiz_24.xml" value="0.148" />
+        <entry key="app/src/main/res/drawable/ic_icons8_order_history_64__1_.xml" value="0.313" />
+        <entry key="app/src/main/res/drawable/ic_icons8_play_64.xml" value="0.1785" />
+        <entry key="app/src/main/res/drawable/ic_icons8_rocket_64_adobe_express.xml" value="0.1295" />
+        <entry key="app/src/main/res/drawable/ic_quiz.xml" value="0.148" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_sign_in.xml" value="0.2947916666666667" />
         <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.2947916666666667" />
+        <entry key="app/src/main/res/layout/nav_header.xml" value="0.335" />
+        <entry key="app/src/main/res/menu/navigation_menu.xml" value="1.5104166666666667" />
       </map>
     </option>
   </component>
@@ -18,7 +27,7 @@
   <component name="VisualizationToolProject">
     <option name="state">
       <ProjectState>
-        <option name="scale" value="0.2947916666666667" />
+        <option name="scale" value="0.1" />
       </ProjectState>
     </option>
   </component>

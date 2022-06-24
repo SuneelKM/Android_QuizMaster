@@ -2,4 +2,6 @@
     <string name="app_name">QuizMaster</string>
     <string name="not_registered_yet_sign_up">Not Registered Yet? <b>Sign Up</b></string>
     <string name="already_registered_sign_in">Already Registered? <b>Sign In</b></string>
+    <string name="navigation_drawer_open">Open navigation drawer <b>Sign In</b></string>
+    <string name="navigation_drawer_close">Close navigation drawer <b>Sign In</b></string>
 </resources>
