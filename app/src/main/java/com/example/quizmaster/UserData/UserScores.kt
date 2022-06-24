@@ -1,7 +1,6 @@
-package com.example.quizmaster.UsersData
+package com.example.quizmaster.UserData
 
-data class Users(
-    val username: String,
+data class UserScores(
     val date: String,
     val category: String,
     val level: String,

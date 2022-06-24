@@ -4,8 +4,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.quizmaster.UserData.UserSignup
 import com.example.quizmaster.databinding.ActivitySignUpBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 
 
 class SignUpActivity : AppCompatActivity() {
@@ -27,6 +30,7 @@ class SignUpActivity : AppCompatActivity() {
             onBackPressed()
         }
         binding.button.setOnClickListener {
+            val userName = binding.userEt.text.toString()
             val email = binding.emailEt.text.toString()
             val pass = binding.passET.text.toString()
             val confirmPass = binding.confirmPassEt.text.toString()
@@ -42,9 +46,13 @@ class SignUpActivity : AppCompatActivity() {
                     firebaseAuth.createUserWithEmailAndPassword(email, pass)
                         .addOnCompleteListener {
                             if (it.isSuccessful) {
-                                val user = firebaseAuth.currentUser
-                                user!!.sendEmailVerification()
+//                                val user = firebaseAuth.currentUser
+                                firebaseAuth.currentUser!!.sendEmailVerification()
                                 Toast.makeText(this, "Check your email address", Toast.LENGTH_LONG).show()
+
+                                val user = UserSignup(userName, email)
+                                saveToDatabase(user)
+
                                 val intent = Intent(this, SignInActivity::class.java)
                                 startActivity(intent)
                             }
@@ -61,5 +69,13 @@ class SignUpActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+
+    fun saveToDatabase(user:UserSignup){
+        val database = Firebase.database
+        val uid = firebaseAuth.uid
+        val myRef = database.getReference("/Users/$uid")
+        myRef.setValue(user)
     }
 }
