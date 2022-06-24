@@ -25,8 +25,8 @@ class SignInActivity : AppCompatActivity() {
         setContentView(binding.root)
         firebaseAuth = FirebaseAuth.getInstance()
 
-        reset_pwd = findViewById(R.id.reset_pwd)
-        reset_pwd.setOnClickListener(object : View.OnClickListener {
+      //  reset_pwd = findViewById(R.id.reset_pwd)
+        binding.textView.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
                 val email = binding.emailEt.text.toString()
 
@@ -50,7 +50,7 @@ class SignInActivity : AppCompatActivity() {
                         }
                 }
             }
-        }
+        })
 
         binding.textView.setOnClickListener {
 //            val intent1 = Intent(this, SignUpActivity::class.java)
@@ -99,5 +99,4 @@ class SignInActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
-}
 }
