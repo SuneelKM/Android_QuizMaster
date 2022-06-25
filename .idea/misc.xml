@@ -3,9 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/default_option_border_bg.xml" value="0.212" />
+        <entry key="app/src/main/res/drawable/ic_quiz_logo.xml" value="0.244" />
+        <entry key="app/src/main/res/layout/activity_choose_quiz.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2947916666666667" />
-        <entry key="app/src/main/res/layout/activity_sign_in.xml" value="0.335" />
-        <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.2947916666666667" />
+        <entry key="app/src/main/res/layout/activity_question_page.xml" value="0.23802083333333332" />
+        <entry key="app/src/main/res/layout/activity_quiz_setup.xml" value="0.23802083333333332" />
+        <entry key="app/src/main/res/layout/activity_result_page.xml" value="0.23802083333333332" />
+        <entry key="app/src/main/res/layout/activity_sign_in.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_splash.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/dropdown_item.xml" value="0.1" />
         <entry key="app/src/main/res/layout/signed_in_layout.xml" value="0.335" />
       </map>
     </option>

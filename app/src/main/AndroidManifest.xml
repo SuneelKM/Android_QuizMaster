@@ -14,7 +14,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.QuizMaster">
         <activity
-            android:name=".SignInActivity"
+            android:name=".ResultPageActivity"
+            android:exported="false" />
+        <activity
+            android:name=".QuestionPageActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ChooseQuizActivity"
+            android:exported="false" />
+        <activity
+            android:name=".QuizSetupActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,12 +35,14 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".SignInActivity"
+            android:exported="false" />
+        <activity
             android:name=".SignUpActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true" />
     </application>
 
 </manifest>
