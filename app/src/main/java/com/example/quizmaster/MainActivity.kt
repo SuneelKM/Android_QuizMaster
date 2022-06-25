@@ -7,6 +7,7 @@ import android.view.MenuItem
 import android.widget.Toolbar
 import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.cardview.widget.CardView
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.quizmaster.databinding.ActivityMainBinding
@@ -27,6 +28,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     lateinit var drawer: DrawerLayout
     lateinit var nav_view: NavigationView
     lateinit var toolbar: androidx.appcompat.widget.Toolbar
+    lateinit var history: CardView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,6 +65,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         drawer = binding.drawer
         nav_view = findViewById(R.id.nav_menu)
         toolbar = binding.toolbar
+        history = binding.showHistory
 
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
@@ -74,6 +77,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         toggle.syncState()
 
         nav_view.setNavigationItemSelectedListener(this)
+
+        history.setOnClickListener{
+            var intent = Intent(this, HistoryActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun onBackPressed() {
