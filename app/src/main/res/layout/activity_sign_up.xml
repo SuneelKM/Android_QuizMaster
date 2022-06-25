@@ -83,7 +83,7 @@
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="50dp"
         app:boxStrokeColor="@color/design_default_color_primary"
-        app:hintTextColor="@color/white"
+        app:hintTextColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -96,8 +96,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/enter_your_username_signup"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
             android:textSize="20sp"
             android:inputType="textEmailAddress" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -110,7 +110,7 @@
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="0dp"
         app:boxStrokeColor="@color/design_default_color_primary"
-        app:hintTextColor="@color/white"
+        app:hintTextColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -125,8 +125,8 @@
             android:layout_height="wrap_content"
             android:hint="@string/enter_your_email_signup"
             android:inputType="textEmailAddress"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
             android:textSize="20sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -138,7 +138,7 @@
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="0dp"
         app:boxStrokeColor="@color/design_default_color_primary"
-        app:hintTextColor="@color/white"
+        app:hintTextColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -152,8 +152,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/enter_your_password_signup"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
             android:textSize="20sp"
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
