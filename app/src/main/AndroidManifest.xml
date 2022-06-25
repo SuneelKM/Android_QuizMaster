@@ -23,9 +23,6 @@
             android:name=".ChooseQuizActivity"
             android:exported="false" />
         <activity
-            android:name=".QuizSetupActivity"
-            android:exported="false" />
-        <activity
             android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>
