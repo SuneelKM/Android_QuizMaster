@@ -1,5 +1,6 @@
-package com.example.quizmaster
+package com.example.quizmaster.data.repo
 
+import com.example.quizmaster.data.api.RetroApiInterface
 import javax.inject.Inject
 
 

@@ -1,7 +1,7 @@
-package com.example.quizmaster
+package com.example.quizmaster.data.api
 
 
-import com.example.quizmaster.OpentdbAPI.Questions
+import com.example.quizmaster.data.model.OpentdbAPI.Questions
 import io.reactivex.rxjava3.core.Observable
 import retrofit2.http.*
 

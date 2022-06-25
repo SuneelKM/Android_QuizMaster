@@ -1,4 +1,4 @@
-package com.example.quizmaster
+package com.example.quizmaster.util
 
 class Todo {
 //    Forgot password?

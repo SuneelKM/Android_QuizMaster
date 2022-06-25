@@ -1,10 +1,10 @@
-package com.example.quizmaster
+package com.example.quizmaster.ui.view
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.quizmaster.UserData.UserSignup
+import com.example.quizmaster.data.model.UserData.UserSignup
 import com.example.quizmaster.databinding.ActivitySignUpBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.ktx.database

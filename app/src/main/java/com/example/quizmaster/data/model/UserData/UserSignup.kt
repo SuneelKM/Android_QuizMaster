@@ -1,4 +1,4 @@
-package com.example.quizmaster.UserData
+package com.example.quizmaster.data.model.UserData
 
 data class UserSignup(
     val username: String,

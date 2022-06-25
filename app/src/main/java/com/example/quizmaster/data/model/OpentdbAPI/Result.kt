@@ -1,4 +1,4 @@
-package com.example.quizmaster.OpentdbAPI
+package com.example.quizmaster.data.model.OpentdbAPI
 
 
 import com.google.gson.annotations.SerializedName

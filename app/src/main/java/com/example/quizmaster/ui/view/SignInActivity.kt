@@ -1,4 +1,4 @@
-package com.example.quizmaster
+package com.example.quizmaster.ui.view
 
 import android.content.Intent
 import android.os.Bundle

@@ -4,7 +4,7 @@
     package="com.example.quizmaster">
 
     <application
-        android:name=".HiltApp"
+        android:name=".di.HiltApp"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -14,16 +14,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.QuizMaster">
         <activity
-            android:name=".ResultPageActivity"
+            android:name=".ui.view.ResultPageActivity"
             android:exported="false" />
         <activity
-            android:name=".QuestionPageActivity"
+            android:name=".ui.view.QuestionPageActivity"
             android:exported="false" />
         <activity
-            android:name=".ChooseQuizActivity"
+            android:name=".ui.view.ChooseQuizActivity"
             android:exported="false" />
         <activity
-            android:name=".SplashActivity"
+            android:name=".ui.view.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,13 +32,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SignInActivity"
+            android:name=".ui.view.SignInActivity"
             android:exported="false" />
         <activity
-            android:name=".SignUpActivity"
+            android:name=".ui.view.SignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.view.MainActivity"
             android:exported="true" />
     </application>
 
