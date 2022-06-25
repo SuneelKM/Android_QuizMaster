@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "920456952490",
-    "project_id": "quizzapp-9609f",
-    "storage_bucket": "quizzapp-9609f.appspot.com"
+    "project_number": "465047772581",
+    "project_id": "quizmaster-db498",
+    "storage_bucket": "quizmaster-db498.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:920456952490:android:07ae927d2218b408032ed3",
+        "mobilesdk_app_id": "1:465047772581:android:bf2fe5ccac3af30cb85c4c",
         "android_client_info": {
           "package_name": "com.example.quizmaster"
         }
       },
       "oauth_client": [
         {
-          "client_id": "920456952490-i9prl3667h5eduu5oikdd7vgod0dmo7s.apps.googleusercontent.com",
+          "client_id": "465047772581-eeapnec9q66hmhuqjmacok3n50gavmsh.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBqH1z1sh2v6efD0nf7i78-m_ziUxoEvjo"
+          "current_key": "AIzaSyBE87sF04aOSBaSs0I7u2yGjlaqD7s8xXE"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "920456952490-i9prl3667h5eduu5oikdd7vgod0dmo7s.apps.googleusercontent.com",
+              "client_id": "465047772581-eeapnec9q66hmhuqjmacok3n50gavmsh.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
