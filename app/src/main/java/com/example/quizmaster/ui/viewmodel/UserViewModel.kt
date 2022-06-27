@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.lifecycle.HiltViewModel
 
-@HiltViewModel
+
 class UserViewModel: ViewModel() {
 
     var firebaseAuth: FirebaseAuth
