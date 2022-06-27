@@ -47,6 +47,8 @@ class ChooseQuizActivity : AppCompatActivity() {
             var numOfQuestions: String = binding.dropdownField3.text.toString()
             var type = "multiple"
 
+
+
             vm.getQuestions(numOfQuestions,cat,difficulty,type)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -58,15 +60,18 @@ class ChooseQuizActivity : AppCompatActivity() {
                 },
                 onError = {e -> println("this is error $e")}
             )
+
 //
         }
 
     }
 
+
     private fun sendResults(result: List<Result>, pos: Int){
         var questionsIntent = Intent(this, QuestionPageActivity::class.java)
         questionsIntent.putExtra("results", result as Serializable)
         questionsIntent.putExtra("position", pos)
+
         startActivity(questionsIntent)
     }
 }
