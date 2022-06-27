@@ -71,11 +71,11 @@ class SignInActivity : AppCompatActivity() {
 
                                 Log.d(ContentValues.TAG, "Email sent.")
 
-                                Toast.makeText(
-                                    this@SignInActivity,
-                                    "check your email ",
-                                    Toast.LENGTH_LONG
-                                ).show()
+//                                Toast.makeText(
+//                                    this@SignInActivity,
+//                                    "check your email ",
+//                                    Toast.LENGTH_LONG
+//                                ).show()
                             }
                             else{
 
@@ -87,11 +87,11 @@ class SignInActivity : AppCompatActivity() {
                                 val alertDialog: AlertDialog = builder.create()
                                 alertDialog.show()
 
-                                Toast.makeText(
-                                    this@SignInActivity,
-                                    "Please enter registered email id",
-                                    Toast.LENGTH_LONG
-                                ).show()
+//                                Toast.makeText(
+//                                    this@SignInActivity,
+//                                    "Please enter registered email id",
+//                                    Toast.LENGTH_LONG
+//                                ).show()
 
                             }
                         }.addOnFailureListener {
@@ -168,7 +168,7 @@ class SignInActivity : AppCompatActivity() {
                     //         Log.d("Line 125", "" + task.result?.signInMethods?.size)
 
                     if (task.isSuccessful) {
-                        if (task.result?.signInMethods?.size === 0) {
+                        if (task.result?.signInMethods?.size == 0) {
 
                             // email not existed
                             Log.d("Line 129", "email  not existed")

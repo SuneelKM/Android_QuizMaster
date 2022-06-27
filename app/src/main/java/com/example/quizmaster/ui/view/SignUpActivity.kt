@@ -34,13 +34,19 @@ class SignUpActivity : AppCompatActivity() {
             val email = binding.emailEt.text.toString()
             val pass = binding.passET.text.toString()
             val confirmPass = binding.confirmPassEt.text.toString()
+            val termsCondition = binding.checkBox.isChecked
 
-            if (email.isEmpty())
+            if(userName.isEmpty()){
+                binding.userEt.error = "Please enter a username"
+            }
+            else if (email.isEmpty())
                 binding.emailEt.error = "Please enter a valid email"
             else if (pass.isEmpty())
                 binding.passET.error = "Please enter a valid password"
             else if (confirmPass.isEmpty())
                 binding.confirmPassEt.error = "Please enter a valid password"
+            else if (!termsCondition)
+                binding.checkBox.error = "Please accept the terms and conditions"
             else {
                 if (pass == confirmPass) {
                     firebaseAuth.createUserWithEmailAndPassword(email, pass)

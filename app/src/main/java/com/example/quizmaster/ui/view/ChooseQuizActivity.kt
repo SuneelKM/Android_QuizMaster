@@ -20,7 +20,6 @@ import java.io.Serializable
 @AndroidEntryPoint
 class ChooseQuizActivity : AppCompatActivity() {
 
-    private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var binding: ActivityChooseQuizBinding
     val vm: QuestionsViewModel by viewModels()
 
@@ -65,7 +64,6 @@ class ChooseQuizActivity : AppCompatActivity() {
         }
 
     }
-
 
     private fun sendResults(result: List<Result>, pos: Int){
         var questionsIntent = Intent(this, QuestionPageActivity::class.java)
