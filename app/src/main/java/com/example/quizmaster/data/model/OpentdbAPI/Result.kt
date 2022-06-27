@@ -1,7 +1,8 @@
-package com.example.quizmaster.OpentdbAPI
+package com.example.quizmaster.data.model.OpentdbAPI
 
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class Result(
     val category: String,
@@ -12,4 +13,4 @@ data class Result(
     val incorrectAnswers: List<String>,
     val question: String,
     val type: String
-)
+): Serializable
