@@ -13,3 +13,7 @@ class QuestionsRepository @Inject constructor (val inter: RetroApiInterface) {
         type: String
     ) = inter.getQuestions(amount, category, difficulty, type)
 }
+
+
+
+

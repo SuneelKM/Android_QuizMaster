@@ -77,5 +77,6 @@ class SignUpActivity : AppCompatActivity() {
         val uid = firebaseAuth.uid
         val myRef = database.getReference("/Users/$uid")
         myRef.setValue(user)
+
     }
 }

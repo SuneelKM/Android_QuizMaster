@@ -1,6 +1,7 @@
 package com.example.quizmaster.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
+import com.example.quizmaster.data.api.RetroApiInterface
 import com.example.quizmaster.data.model.OpentdbAPI.Questions
 import com.example.quizmaster.data.repo.QuestionsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -27,4 +28,8 @@ class QuestionsViewModel @Inject constructor (val repo: QuestionsRepository) : V
 
         return repo.getQuestions(amount, catNum, difficulty.lowercase(), type)
     }
+
 }
+
+
+
