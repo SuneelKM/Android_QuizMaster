@@ -1,8 +1,9 @@
-package com.example.quizmaster
+package com.example.quizmaster.ui.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
+import com.example.quizmaster.R
 import com.example.quizmaster.databinding.ActivityChooseQuizBinding
 
 
@@ -19,7 +20,7 @@ class ChooseQuizActivity : AppCompatActivity() {
         val level = listOf("Easy","Medium","Hard")
         val numOfQuestion = listOf("5","10")
 
-        val categoryAdapter = ArrayAdapter(this,R.layout.dropdown_item, category)
+        val categoryAdapter = ArrayAdapter(this, R.layout.dropdown_item, category)
         val levelAdapter = ArrayAdapter(this, R.layout.dropdown_item, level)
         val numOfQuestionAdapter = ArrayAdapter(this, R.layout.dropdown_item, numOfQuestion)
 

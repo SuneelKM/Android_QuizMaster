@@ -1,4 +1,4 @@
-package com.example.quizmaster
+package com.example.quizmaster.ui.view
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.quizmaster.databinding.ActivitySignInBinding
 import com.google.firebase.auth.FirebaseAuth
+
 
 class SignInActivity : AppCompatActivity() {
 
@@ -37,8 +38,14 @@ class SignInActivity : AppCompatActivity() {
                 firebaseAuth.signInWithEmailAndPassword(email, pass)
                     .addOnCompleteListener {
                         if (it.isSuccessful) {
-                            val intent = Intent(this, MainActivity::class.java)
-                            startActivity(intent)
+                            val emailVerified = firebaseAuth.currentUser!!.isEmailVerified
+                            if(emailVerified){
+                                val intent = Intent(this, MainActivity::class.java)
+                                startActivity(intent)
+                            }
+                            else{
+                                Toast.makeText(this, "Please verify your email address", Toast.LENGTH_LONG).show()
+                            }
                         }
                     }
                     .addOnFailureListener {
@@ -56,8 +63,12 @@ class SignInActivity : AppCompatActivity() {
         super.onStart()
 
         if (firebaseAuth.currentUser != null) {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+            val emailVerified = firebaseAuth.currentUser!!.isEmailVerified
+            if(emailVerified){
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+            }
         }
     }
+
 }

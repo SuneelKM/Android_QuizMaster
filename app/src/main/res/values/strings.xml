@@ -24,4 +24,10 @@
     <string name="questions">Questions</string>
     <string name="image">image</string>
     <string name="play">Play</string>
+    <string name="confirm_your_password_signup">Confirm your Password</string>
+    <string name="language">EN / HI</string>
+    <string name="history">History</string>
+    <string name="logout">Logout</string>
+    <string name="navigation_drawer_open">Open navigation drawer <b>Sign In</b></string>
+    <string name="navigation_drawer_close">Close navigation drawer <b>Sign In</b></string>
 </resources>
