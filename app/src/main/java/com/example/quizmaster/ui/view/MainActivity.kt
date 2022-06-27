@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
@@ -12,9 +13,15 @@ import com.example.quizmaster.ui.viewmodel.QuestionsViewModel
 import com.example.quizmaster.R
 import com.example.quizmaster.data.model.UserData.UserScores
 import com.example.quizmaster.databinding.ActivityMainBinding
+import com.example.quizmaster.databinding.NavHeaderBinding
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import java.util.*
 
 @AndroidEntryPoint
@@ -105,7 +112,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 //            }
 
         drawer = binding.drawer
-        nav_view = findViewById(R.id.nav_menu)
+        nav_view = binding.navMenu
         toolbar = binding.toolbar
 
         setSupportActionBar(toolbar)
@@ -119,6 +126,30 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         toggle.syncState()
 
         nav_view.setNavigationItemSelectedListener(this)
+
+        binding.quizSetupButton.setOnClickListener{
+            var quizSetupIntent = Intent(this, ChooseQuizActivity::class.java)
+            startActivity(quizSetupIntent)
+        }
+
+        getUserName()
+
+    }
+
+    private fun getUserName(){
+        val database = Firebase.database
+        val uid = firebaseAuth.uid
+        val myRef = database.getReference("/Users/$uid")
+        var username = ""
+
+        var navbarUserName: TextView = nav_view.getHeaderView(0).findViewById(R.id.user_name)
+
+        myRef.get().addOnSuccessListener {
+            username = it.child("username").value.toString()
+            navbarUserName?.text = username
+            binding.textView4.text = username
+        }
+
 
     }
 
