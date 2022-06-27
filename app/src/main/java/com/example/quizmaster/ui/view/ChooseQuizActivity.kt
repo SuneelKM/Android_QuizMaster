@@ -65,7 +65,6 @@ class ChooseQuizActivity : AppCompatActivity() {
 
     }
 
-
     private fun sendResults(result: List<Result>, pos: Int){
         var questionsIntent = Intent(this, QuestionPageActivity::class.java)
         questionsIntent.putExtra("results", result as Serializable)

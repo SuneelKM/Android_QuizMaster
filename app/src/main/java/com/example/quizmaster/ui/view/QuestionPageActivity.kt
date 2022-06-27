@@ -41,7 +41,7 @@ class QuestionPageActivity : AppCompatActivity() {
     lateinit var textView31: TextView
     lateinit var timer: TextView
     lateinit var button2: Button
-     var correctAns = String()
+    var correctAns = String()
     var score = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
