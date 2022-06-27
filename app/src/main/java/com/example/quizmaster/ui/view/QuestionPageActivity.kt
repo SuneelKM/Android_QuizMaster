@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.example.quizmaster.R
+
 import com.example.quizmaster.data.api.RetroApiInterface
 import com.example.quizmaster.data.repo.QuestionsRepository
 import com.example.quizmaster.ui.viewmodel.QuestionsTimerViewModel
@@ -20,6 +21,10 @@ import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
 import com.example.quizmaster.data.model.OpentdbAPI.Result
 import java.lang.Math.random
+
+import com.example.quizmaster.data.model.OpentdbAPI.Questions
+
+
 
 
 @AndroidEntryPoint
@@ -42,6 +47,7 @@ class QuestionPageActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_question_page)
+
 
         vmT = QuestionsTimerViewModel()
         timer = findViewById(R.id.textView)
