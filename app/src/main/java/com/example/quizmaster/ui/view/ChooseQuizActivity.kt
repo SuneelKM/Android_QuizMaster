@@ -20,7 +20,6 @@ import java.io.Serializable
 @AndroidEntryPoint
 class ChooseQuizActivity : AppCompatActivity() {
 
-    private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var binding: ActivityChooseQuizBinding
     val vm: QuestionsViewModel by viewModels()
 

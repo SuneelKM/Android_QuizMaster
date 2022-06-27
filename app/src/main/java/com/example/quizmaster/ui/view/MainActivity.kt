@@ -14,6 +14,7 @@ import com.example.quizmaster.R
 import com.example.quizmaster.data.model.UserData.UserScores
 import com.example.quizmaster.databinding.ActivityMainBinding
 import com.example.quizmaster.databinding.NavHeaderBinding
+import com.example.quizmaster.ui.viewmodel.UserViewModel
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.ktx.database
@@ -30,6 +31,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var binding: ActivityMainBinding
     val vm: QuestionsViewModel by viewModels()
+    val userVM: UserViewModel by viewModels()
     var allScores = ArrayList<UserScores>()
 
     lateinit var drawer: DrawerLayout
