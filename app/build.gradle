@@ -9,11 +9,11 @@ plugins {
 }
 
 android {
-    compileSdk 32
+    compileSdk 31
 
     defaultConfig {
         applicationId "com.example.quizmaster"
-        minSdk 31
+        minSdk 30
         targetSdk 32
         versionCode 1
         versionName "1.0"
@@ -45,19 +45,22 @@ android {
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.core:core-ktx:1.8.0'
     implementation 'androidx.appcompat:appcompat:1.4.2'
     implementation 'com.google.android.material:material:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'com.google.firebase:firebase-auth:21.0.5'
+    implementation 'com.google.firebase:firebase-auth:21.0.6'
     implementation 'com.google.firebase:firebase-database-ktx:20.0.5'
     implementation 'com.google.firebase:firebase-crashlytics-ktx:18.2.11'
     implementation 'com.google.firebase:firebase-analytics-ktx:21.0.0'
     testImplementation 'junit:junit:4.13.2'
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
-    def lottieVersion = "3.4.0"
+    def lottieVersion = '5.2.0'
     implementation "com.airbnb.android:lottie:$lottieVersion"
 
 
@@ -88,4 +91,15 @@ dependencies {
     // Androidx activity
     implementation 'androidx.activity:activity-ktx:1.4.0'
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.0-rc02"
+
+
+//    Espresso
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    androidTestImplementation 'androidx.test:runner:1.4.0'
+    androidTestImplementation 'androidx.test:rules:1.4.0'
+
+
+    androidTestImplementation "androidx.test:runner:1.3.0"
+    androidTestImplementation "androidx.test:core:1.3.0"
+    androidTestImplementation "androidx.test.ext:junit-ktx:1.1.2"
 }
