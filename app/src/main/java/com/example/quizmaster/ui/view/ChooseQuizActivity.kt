@@ -1,15 +1,28 @@
 package com.example.quizmaster.ui.view
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
+import androidx.activity.viewModels
 import com.example.quizmaster.R
+import com.example.quizmaster.data.model.OpentdbAPI.Questions
+import com.example.quizmaster.data.model.OpentdbAPI.Result
 import com.example.quizmaster.databinding.ActivityChooseQuizBinding
+import com.example.quizmaster.ui.viewmodel.QuestionsViewModel
+import com.google.firebase.auth.FirebaseAuth
+import dagger.hilt.android.AndroidEntryPoint
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.kotlin.subscribeBy
+import io.reactivex.rxjava3.schedulers.Schedulers
+import java.io.Serializable
 
-
+@AndroidEntryPoint
 class ChooseQuizActivity : AppCompatActivity() {
 
+    private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var binding: ActivityChooseQuizBinding
+    val vm: QuestionsViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,5 +41,35 @@ class ChooseQuizActivity : AppCompatActivity() {
         binding.dropdownField2.setAdapter(levelAdapter)
         binding.dropdownField3.setAdapter(numOfQuestionAdapter)
 
+        binding.button.setOnClickListener{
+            var cat: String = binding.dropdownField.text.toString()
+            var difficulty: String = binding.dropdownField2.text.toString()
+            var numOfQuestions: String = binding.dropdownField3.text.toString()
+            var type = "multiple"
+
+            println("numOfQuestions  $numOfQuestions")
+            vm.getQuestions(numOfQuestions,cat,difficulty,type)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeBy(
+                    onNext ={
+                        println("Questions  ${it.results}")
+                        sendResults(it.results, 0,numOfQuestions)
+//                    binding.textView1.text=it.toString()
+//                  Html.fromHtml(it.results[0].question)
+                    },
+                    onError = {e -> println("this is error $e")}
+                )
+//
+        }
+
+    }
+
+    private fun sendResults(result: List<Result>, pos: Int,numOfQuestions:String){
+        var questionsIntent = Intent(this, QuestionPageActivity::class.java)
+        questionsIntent.putExtra("results", result as Serializable)
+        questionsIntent.putExtra("position", pos)
+        questionsIntent.putExtra("position", numOfQuestions)
+        startActivity(questionsIntent)
     }
 }
