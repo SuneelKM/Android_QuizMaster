@@ -1,19 +1,19 @@
-package com.example.quizmaster
+package com.example.quizmaster.ui.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.quizmaster.UsersData.Users
-import com.example.quizmaster.databinding.ActivityHistoryBinding
-import com.example.quizmaster.databinding.ActivityMainBinding
+import com.example.quizmaster.HistoryAdapter
+import com.example.quizmaster.R
+import com.example.quizmaster.data.model.UserData.UserScores
 
 class HistoryActivity : AppCompatActivity() {
 
     lateinit var recycler: RecyclerView
     lateinit var adapter: HistoryAdapter
-    var historyList: ArrayList<Users> = ArrayList()
+    var historyList: ArrayList<UserScores> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,12 +27,12 @@ class HistoryActivity : AppCompatActivity() {
         recycler.addItemDecoration(dividerItemDecoration)
         recycler.layoutManager = LinearLayoutManager(this)
         adapter = HistoryAdapter(historyList)
-        historyList.add(Users("", "2022", "Science", "Difficult", "20"))
-        historyList.add(Users("", "2022", "Entertainment", "Difficult", "20"))
-        historyList.add(Users("", "2022", "Science", "Difficult", "20"))
-        historyList.add(Users("", "2022", "Science", "Difficult", "20"))
-        historyList.add(Users("", "2022", "Science", "Difficult", "20"))
-        historyList.add(Users("", "2022", "Science", "Difficult", "20"))
+        historyList.add(UserScores("2022", "Science", "Difficult", "20", ""))
+        historyList.add(UserScores("2022", "Entertainment", "Difficult", "20",""))
+        historyList.add(UserScores("2022", "Science", "Difficult", "20",""))
+        historyList.add(UserScores("2022", "Science", "Difficult", "20",""))
+        historyList.add(UserScores("2022", "Science", "Difficult", "20",""))
+        historyList.add(UserScores("2022", "Science", "Difficult", "20",""))
         adapter.setItems(historyList)
 
         recycler.adapter = adapter
