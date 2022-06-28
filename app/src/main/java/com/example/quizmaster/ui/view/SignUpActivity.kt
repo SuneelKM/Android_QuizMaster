@@ -9,6 +9,7 @@ import com.example.quizmaster.databinding.ActivitySignUpBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.example.quizmaster.R
 
 
 class SignUpActivity : AppCompatActivity() {
@@ -61,6 +62,8 @@ class SignUpActivity : AppCompatActivity() {
 
                                 val intent = Intent(this, SignInActivity::class.java)
                                 startActivity(intent)
+                                overridePendingTransition(R.anim.slide_up, R.anim.slide_in)
+
                             }
                         }
                         .addOnFailureListener {
