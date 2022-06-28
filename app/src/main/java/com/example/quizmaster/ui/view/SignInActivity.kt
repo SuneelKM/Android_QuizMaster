@@ -42,70 +42,18 @@ class SignInActivity : AppCompatActivity() {
 
 // Reset password
 
-        binding.resetPwd.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View?) {
-                val emailReset = binding.emailEt.text.toString().trim()
+        binding.resetPwd.setOnClickListener {
+            val emailReset = binding.emailEt.text.toString().trim()
 
-                if (emailReset.isEmpty() ) {
+            if (emailReset.isEmpty()) {
+                Toast.makeText(
+                    this@SignInActivity,
+                    "Please enter your email ",
+                    Toast.LENGTH_LONG).show()
 
-                    Toast.makeText(
-                        this@SignInActivity,
-                        "Please enter your email ",
-                        Toast.LENGTH_LONG
-                    )
-                        .show()
-                }
-                else if(emailExist(emailReset)==true){
+            } else  emailExist(emailReset)
 
-                    println("emailEt.text.toString()")
-                    firebaseAuth.sendPasswordResetEmail(emailReset)
-                        .addOnCompleteListener { task ->
-                            if (task.isSuccessful) {
-                                val builder = AlertDialog.Builder(this@SignInActivity)
-                                builder.setMessage("Email Sent to ${emailReset}")
-                                builder.setCancelable(true)
-                                builder.setNegativeButton("OK", DialogInterface.OnClickListener
-                                { dialog, which -> dialog.cancel() })
-                                val alertDialog: AlertDialog = builder.create()
-                                alertDialog.show()
-
-                                Log.d(ContentValues.TAG, "Email sent.")
-
-//                                Toast.makeText(
-//                                    this@SignInActivity,
-//                                    "check your email ",
-//                                    Toast.LENGTH_LONG
-//                                ).show()
-                            }
-                            else{
-
-                                val builder = AlertDialog.Builder(this@SignInActivity)
-                                builder.setMessage("Sorry, we could not find your account")
-                                builder.setCancelable(true)
-                                builder.setNegativeButton("OK", DialogInterface.OnClickListener
-                                { dialog, which -> dialog.cancel() })
-                                val alertDialog: AlertDialog = builder.create()
-                                alertDialog.show()
-
-//                                Toast.makeText(
-//                                    this@SignInActivity,
-//                                    "Please enter registered email id",
-//                                    Toast.LENGTH_LONG
-//                                ).show()
-
-                            }
-                        }.addOnFailureListener {
-                            // Use Timber Log  here
-//                            Toast.makeText(
-//                                this@SignInActivity,
-//                                "${it.message}",
-//                                Toast.LENGTH_LONG
-//                            ).show()
-                        }
-                    }
-            }
-
-        })
+        }
 
         binding.button.setOnClickListener {
             val email = binding.emailEt.text.toString().trim()
@@ -133,7 +81,7 @@ class SignInActivity : AppCompatActivity() {
                             }
                         }
 
-                    } .addOnFailureListener {
+                    }.addOnFailureListener {
                         Toast.makeText(
                             this,
                             "${it.message}",
@@ -157,38 +105,41 @@ class SignInActivity : AppCompatActivity() {
 
     }
 
-        fun emailExist(email: String): Boolean {
-            var out1: Boolean
-            out1 = true
-            FirebaseAuth
-                .getInstance()
-                .fetchSignInMethodsForEmail(email)
-                .addOnCompleteListener { task ->
 
-                    //         Log.d("Line 125", "" + task.result?.signInMethods?.size)
-
-                    if (task.isSuccessful) {
-                        if (task.result?.signInMethods?.size == 0) {
-
-                            // email not existed
-                            Log.d("Line 129", "email  not existed")
-                            out1 = true
-                        } else {
-                            // email existed
-                            Log.d("Line 135", "checkEmailExists: ")
-                            out1 = false
-                        }
+    private fun emailExist(email: String) {
+        firebaseAuth.fetchSignInMethodsForEmail(email)
+            .addOnCompleteListener {
+                if (it.isSuccessful) {
+                    if (it.result?.signInMethods?.size != 0) {
+                        firebaseAuth.sendPasswordResetEmail(email)
+                        val builder = AlertDialog.Builder(this@SignInActivity)
+                        builder.setMessage("Email sent to $email")
+                        builder.setCancelable(true)
+                        builder.setNegativeButton("OK", DialogInterface.OnClickListener
+                        { dialog, which -> dialog.cancel() })
+                        val alertDialog: AlertDialog = builder.create()
+                        alertDialog.show()
+                    } else {
+                        val builder = AlertDialog.Builder(this@SignInActivity)
+                        builder.setMessage("Sorry, we could not find your account")
+                        builder.setCancelable(true)
+                        builder.setNegativeButton("OK", DialogInterface.OnClickListener
+                        { dialog, which -> dialog.cancel() })
+                        val alertDialog: AlertDialog = builder.create()
+                        alertDialog.show()
                     }
-                }.addOnFailureListener {
-                    Toast.makeText(
-                        this,
-                        "${it.message}",
-                        Toast.LENGTH_LONG
-                    ).show()
                 }
-            return out1
 
-        }
+            }
+            .addOnFailureListener {
+                Toast.makeText(
+                    this,
+                    "${it.message}",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+
+    }
 
 
 }
