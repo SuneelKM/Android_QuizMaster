@@ -7,6 +7,8 @@
     <string name="enter_your_email">Enter your email</string>
     <string name="enter_your_password">Enter your password</string>
     <string name="sign_in_button">Sign In</string>
+
+
     <string name="forgot_password">Forgot password?</string>
     <string name="sign_up">Sign Up</string>
     <string name="enter_your_username_signup">Enter your Username</string>
@@ -30,4 +32,11 @@
     <string name="logout">Logout</string>
     <string name="navigation_drawer_open">Open navigation drawer <b>Sign In</b></string>
     <string name="navigation_drawer_close">Close navigation drawer <b>Sign In</b></string>
+    <string name="user_name">User Name</string>
+    <string name="submit">Submit</string>
+    <string name="next">Next</string>
+    <string name="timer">Timer: 30</string>
+    <string name="stop_quiz">Stop Quiz</string>
+    <string name="home">Home</string>
+    <string name="view_result">View Result</string>
 </resources>

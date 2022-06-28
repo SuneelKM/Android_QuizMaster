@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.RecyclerView
 
+
 import com.example.quizmaster.data.model.UserData.UserScores
 
 class HistoryAdapter(private var userHistory: List<UserScores>) :
