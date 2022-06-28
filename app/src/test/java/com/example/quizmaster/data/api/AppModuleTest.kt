@@ -54,9 +54,7 @@ class AppModuleTest {
         mockServer.shutdown()
     }
 
-    @Test
-    fun provideQuestionsApi() {
-    }
+
 
 
 }

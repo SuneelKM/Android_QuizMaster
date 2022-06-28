@@ -1,25 +1,15 @@
 package com.example.quizmaster.ui.view
 
 import android.app.AlertDialog
-import android.content.ContentValues
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.view.View
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.quizmaster.R
-import com.example.quizmaster.data.model.UserData.UserSignup
 import com.example.quizmaster.databinding.ActivitySignInBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.delay
-import java.lang.Thread.sleep
-
 
 class SignInActivity : AppCompatActivity() {
 
@@ -121,7 +111,7 @@ class SignInActivity : AppCompatActivity() {
                         builder.setMessage("Email sent to $email")
                         builder.setCancelable(true)
                         builder.setNegativeButton("OK", DialogInterface.OnClickListener
-                        { dialog, which -> dialog.cancel() })
+                        { dialog, _ -> dialog.cancel() })
                         val alertDialog: AlertDialog = builder.create()
                         alertDialog.show()
                     } else {
@@ -129,7 +119,7 @@ class SignInActivity : AppCompatActivity() {
                         builder.setMessage("Sorry, we could not find your account")
                         builder.setCancelable(true)
                         builder.setNegativeButton("OK", DialogInterface.OnClickListener
-                        { dialog, which -> dialog.cancel() })
+                        { dialog, _ -> dialog.cancel() })
                         val alertDialog: AlertDialog = builder.create()
                         alertDialog.show()
                     }
