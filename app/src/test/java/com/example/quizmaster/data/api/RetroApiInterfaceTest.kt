@@ -42,9 +42,7 @@ class RetroApiInterfaceTest{
         val mockRes = MockResponse()
 //            .setResponseCode(HttpURLConnection.HTTP_OK)
         mockServer.enqueue(mockRes)
-
         val result = inter.getQuestions("0", "0", "0", "0")
-
         result.subscribeBy{
             it
         }

@@ -3,8 +3,9 @@ package com.example.quizmaster.ui.viewmodel
 import android.os.CountDownTimer
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 
-class QuestionsTimerViewModel {
+class QuestionsTimerViewModel  {
     private var started=false
     private var countDown= MutableLiveData<Int>()
     private var finish= MutableLiveData<String>()
