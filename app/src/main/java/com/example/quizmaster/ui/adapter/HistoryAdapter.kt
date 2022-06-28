@@ -1,12 +1,11 @@
-package com.example.quizmaster
+package com.example.quizmaster.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.RecyclerView
+import com.example.quizmaster.R
 
 
 import com.example.quizmaster.data.model.UserData.UserScores
