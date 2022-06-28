@@ -137,8 +137,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
-                android:background="@color/purple_700"
+
                 android:text="@string/sign_in_button"
+                android:background="@drawable/table_backgound"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold"

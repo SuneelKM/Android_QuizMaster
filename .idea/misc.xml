@@ -41,11 +41,11 @@
         <entry key="app/src/main/res/drawable/ic_quiz_logo.xml" value="0.209" />
         <entry key="app/src/main/res/drawable/table_backgound.xml" value="0.1605" />
         <entry key="app/src/main/res/layout/activity_choose_quiz.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_history.xml" value="0.33277870216306155" />
+        <entry key="app/src/main/res/layout/activity_history.xml" value="0.5" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2947916666666667" />
         <entry key="app/src/main/res/layout/activity_question_page.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_result_page.xml" value="0.21481481481481482" />
-        <entry key="app/src/main/res/layout/activity_sign_in.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/activity_sign_in.xml" value="0.43912448700410395" />
         <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.21481481481481482" />
         <entry key="app/src/main/res/layout/history_item.xml" value="0.23802083333333332" />
