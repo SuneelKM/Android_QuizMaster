@@ -7,9 +7,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.RecyclerView
-import com.example.quizmaster.UsersData.Users
 
-class HistoryAdapter(private var userHistory: List<Users>) :
+import com.example.quizmaster.data.model.UserData.UserScores
+
+class HistoryAdapter(private var userHistory: List<UserScores>) :
     RecyclerView.Adapter<HistoryAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int)
@@ -43,7 +44,7 @@ class HistoryAdapter(private var userHistory: List<Users>) :
 
     }
 
-    fun setItems(itemList: List<Users>){
+    fun setItems(itemList: List<UserScores>){
         this.userHistory = itemList
         notifyDataSetChanged()
     }
