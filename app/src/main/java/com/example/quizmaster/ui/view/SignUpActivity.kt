@@ -29,7 +29,7 @@ class SignUpActivity : AppCompatActivity() {
 //            val intent = Intent(this, SignInActivity::class.java)
 //            startActivity(intent)
             onBackPressed()
-            overridePendingTransition(R.anim.slide_up, R.anim.slide_up)
+            overridePendingTransition(R.anim.slide_up, R.anim.slide_in)
 
         }
         binding.button.setOnClickListener {
