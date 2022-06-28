@@ -44,9 +44,7 @@ android {
     defaultConfig {
         vectorDrawables.useSupportLibrary = true
     }
-    kapt {
-        generateStubs = true
-    }
+
 }
 
 dependencies {
@@ -59,8 +57,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-database-ktx:20.0.5'
     implementation 'com.google.firebase:firebase-crashlytics-ktx:18.2.11'
     implementation 'com.google.firebase:firebase-analytics-ktx:21.0.0'
-    kapt "com.android.databinding:compiler:3.2.0-alpha10"
-    kapt 'androidx.databinding:databinding-compiler-common:7.2.1'
+//    kapt "com.android.databinding:compiler:3.2.0-alpha10"
+//    kapt 'androidx.databinding:databinding-compiler-common:7.2.1'
 
     // Junit Testing
     testImplementation 'androidx.arch.core:core-testing:2.1.0'
@@ -100,11 +98,11 @@ dependencies {
     implementation 'com.google.dagger:hilt-android:2.42'
     kapt 'com.google.dagger:hilt-compiler:2.42'
     // For instrumentation tests
-    androidTestImplementation  'com.google.dagger:hilt-android-testing:2.42'
-    kaptAndroidTest 'com.google.dagger:hilt-compiler:2.42'
-    // For local unit tests
-    testImplementation 'com.google.dagger:hilt-android-testing:2.42'
-    kaptTest 'com.google.dagger:hilt-compiler:2.42'
+//    androidTestImplementation  'com.google.dagger:hilt-android-testing:2.42'
+//    kaptAndroidTest 'com.google.dagger:hilt-compiler:2.42'
+//    // For local unit tests
+//    testImplementation 'com.google.dagger:hilt-android-testing:2.42'
+//    kaptTest 'com.google.dagger:hilt-compiler:2.42'
 
     // Androidx activity
     implementation 'androidx.activity:activity-ktx:1.4.0'

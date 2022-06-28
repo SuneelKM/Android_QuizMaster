@@ -55,6 +55,8 @@ class SignInActivity : AppCompatActivity() {
 
         }
 
+
+// Login
         binding.button.setOnClickListener {
             val email = binding.emailEt.text.toString().trim()
             val pass = binding.passET.text.toString()
