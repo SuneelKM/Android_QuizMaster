@@ -16,11 +16,11 @@ class AppModule {
 @Provides
 @Singleton
     fun provideQuestionsApi(): RetroApiInterface {
-    var BASE_URL = "https://opentdb.com/"
+    val baseUrl = "https://opentdb.com/"
         return Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
-            .baseUrl(BASE_URL)
+            .baseUrl(baseUrl)
             .build()
             .create(RetroApiInterface::class.java)
     }

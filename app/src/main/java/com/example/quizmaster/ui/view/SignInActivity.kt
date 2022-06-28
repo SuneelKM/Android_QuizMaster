@@ -57,30 +57,8 @@ class SignInActivity : AppCompatActivity() {
             } else if (pass.isEmpty()) {
                 binding.passET.error = "Please enter a valid password"
             } else {
+                    login(email, pass)
 
-                firebaseAuth.signInWithEmailAndPassword(email, pass)
-                    .addOnCompleteListener {
-                        if (it.isSuccessful) {
-                            val emailVerified = firebaseAuth.currentUser!!.isEmailVerified
-                            if (emailVerified) {
-                                val intent = Intent(this, MainActivity::class.java)
-                                startActivity(intent)
-                            } else {
-                                Toast.makeText(
-                                    this,
-                                    "Please verify your email address",
-                                    Toast.LENGTH_LONG
-                                ).show()
-                            }
-                        }
-
-                    }.addOnFailureListener {
-                        Toast.makeText(
-                            this,
-                            "${it.message}",
-                            Toast.LENGTH_LONG
-                        ).show()
-                    }
             }
         }
     }
@@ -98,6 +76,34 @@ class SignInActivity : AppCompatActivity() {
 
         }
 
+    }
+
+
+
+    private fun login(email: String, pass:String){
+        firebaseAuth.signInWithEmailAndPassword(email, pass)
+            .addOnCompleteListener {
+                if (it.isSuccessful) {
+                    val emailVerified = firebaseAuth.currentUser!!.isEmailVerified
+                    if (emailVerified) {
+                        val intent = Intent(this, MainActivity::class.java)
+                        startActivity(intent)
+                    } else {
+                        Toast.makeText(
+                            this,
+                            "Please verify your email address",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                }
+
+            }.addOnFailureListener {
+                Toast.makeText(
+                    this,
+                    "${it.message}",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
     }
 
 

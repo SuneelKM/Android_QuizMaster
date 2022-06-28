@@ -2,19 +2,17 @@ package com.example.quizmaster.data.api
 
 import com.google.gson.Gson
 import io.reactivex.rxjava3.kotlin.subscribeBy
-import junit.framework.TestCase
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.After
 import org.junit.Assert.*
 import org.junit.Before
-
 import org.junit.Test
 import org.mockito.MockitoAnnotations
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import java.net.HttpURLConnection
+
 
 class AppModuleTest {
 
