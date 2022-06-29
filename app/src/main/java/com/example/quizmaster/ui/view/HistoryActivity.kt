@@ -1,5 +1,6 @@
 package com.example.quizmaster.ui.view
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -28,6 +29,10 @@ class HistoryActivity : AppCompatActivity() {
         binding = ActivityHistoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.toolbar2.setNavigationOnClickListener {
+            val homeIntent = Intent(this, MainActivity::class.java)
+            startActivity(homeIntent)
+        }
 
         var dividerItemDecoration : DividerItemDecoration = DividerItemDecoration(binding.recyclerHistory.context, LinearLayoutManager(this).orientation)
         binding.recyclerHistory.addItemDecoration(dividerItemDecoration)
@@ -40,6 +45,15 @@ class HistoryActivity : AppCompatActivity() {
         vm.userScoreList.observe(this){
             adapter.setItems(it)
         }
+
+        binding.category.setOnClickListener{
+
+        }
+
+
+
+
+
 
     }
 }
