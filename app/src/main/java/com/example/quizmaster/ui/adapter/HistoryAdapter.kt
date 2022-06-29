@@ -48,4 +48,34 @@ class HistoryAdapter(private var userHistory: List<UserScores>) :
         this.userHistory = itemList
         notifyDataSetChanged()
     }
+
+    fun sortCategory(arrowDown: Boolean){
+        if(arrowDown)
+            this.userHistory.sortedBy {it.category}
+        else
+            this.userHistory.sortedBy {it.category}.reversed()
+
+        notifyDataSetChanged()
+    }
+
+    fun sortLevel(arrowDown: Boolean){
+        if(arrowDown)
+            this.userHistory.sortedBy {it.level}
+        else
+            this.userHistory.sortedBy {it.level}.reversed()
+
+        notifyDataSetChanged()
+    }
+
+    fun sortScore(arrowDown: Boolean){
+        if(arrowDown)
+            this.userHistory.sortedBy {it.points}
+        else
+            this.userHistory.sortedBy {it.points}.reversed()
+        notifyDataSetChanged()
+    }
+
+    fun sortDate(arrowDown: Boolean){
+        //TODO: sort depending on how date is stored
+    }
 }

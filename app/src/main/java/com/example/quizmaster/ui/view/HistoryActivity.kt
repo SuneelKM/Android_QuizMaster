@@ -3,7 +3,9 @@ package com.example.quizmaster.ui.view
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -46,14 +48,29 @@ class HistoryActivity : AppCompatActivity() {
             adapter.setItems(it)
         }
 
-        binding.category.setOnClickListener{
+        val sorting = arrayOf(binding.category, binding.level, binding.score, binding.date)
 
+        for(sort in sorting){
+            sort.setOnClickListener {
+                var arrowSwitchSort = arrowSwitch(sort)
+                when(sort){
+                    binding.category -> adapter.sortCategory(arrowSwitchSort)
+                    binding.level -> adapter.sortLevel(arrowSwitchSort)
+                    binding.score -> adapter.sortScore(arrowSwitchSort)
+                    else -> adapter.sortDate(arrowSwitchSort)
+                }
+            }
         }
 
+    }
 
+    private fun arrowSwitch(field: TextView): Boolean{
+        var arrowDown = if(field.compoundDrawables[3].equals(ContextCompat.getDrawable(this, R.drawable.ic_baseline_arrow_drop_down_24))) true else false
+        if (arrowDown)
+            field.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_arrow_drop_up_24, 0)
+        else
+            field.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_arrow_drop_down_24, 0)
 
-
-
-
+        return !arrowDown
     }
 }
