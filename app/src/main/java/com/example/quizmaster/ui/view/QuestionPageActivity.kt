@@ -13,11 +13,21 @@ import androidx.activity.viewModels
 import androidx.appcompat.widget.ButtonBarLayout
 import androidx.lifecycle.MutableLiveData
 import com.example.quizmaster.R
+<<<<<<< HEAD
+=======
+
+import com.example.quizmaster.data.api.RetroApiInterface
+import com.example.quizmaster.data.repo.QuestionsRepository
+>>>>>>> ba3be25d7642bedf82bef899434d76c28d4d7801
 import com.example.quizmaster.ui.viewmodel.QuestionsTimerViewModel
 import com.example.quizmaster.ui.viewmodel.QuestionsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import com.example.quizmaster.data.model.OpentdbAPI.Result
 import java.io.Serializable
+
+import com.example.quizmaster.data.model.OpentdbAPI.Questions
+
+
 
 
 @AndroidEntryPoint
@@ -47,6 +57,7 @@ class QuestionPageActivity : AppCompatActivity(),View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_question_page)
+
 
         vmT = QuestionsTimerViewModel()
         timer = findViewById(R.id.textView)
