@@ -16,6 +16,8 @@ class SplashActivity : AppCompatActivity() {
             val intent  = Intent(this@SplashActivity, SignInActivity::class.java)
             startActivity(intent)
             finish()
+            overridePendingTransition(R.anim.slide_in, R.anim.slide_up)
+
         },4000)
     }
 }

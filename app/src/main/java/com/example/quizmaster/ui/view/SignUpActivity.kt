@@ -28,7 +28,7 @@ class SignUpActivity : AppCompatActivity() {
         binding.textView.setOnClickListener {
 //            val intent = Intent(this, SignInActivity::class.java)
 //            startActivity(intent)
-            overridePendingTransition(R.anim.slide_up, R.anim.slide_up)
+                overridePendingTransition(R.anim.try1, R.anim.try2)
             onBackPressed()
         }
 
