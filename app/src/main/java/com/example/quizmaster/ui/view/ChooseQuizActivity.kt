@@ -69,7 +69,6 @@ class ChooseQuizActivity : AppCompatActivity() {
         var questionsIntent = Intent(this, QuestionPageActivity::class.java)
         questionsIntent.putExtra("results", result as Serializable)
         questionsIntent.putExtra("position", pos)
-        questionsIntent.putExtra("position", numOfQuestions)
         startActivity(questionsIntent)
     }
 }

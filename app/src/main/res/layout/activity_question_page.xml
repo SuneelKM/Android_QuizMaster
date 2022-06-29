@@ -7,12 +7,13 @@
     tools:context=".ui.view.QuestionPageActivity"
     android:background="@drawable/ic_bg">
 
+
     <ImageView
         android:id="@+id/quiz_logo"
         android:layout_width="180dp"
         android:layout_height="148dp"
         android:layout_marginStart="115dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="52dp"
         android:layout_marginEnd="115dp"
         android:contentDescription="image"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,14 +22,12 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_quiz_logo" />
 
-
-
     <TextView
         android:id="@+id/textView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="130dp"
         android:layout_marginEnd="16dp"
         android:gravity="start"
         android:text="Timer : "
@@ -44,7 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="150dp"
         android:layout_marginEnd="16dp"
         android:background="@color/purple_700"
         android:gravity="center"
@@ -214,8 +213,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/textView6" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/button2"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/submit_btn"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
@@ -229,6 +228,20 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/textView7" />
 
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/next_btn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="30dp"
+                android:background="@color/purple_700"
+                android:text="Next"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/submit_btn" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

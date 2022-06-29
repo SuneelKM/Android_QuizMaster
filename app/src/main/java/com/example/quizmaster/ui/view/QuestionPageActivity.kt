@@ -2,29 +2,27 @@ package com.example.quizmaster.ui.view
 
 import android.content.Intent
 import android.graphics.Color
+import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import androidx.activity.viewModels
-import androidx.lifecycle.ViewModelProvider
+import androidx.appcompat.widget.ButtonBarLayout
+import androidx.lifecycle.MutableLiveData
 import com.example.quizmaster.R
-import com.example.quizmaster.data.api.RetroApiInterface
-import com.example.quizmaster.data.repo.QuestionsRepository
 import com.example.quizmaster.ui.viewmodel.QuestionsTimerViewModel
 import com.example.quizmaster.ui.viewmodel.QuestionsViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.kotlin.subscribeBy
-import io.reactivex.rxjava3.schedulers.Schedulers
 import com.example.quizmaster.data.model.OpentdbAPI.Result
-import java.lang.Math.random
+import java.io.Serializable
 
 
 @AndroidEntryPoint
-class QuestionPageActivity : AppCompatActivity() {
-   lateinit var vmT: QuestionsTimerViewModel
+class QuestionPageActivity : AppCompatActivity(),View.OnClickListener {
+    lateinit var vmT: QuestionsTimerViewModel
     val vm: QuestionsViewModel by viewModels()
 
     lateinit var textView2: TextView
@@ -35,9 +33,16 @@ class QuestionPageActivity : AppCompatActivity() {
     lateinit var textView7: TextView
     lateinit var textView31: TextView
     lateinit var timer: TextView
-    lateinit var button2: Button
-     var correctAns = String()
+    lateinit var submit_btn: TextView
+    lateinit var next_btn: TextView
+    lateinit var button: Button
+    var correctAns = String()
     var score = 0
+    private var currentQuestionIndex = 0
+    private var selectedAnswer:String = ""
+    lateinit var result:List<Result>
+    lateinit var questionPageIntent:Intent
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,138 +57,123 @@ class QuestionPageActivity : AppCompatActivity() {
         textView5 = findViewById(R.id.textView5)
         textView6 = findViewById(R.id.textView6)
         textView7 = findViewById(R.id.textView7)
-        button2 = findViewById(R.id.button2)
+        submit_btn = findViewById(R.id.submit_btn)
+        next_btn = findViewById(R.id.next_btn)
+        button = findViewById(R.id.button)
+        questionPageIntent = Intent()
+        textView4.setOnClickListener(this)
+        textView5.setOnClickListener(this)
+        textView6.setOnClickListener(this)
+        textView7.setOnClickListener(this)
+        submit_btn.setOnClickListener(this)
+        next_btn.setOnClickListener(this)
 
         vmT.timer()
         vmT.getLiveTimer().observe(this, { timer.text = "Time Left ${it.toString()}" })
         vmT.getFinish().observe(this, { timer.text = it })
 
-//        vm.getQuestions("2","9","medium", "multiple")
-//            .subscribeOn(Schedulers.io())
-//            .observeOn(AndroidSchedulers.mainThread())
-//            .subscribeBy(
-//                onNext ={
-//                    println("results  ${it.results}")
-//                    for (i in it.results){
-//                        println("cat ${it.results[1].question}")
-//                    }
-//                  //  println("results[4]  ${it.results}")
-//
-//     //               textView2.text=it.results[4].toString()
-////                  Html.fromHtml(it.results[0].question)
-//                },
-//                onError = {e -> println("this is error $e")}
-//            )
-
-        val result = intent.extras?.get("results") as? List<Result>
-        val pos = intent.extras?.get("position")
-        if (result != null) {
-            var i =0
-         // while ((timer.text.toString().toInt()!=0)) {
-                 for (i in 0..0 ) {
-                     println("From Question Page ${result?.get(1)?.question}")
-                     println("timer in wile loop")
-
-                     //       button2.setOnClickListener {
-                     textView2.text = result?.get(i)?.question.toString()
-                     textView3.text = result?.get(i)?.category.toString()
-                     textView31.text = "Level:  ${result?.get(i)?.difficulty.toString()}"
-                     correctAns = result?.get(i)?.correctAnswer.toString()
-
-                     var answerArr = listOf(
-                         result?.get(i)?.correctAnswer.toString(),
-                         result?.get(i)?.incorrectAnswers?.get(0).toString(),
-                         result?.get(i)?.incorrectAnswers?.get(1).toString(),
-                         result?.get(i)?.incorrectAnswers?.get(2).toString()
-                     )
-                     println("answerArr  ${answerArr.get(0).toString()}")
-
-                     var randomAnswerArr = answerArr.shuffled()
-                     println("randomAnswerArr $randomAnswerArr")
-
-                     textView4.text = randomAnswerArr.get(0).toString()
-                     textView5.text = randomAnswerArr.get(1).toString()
-                     textView6.text = randomAnswerArr.get(2).toString()
-                     textView7.text = randomAnswerArr.get(3).toString()
-
-//        textView4.text=result?.get(1)?.correctAnswer .toString()
-//        textView5.text=result?.get(1)?.incorrectAnswers?.get(0) .toString()
-//        textView6.text=result?.get(1)?.incorrectAnswers?.get(1).toString()
-//        textView7.text=result?.get(1)?.incorrectAnswers?.get(2).toString()
-
-                     println(pos)
-                     textView4.setOnClickListener(object : View.OnClickListener {
-                         override fun onClick(v: View?) {
-                             if (v != null) {
-                                 if (textView4.text.toString() == correctAns && textView4.id == v.id) {
-                                     println("correctAns ${textView4.text.toString()}")
-                                     textView4.setBackgroundColor(Color.parseColor("#00FF00"))
-                                 } else {
-                                     println("IncorrectAns ${textView4.text.toString()}")
-                                     textView4.setBackgroundColor(
-                                         android.graphics.Color.parseColor("#ff3300"))
-                                 }
-                             }
-                         }
-                     })
-                     textView5.setOnClickListener(object : View.OnClickListener {
-                         override fun onClick(v: View?) {
-                             if (v != null) {
-                                 if (textView5.text.toString() == correctAns && textView5.id == v.id) {
-                                     println("correctAns ${textView5.text.toString()}")
-                                     textView5.setBackgroundColor(Color.parseColor("#00FF00"))
-                                 } else {
-                                     println("IncorrectAns ${textView5.text.toString()}")
-                                     textView5.setBackgroundColor(
-                                         android.graphics.Color.parseColor("#ff3300"))
-                                 }
-                             }
-                         }
-                     })
-
-                     textView6.setOnClickListener(object : View.OnClickListener {
-                         override fun onClick(v: View?) {
-                             if (v != null) {
-                                 if (textView6.text.toString() == correctAns && textView6.id == v.id) {
-                                     println("correctAns ${textView6.text.toString()}")
-                                     textView6.setBackgroundColor(Color.parseColor("#00FF00"))
-                                 } else {
-                                     println("IncorrectAns ${textView6.text.toString()}")
-                                     textView6.setBackgroundColor(
-                                         android.graphics.Color.parseColor(
-                                             "#ff3300"
-                                         )
-                                     )
-                                 }
-                             }
-                         }
-                     })
-                     textView7.setOnClickListener(object : View.OnClickListener {
-                         override fun onClick(v: View?) {
-                             if (v != null) {
-                                 if (textView7.text.toString() == correctAns && textView7.id == v.id) {
-                                     println("correctAns ${textView7.text.toString()}")
-                                     textView7.setBackgroundColor(Color.parseColor("#00FF00"))
-                                 } else {
-                                     println("IncorrectAns ${textView7.text.toString()}")
-                                     textView7.setBackgroundColor(
-                                         android.graphics.Color.parseColor(
-                                             "#ff3300"
-                                         )
-                                     )
-                                 }
-                             }
-                         }
-                     })
-                     //         i++
-                 //}
-                 }
-            //}
+         result = (intent.extras?.get("results") as? List<Result>)!!
+        println("result.size ${result.size}")
+        button.setOnClickListener {
+            var mainActivityIntent = Intent(this, MainActivity::class.java)
+           startActivity(mainActivityIntent)
 
         }
 
+        this.score = intent.getIntExtra("score", 0)
+
+        submit_btn.setOnClickListener {
+            if (selectedAnswer == correctAns) {
+         //       this.score = intent.getIntExtra("score", 0)
+                score++
+                println("selectedAnswer == correctAns ${selectedAnswer == correctAns}")
+                println("score++  ${score++}")
+         //       questionPageIntent.putExtra("score", score)
+            }
+            submit_btn.setBackgroundColor(Color.parseColor("#cccccc"))
+        }
+
+        if (result != null) {
+            println("From Question Page ${result?.get(1)?.question}")
+            textView3.text = result?.get(0)?.category.toString()
+            textView31.text = "Level:  ${result?.get(0)?.difficulty.toString()}"
+            correctAns = result?.get(currentQuestionIndex)?.correctAnswer.toString()
+        loadQuestion(result)
+        }
+
+    }  // onCreate ends
+
+    override fun onClick(v: View?) {
+        var clickedNextBtn : TextView = v as TextView
+        var clickedOption: TextView = v as TextView
+
+        textView4.setBackgroundColor(Color.WHITE)
+        textView5.setBackgroundColor(Color.WHITE)
+        textView6.setBackgroundColor(Color.WHITE)
+        textView7.setBackgroundColor(Color.WHITE)
+        submit_btn.setBackgroundColor(Color.parseColor("#FF3700B3"))
+
+        if (clickedNextBtn != null) {
+            println("next btn")
+            if (clickedNextBtn.id == R.id.next_btn) {
+                if (currentQuestionIndex <= result.size - 1) {
+                    currentQuestionIndex++
+
+                    questionPageIntent = Intent(this, QuestionPageActivity::class.java)
+                    questionPageIntent.putExtra("results", result as Serializable)
+                    questionPageIntent.putExtra("currentQuestionIndex", currentQuestionIndex)
+                    questionPageIntent.putExtra("score", score)
+                    startActivity(questionPageIntent)
+
+                }else if (currentQuestionIndex == result.size - 1) {
+                    next_btn.setText("Finish")
+                }
+            }
+        }
+        if (clickedOption != null) {
+            if (clickedOption.id == R.id.textView4 || clickedOption.id == R.id.textView5 ||
+                clickedOption.id == R.id.textView6 || clickedOption.id == R.id.textView7) {
+                selectedAnswer = clickedOption.text.toString()
+                println("selectedAnswer $selectedAnswer")
+                clickedOption.setBackgroundColor(Color.parseColor("#cc99ff"))
+            }
+        }
+    }
+
+    fun loadQuestion(result: List<Result>?){
+
+        this.currentQuestionIndex = intent.getIntExtra("currentQuestionIndex",0)
+       println("this.currentQuestionIndex  ${this.currentQuestionIndex}")
+        if (result != null) {
+            if(this.currentQuestionIndex == result.size){
+             finishQuiz()
+             return
+            }
+             }
+        selectedAnswer=" "
+
+        textView2.text = result?.get(this.currentQuestionIndex)?.question.toString()
+        var answerArr = listOf(
+            result?.get(this.currentQuestionIndex)?.correctAnswer.toString(),
+            result?.get(this.currentQuestionIndex)?.incorrectAnswers?.get(0).toString(),
+            result?.get(this.currentQuestionIndex)?.incorrectAnswers?.get(1).toString(),
+            result?.get(this.currentQuestionIndex)?.incorrectAnswers?.get(2).toString()
+        )
+        var randomAnswerArr = answerArr.shuffled()
+
+        textView4.text = randomAnswerArr.get(0)
+        textView5.text = randomAnswerArr.get(1)
+        textView6.text = randomAnswerArr.get(2)
+        textView7.text = randomAnswerArr.get(3)
 
     }
 
+
+    fun finishQuiz(){
+        var resultPageIntent = Intent(this, ResultPageActivity::class.java)
+//        resultPageIntent.putExtra("scores", score)
+        startActivity(resultPageIntent)
+
+    }
 
 }
