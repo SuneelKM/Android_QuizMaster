@@ -36,7 +36,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.quizmaster"
-        minSdk 31
+        minSdk 30
         targetSdk 32
         versionCode 1
         versionName "1.0"
@@ -92,6 +92,7 @@ dependencies {
     testImplementation "com.squareup.retrofit2:retrofit-mock:2.5.0"
     testImplementation "org.mockito:mockito-inline:2.8.47"
     testImplementation "org.mockito.kotlin:mockito-kotlin:4.0.0"
+    testImplementation 'junit:junit:4.12'
 
     // UI Espresso Testing
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
