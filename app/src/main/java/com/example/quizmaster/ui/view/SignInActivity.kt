@@ -39,6 +39,7 @@ class SignInActivity : AppCompatActivity() {
             val intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
             overridePendingTransition(R.anim.slide_in, R.anim.slide_up)
+
         }
 
 // Reset password
@@ -75,6 +76,8 @@ class SignInActivity : AppCompatActivity() {
                             if (emailVerified) {
                                 val intent = Intent(this, MainActivity::class.java)
                                 startActivity(intent)
+                                overridePendingTransition(R.anim.slide_right, R.anim.slide_left)
+
                             } else {
                                 Toast.makeText(
                                     this,

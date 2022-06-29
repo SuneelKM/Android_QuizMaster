@@ -126,6 +126,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         binding.quizSetupButton.setOnClickListener{
             var quizSetupIntent = Intent(this, ChooseQuizActivity::class.java)
             startActivity(quizSetupIntent)
+            overridePendingTransition(R.anim.slide_right, R.anim.slide_left)
+
         }
 
         getUserName()

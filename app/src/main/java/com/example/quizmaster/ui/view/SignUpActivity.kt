@@ -29,8 +29,8 @@ class SignUpActivity : AppCompatActivity() {
 //            val intent = Intent(this, SignInActivity::class.java)
 //            startActivity(intent)
             onBackPressed()
-            overridePendingTransition(R.anim.slide_up, R.anim.slide_in)
 
+                overridePendingTransition(R.anim.try1, R.anim.try2)
         }
         binding.button.setOnClickListener {
             val userName = binding.userEt.text.toString()
