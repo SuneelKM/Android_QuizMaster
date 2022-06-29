@@ -30,7 +30,7 @@ class SignUpActivity : AppCompatActivity() {
             onBackPressed()
         }
         binding.button.setOnClickListener {
-            val userName = binding.userEt.text.toString()
+         //   val userName = binding.userEt.text.toString()
             val email = binding.emailEt.text.toString()
             val pass = binding.passET.text.toString()
             val confirmPass = binding.confirmPassEt.text.toString()
@@ -50,8 +50,8 @@ class SignUpActivity : AppCompatActivity() {
                                 firebaseAuth.currentUser!!.sendEmailVerification()
                                 Toast.makeText(this, "Check your email address", Toast.LENGTH_LONG).show()
 
-                                val user = UserSignup(userName, email)
-                                saveToDatabase(user)
+                           //     val user = UserSignup(userName, email)
+                           //     saveToDatabase(user)
 
                                 val intent = Intent(this, SignInActivity::class.java)
                                 startActivity(intent)

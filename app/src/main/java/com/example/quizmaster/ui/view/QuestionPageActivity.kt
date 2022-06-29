@@ -2,30 +2,18 @@ package com.example.quizmaster.ui.view
 
 import android.content.Intent
 import android.graphics.Color
-import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.CountDownTimer
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import androidx.activity.viewModels
-import androidx.appcompat.widget.ButtonBarLayout
-import androidx.lifecycle.MutableLiveData
 import com.example.quizmaster.R
-<<<<<<< HEAD
-=======
-
-import com.example.quizmaster.data.api.RetroApiInterface
-import com.example.quizmaster.data.repo.QuestionsRepository
->>>>>>> ba3be25d7642bedf82bef899434d76c28d4d7801
 import com.example.quizmaster.ui.viewmodel.QuestionsTimerViewModel
 import com.example.quizmaster.ui.viewmodel.QuestionsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import com.example.quizmaster.data.model.OpentdbAPI.Result
 import java.io.Serializable
-
-import com.example.quizmaster.data.model.OpentdbAPI.Questions
 
 
 
@@ -100,6 +88,9 @@ class QuestionPageActivity : AppCompatActivity(),View.OnClickListener {
                 println("selectedAnswer == correctAns ${selectedAnswer == correctAns}")
                 println("score++  ${score++}")
          //       questionPageIntent.putExtra("score", score)
+              var questPageIntent = Intent(this, QuestionPageActivity::class.java)
+                questPageIntent.putExtra("score", score)
+
             }
             submit_btn.setBackgroundColor(Color.parseColor("#cccccc"))
         }

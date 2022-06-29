@@ -54,6 +54,7 @@ class ChooseQuizActivity : AppCompatActivity() {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeBy(
                 onNext ={
+                    println(it.results.toString())
                     sendResults(it.results, 0)
 //                    binding.textView1.text=it.toString()
 //                  Html.fromHtml(it.results[0].question)
@@ -71,10 +72,6 @@ class ChooseQuizActivity : AppCompatActivity() {
         var questionsIntent = Intent(this, QuestionPageActivity::class.java)
         questionsIntent.putExtra("results", result as Serializable)
         questionsIntent.putExtra("position", pos)
-<<<<<<< HEAD
-=======
-
->>>>>>> ba3be25d7642bedf82bef899434d76c28d4d7801
         startActivity(questionsIntent)
     }
 }
