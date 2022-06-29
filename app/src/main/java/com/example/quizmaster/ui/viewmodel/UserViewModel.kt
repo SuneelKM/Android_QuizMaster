@@ -1,11 +1,9 @@
 package com.example.quizmaster.ui.viewmodel
 
 import android.content.Context
-import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.quizmaster.R
 import com.example.quizmaster.data.model.UserData.UserScores
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.ktx.database
