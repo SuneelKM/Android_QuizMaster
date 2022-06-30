@@ -37,6 +37,9 @@ class QuestionPageActivity : AppCompatActivity(),View.OnClickListener {
     lateinit var button: Button
 =======
     lateinit var button2: Button
+<<<<<<< HEAD
+>>>>>>> master
+=======
 >>>>>>> master
     var correctAns = String()
     var score = 0

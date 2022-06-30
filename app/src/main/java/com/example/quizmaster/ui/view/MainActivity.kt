@@ -13,6 +13,10 @@ import com.example.quizmaster.ui.viewmodel.QuestionsViewModel
 import com.example.quizmaster.R
 import com.example.quizmaster.data.model.UserData.UserScores
 import com.example.quizmaster.databinding.ActivityMainBinding
+<<<<<<< HEAD
+=======
+import com.example.quizmaster.ui.adapter.HistoryAdapter
+>>>>>>> master
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.ktx.database
@@ -127,7 +131,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             var quizSetupIntent = Intent(this, ChooseQuizActivity::class.java)
             startActivity(quizSetupIntent)
             overridePendingTransition(R.anim.slide_right, R.anim.slide_left)
+<<<<<<< HEAD
 
+=======
+            finish()
+        }
+
+        binding.historySetupButton.setOnClickListener{
+            historyStartActivity()
+>>>>>>> master
         }
 
         getUserName()
@@ -169,7 +181,17 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 finish()
                 true
             }
+            R.id.history ->{
+                historyStartActivity()
+                true
+            }
         }
         return true
+    }
+
+    private fun historyStartActivity(){
+        val hisIntent = Intent(this, HistoryActivity::class.java)
+        startActivity(hisIntent)
+        finish()
     }
 }

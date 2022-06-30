@@ -55,6 +55,7 @@ class SignUpActivity : AppCompatActivity() {
                     signup(userName, email, pass)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
                            //     val user = UserSignup(userName, email)
                            //     saveToDatabase(user)
 
@@ -69,6 +70,8 @@ class SignUpActivity : AppCompatActivity() {
                                 Toast.LENGTH_LONG
                             ).show()
                         }
+=======
+>>>>>>> master
 =======
 >>>>>>> master
                 } else {
