@@ -31,9 +31,13 @@ class QuestionPageActivity : AppCompatActivity(),View.OnClickListener {
     lateinit var textView7: TextView
     lateinit var textView31: TextView
     lateinit var timer: TextView
+<<<<<<< HEAD
     lateinit var submit_btn: TextView
     lateinit var next_btn: TextView
     lateinit var button: Button
+=======
+    lateinit var button2: Button
+>>>>>>> master
     var correctAns = String()
     var score = 0
     private var currentQuestionIndex = 0

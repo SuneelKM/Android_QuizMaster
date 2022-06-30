@@ -20,7 +20,6 @@ import java.io.Serializable
 @AndroidEntryPoint
 class ChooseQuizActivity : AppCompatActivity() {
 
-    private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var binding: ActivityChooseQuizBinding
     val vm: QuestionsViewModel by viewModels()
 
@@ -29,7 +28,7 @@ class ChooseQuizActivity : AppCompatActivity() {
         binding = ActivityChooseQuizBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val category = listOf("General Knowledge","Computer Science","Movie","Geography", "Sports")
+        val category = listOf("General Knowledge","Computer Science","Geography","Movie", "Sports")
         val level = listOf("Easy","Medium","Hard")
         val numOfQuestion = listOf("5","10")
 
@@ -66,7 +65,6 @@ class ChooseQuizActivity : AppCompatActivity() {
         }
 
     }
-
 
     private fun sendResults(result: List<Result>, pos: Int){
         var questionsIntent = Intent(this, QuestionPageActivity::class.java)

@@ -9,6 +9,7 @@ import com.example.quizmaster.databinding.ActivitySignUpBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.example.quizmaster.R
 
 
 class SignUpActivity : AppCompatActivity() {
@@ -27,29 +28,33 @@ class SignUpActivity : AppCompatActivity() {
         binding.textView.setOnClickListener {
 //            val intent = Intent(this, SignInActivity::class.java)
 //            startActivity(intent)
+                overridePendingTransition(R.anim.try1, R.anim.try2)
             onBackPressed()
         }
+
         binding.button.setOnClickListener {
          //   val userName = binding.userEt.text.toString()
             val email = binding.emailEt.text.toString()
             val pass = binding.passET.text.toString()
             val confirmPass = binding.confirmPassEt.text.toString()
+            val termsCondition = binding.checkBox.isChecked
 
-            if (email.isEmpty())
+            if(userName.isEmpty()){
+                binding.userEt.error = "Please enter a username"
+            }
+            else if (email.isEmpty())
                 binding.emailEt.error = "Please enter a valid email"
             else if (pass.isEmpty())
                 binding.passET.error = "Please enter a valid password"
             else if (confirmPass.isEmpty())
                 binding.confirmPassEt.error = "Please enter a valid password"
+            else if (!termsCondition)
+                binding.checkBox.error = "Please accept the terms and conditions"
             else {
                 if (pass == confirmPass) {
-                    firebaseAuth.createUserWithEmailAndPassword(email, pass)
-                        .addOnCompleteListener {
-                            if (it.isSuccessful) {
-//                                val user = firebaseAuth.currentUser
-                                firebaseAuth.currentUser!!.sendEmailVerification()
-                                Toast.makeText(this, "Check your email address", Toast.LENGTH_LONG).show()
+                    signup(userName, email, pass)
 
+<<<<<<< HEAD
                            //     val user = UserSignup(userName, email)
                            //     saveToDatabase(user)
 
@@ -64,12 +69,41 @@ class SignUpActivity : AppCompatActivity() {
                                 Toast.LENGTH_LONG
                             ).show()
                         }
+=======
+>>>>>>> master
                 } else {
                     Toast.makeText(this, "Passwords does not match", Toast.LENGTH_SHORT).show()
                 }
             }
         }
     }
+
+
+
+    fun signup(userName:String, email:String, pass:String){
+        firebaseAuth.createUserWithEmailAndPassword(email, pass)
+            .addOnCompleteListener {
+                if (it.isSuccessful) {
+                    firebaseAuth.currentUser!!.sendEmailVerification()
+                    Toast.makeText(this, "Check your email address", Toast.LENGTH_LONG).show()
+
+                    val user = UserSignup(userName, email)
+                    saveToDatabase(user)
+
+                    val intent = Intent(this, SignInActivity::class.java)
+                    startActivity(intent)
+
+                }
+            }
+            .addOnFailureListener {
+                Toast.makeText(
+                    this,
+                    "${it.message}",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+    }
+
 
 
     fun saveToDatabase(user:UserSignup){

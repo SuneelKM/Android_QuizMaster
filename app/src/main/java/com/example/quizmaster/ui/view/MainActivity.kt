@@ -13,15 +13,11 @@ import com.example.quizmaster.ui.viewmodel.QuestionsViewModel
 import com.example.quizmaster.R
 import com.example.quizmaster.data.model.UserData.UserScores
 import com.example.quizmaster.databinding.ActivityMainBinding
-import com.example.quizmaster.databinding.NavHeaderBinding
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import java.util.*
 
 @AndroidEntryPoint
@@ -130,6 +126,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         binding.quizSetupButton.setOnClickListener{
             var quizSetupIntent = Intent(this, ChooseQuizActivity::class.java)
             startActivity(quizSetupIntent)
+            overridePendingTransition(R.anim.slide_right, R.anim.slide_left)
+
         }
 
         getUserName()

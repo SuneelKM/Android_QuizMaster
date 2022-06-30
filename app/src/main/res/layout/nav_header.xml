@@ -24,6 +24,8 @@
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-medium"
         android:padding="5dp"
-        android:text="User Name" />
+        android:text="@string/user_name"
+        android:textColor="@color/black"
+        android:gravity="center"/>
 
 </LinearLayout>
