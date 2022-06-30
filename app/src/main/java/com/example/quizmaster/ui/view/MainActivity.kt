@@ -1,5 +1,6 @@
 package com.example.quizmaster.ui.view
 
+import android.content.ContentResolver
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
@@ -7,6 +8,7 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.view.MenuItem
+import android.webkit.MimeTypeMap
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -203,31 +205,32 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         if (resultCode == RESULT_OK && requestCode == pickImage && data != null) {
             imageUri = data.data
             picture.setImageURI(imageUri)
-            uploadImage()
+            imageUri?.let { uploadImage(it) }
         }
     }
 
-    fun uploadImage(){
+    fun uploadImage(imageUri: Uri){
         val fileName = UUID.randomUUID().toString()
-        val reference = FirebaseStorage.getInstance().getReference("images/$fileName")
-        reference.putFile(imageUri!!)
+        val content = MimeTypeMap.getSingleton().getExtensionFromMimeType(contentResolver.getType(imageUri))
+        val reference = FirebaseStorage.getInstance().getReference("images/${fileName}.$content")
+        reference.putFile(imageUri)
             .addOnSuccessListener {
                 Timber.tag("Upload Photo").d("Successfully loaded: %s", it.metadata?.path)
-                Log.v("Upload Photo", "${it.metadata?.path}")
+
+                reference.downloadUrl.addOnSuccessListener {
+                    Timber.tag("Upload Photo to Firebase").d("File Location: %s", it)
+                    saveImageToDatabase(it.toString())
+                }
+                    .addOnFailureListener {
+                        Timber.tag("No Upload").v("File not found")
+                    }
             }
-        reference.downloadUrl.addOnSuccessListener {
-            Timber.tag("Upload Photo to Firebase").d("File Location: %s", it)
-            Log.v("Upload", "File location ${it.toString()}")
-            saveImageToDatabase(it.toString())
-        }
     }
 
     fun saveImageToDatabase(imageUri: String){
         val database = Firebase.database
         val uid = firebaseAuth.uid
-        val myRef = database.getReference("/Users/$uid")
-        myRef.get().addOnSuccessListener {
-            myRef.child("imageUrl").setValue(imageUri)
-        }
+        val myRef = database.getReference("/Users/$uid/imageUrl")
+        myRef.setValue(imageUri)
     }
 }
