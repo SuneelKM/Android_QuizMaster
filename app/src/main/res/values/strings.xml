@@ -39,4 +39,11 @@
     <string name="stop_quiz">Stop Quiz</string>
     <string name="home">Home</string>
     <string name="view_result">View Result</string>
+    <string name="choice_1">Choice 1</string>
+    <string name="choice_2">Choice 2</string>
+    <string name="choice_3">Choice 3</string>
+    <string name="your_answer">Your answer:</string>
+    <string name="question">Question ?</string>
+    <string name="choice_4">Choice 4</string>
+    <string name="correct_answer">Correct Answer:</string>
 </resources>

@@ -15,6 +15,15 @@
         android:theme="@style/Theme.QuizMaster"
         android:usesCleartextTraffic="false">
         <activity
+            android:name=".ui.view.ResultPageRecyclerView"
+            android:exported="false" />
+        <activity
+            android:name=".RecyclerView"
+            android:exported="false" />
+        <activity
+            android:name=".result_page_RecyclerView"
+            android:exported="false" />
+        <activity
             android:name=".ui.view.HistoryActivity"
             android:exported="false" />
         <activity
