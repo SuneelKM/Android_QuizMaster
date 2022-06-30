@@ -28,7 +28,7 @@ class ChooseQuizActivity : AppCompatActivity() {
         binding = ActivityChooseQuizBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val category = listOf("General Knowledge","Computer Science","Movie","Geography", "Sports")
+        val category = listOf("General Knowledge","Computer Science","Geography","Movie", "Sports")
         val level = listOf("Easy","Medium","Hard")
         val numOfQuestion = listOf("5","10")
 
