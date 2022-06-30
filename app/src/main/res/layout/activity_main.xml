@@ -41,20 +41,51 @@
         app:layout_constraintTop_toTopOf="parent"
         app:navigationIcon="@drawable/ic_baseline_menu_36" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
-            android:gravity="center"
-            android:text="@string/quiz_master"
-            android:textColor="@color/black"
-            android:textSize="40sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="100dp"-->
+<!--            android:gravity="center"-->
+<!--            android:text="@string/quiz_master"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textSize="40sp"-->
+<!--            android:textStyle="bold"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="17dp"
+                    android:text="@string/username_setup_page"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:gravity="end"
+                    android:textColor="@color/black"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.cardview.widget.CardView
+
+                <ImageView
+                    android:id="@+id/quiz_logo"
+                    android:layout_width="180dp"
+                    android:layout_height="148dp"
+                    android:layout_marginStart="115dp"
+                    android:layout_marginTop="36dp"
+                    android:layout_marginEnd="115dp"
+                    android:contentDescription="image"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_quiz_logo" />
+
+                <androidx.cardview.widget.CardView
             android:layout_width="0dp"
             android:layout_height="380dp"
             android:layout_marginStart="13dp"
@@ -74,18 +105,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="5dp"
-                android:text="@string/username_setup_page"
-                android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:layout_width="0dp"
@@ -94,9 +113,9 @@
                 android:gravity="center"
                 android:text="@string/setup_your_quiz_text"
                 android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textSize="35sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@+id/textView4"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -106,9 +125,9 @@
                 android:layout_height="120dp"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="60dp"
+                android:layout_marginTop="90dp"
                 android:layout_marginEnd="20dp"
-                android:background="@color/purple_700"
+                android:background="@drawable/table_background"
                 android:text="@string/quiz_setup_text"
                 android:textColor="@color/white"
                 android:textSize="35sp"
@@ -124,9 +143,9 @@
                 android:layout_height="120dp"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="200dp"
+                android:layout_marginTop="230dp"
                 android:layout_marginEnd="20dp"
-                android:background="@color/purple_700"
+                android:background="@drawable/table_background"
                 android:text="@string/history_setup_text"
                 android:textColor="@color/white"
                 android:textSize="35sp"
@@ -140,61 +159,6 @@
 
 
 
-
-            <!--    <TextView-->
-<!--        android:id="@+id/textView1"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="200dp"-->
-<!--        android:text="Hello World!"-->
-<!--        android:textColor="@color/purple_500"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.437"-->
-<!--        app:layout_constraintLeft_toLeftOf="parent"-->
-<!--        app:layout_constraintRight_toRightOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintVertical_bias="1.0" />-->
-
-<!--    <Button-->
-<!--        android:id="@+id/app_logout"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Logout"-->
-<!--        android:layout_margin="10dp"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/userName"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginStart="16dp"-->
-<!--        android:layout_marginTop="16dp"-->
-<!--        android:textSize="24sp"-->
-<!--        android:text="user"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/userEmail"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginStart="16dp"-->
-<!--        android:layout_marginTop="76dp"-->
-<!--        android:text="email"-->
-<!--        android:textSize="24sp"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/userScore"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="350dp"-->
-<!--        android:layout_marginTop="168dp"-->
-<!--        android:text="email"-->
-<!--        android:textSize="16sp"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
 

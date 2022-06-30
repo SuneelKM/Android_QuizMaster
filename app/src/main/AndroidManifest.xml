@@ -13,7 +13,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.QuizMaster">
+        android:theme="@style/Theme.QuizMaster"
+        android:usesCleartextTraffic="false">
         <activity
             android:name=".ui.view.HistoryActivity"
             android:exported="false" />
@@ -43,7 +44,7 @@
             android:exported="false" />
         <activity
             android:name=".ui.view.MainActivity"
-            android:exported="true" />
+            android:exported="false" />
     </application>
 
 </manifest>

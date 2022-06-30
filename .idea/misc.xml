@@ -46,7 +46,6 @@
         <entry key="app/src/main/res/drawable/ic_baseline_manage_history_24.xml" value="0.138" />
         <entry key="app/src/main/res/drawable/ic_baseline_menu_36.xml" value="0.138" />
         <entry key="app/src/main/res/layout/activity_choose_quiz.xml" value="0.21481481481481482" />
-        <entry key="app/src/main/res/layout/activity_history.xml" value="0.2389193752638244" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2947916666666667" />
         <entry key="app/src/main/res/layout/activity_question_page.xml" value="0.21481481481481482" />
         <entry key="app/src/main/res/layout/activity_result_page.xml" value="0.21481481481481482" />

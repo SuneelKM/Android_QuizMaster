@@ -4,7 +4,8 @@ import android.os.CountDownTimer
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 
-class QuestionsTimerViewModel {
+
+class QuestionsTimerViewModel  {
     private var started=false
     private var countDown= MutableLiveData<Int>()
     private var finish= MutableLiveData<String>()
