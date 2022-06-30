@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.view.QuestionPageActivity"
-    android:background="@drawable/ic_bg">
+    android:background="@drawable/ic_bg"
+    android:id="@+id/QuestionPage">
 
 
     <!--<androidx.appcompat.widget.AppCompatButton
@@ -95,6 +96,7 @@
         android:layout_width="0dp"
         android:layout_height="420dp"
         android:layout_marginStart="13dp"
+        android:id="@+id/CardView"
         android:layout_marginTop="100dp"
         android:layout_marginEnd="13dp"
         android:background="@android:color/darker_gray"
@@ -108,7 +110,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            >
 
             <TextView
                 android:id="@+id/textView3"

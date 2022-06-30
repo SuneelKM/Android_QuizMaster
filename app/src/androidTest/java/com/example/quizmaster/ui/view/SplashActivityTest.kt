@@ -13,38 +13,36 @@ import org.junit.runner.RunWith
 
 
 @RunWith(AndroidJUnit4ClassRunner ::class)
-class SignUpActivityTest {
+class SplashActivityTest {
 
     @get:Rule
-    var activityScenarioRule = activityScenarioRule<SignUpActivity>()
+    var activityScenarioRule = activityScenarioRule<SplashActivity>()
 
     // layout is displayed to the user
     @Test
     fun checkingActivity(){
-        Espresso.onView(ViewMatchers.withId(R.id.cardView))
+        Espresso.onView(ViewMatchers.withId(R.id.Splash))
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
     }
 
-    @Test
-    fun test_Visibility_of_textView_and_button() {
-        Espresso.onView(ViewMatchers.withId(R.id.cardView))
-            .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
-
-    }
-
-    // second activity will be displayed
-
-    @Test
-    fun navigateTo2Activity() {
-        Espresso.onView(ViewMatchers.withId(R.id.cardView)).perform(ViewActions.click())
-        }
-
-    //    text  is visible as we want
+//    text  is visible as we want
     @Test
     fun checkingTextVisibility () {
-        Espresso.onView(ViewMatchers.withId(R.id.cardView))
+        Espresso.onView(ViewMatchers.withId(R.id.Splash))
+            .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
 
+        Espresso.onView(ViewMatchers.withId(R.id.Splash))
+            .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
     }
+
+
+
+
+
+
+
+
+
 
 
 }
