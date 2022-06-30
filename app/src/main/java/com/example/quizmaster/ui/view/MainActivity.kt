@@ -9,6 +9,7 @@ import android.provider.MediaStore
 import android.util.Log
 import android.view.MenuItem
 import android.webkit.MimeTypeMap
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -20,12 +21,14 @@ import com.example.quizmaster.R
 import com.example.quizmaster.data.model.UserData.UserScores
 import com.example.quizmaster.databinding.ActivityMainBinding
 import com.example.quizmaster.databinding.NavHeaderBinding
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
+import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -195,9 +198,34 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private fun getPicture(){
         picture = nav_view.getHeaderView(0).findViewById(R.id.imageView4)
 
+        val database = Firebase.database
+        val uid = firebaseAuth.uid
+        val myRef = database.getReference("/Users/$uid")
+        var image = ""
+
+        myRef.get().addOnSuccessListener {
+            image = it.child("imageUrl").value.toString()
+            if (it.child("imageUrl").value != null) {
+                picture.scaleType = ImageView.ScaleType.FIT_XY
+                Picasso.get().load(image).into(picture)
+                Timber.tag("Picture").v("Picture attached")
+            }else {
+                picture.setContentPadding(40, 40, 40, 40)
+                picture.setImageResource(R.drawable.ic_baseline_camera_alt_24)
+                Timber.tag("Picture").v("Picture not found")
+            }
+        }
+
         picture.setOnClickListener{
-            val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
-            startActivityForResult(gallery, pickImage)
+            MaterialAlertDialogBuilder(this)
+                .setTitle("Alert")
+                .setMessage("Do you want to upload photo from gallery?")
+                .setPositiveButton("Open gallery") { _, _ ->
+                    val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
+                    startActivityForResult(gallery, pickImage)
+                }
+                .setNegativeButton("Cancel", null)
+                .show()
         }
     }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
