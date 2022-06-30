@@ -249,7 +249,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
     }
 
-    fun uploadImage(imageUri: Uri){
+    private fun uploadImage(imageUri: Uri){
         val fileName = UUID.randomUUID().toString()
         val content = MimeTypeMap.getSingleton().getExtensionFromMimeType(contentResolver.getType(imageUri))
         val reference = FirebaseStorage.getInstance().getReference("images/${fileName}.$content")
@@ -267,7 +267,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
     }
 
-    fun saveImageToDatabase(imageUri: String){
+    private fun saveImageToDatabase(imageUri: String){
         val database = Firebase.database
         val uid = firebaseAuth.uid
         val myRef = database.getReference("/Users/$uid/imageUrl")
