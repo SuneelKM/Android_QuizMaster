@@ -4,9 +4,6 @@ import com.example.quizmaster.data.model.OpentdbAPI.Questions
 import com.example.quizmaster.data.model.OpentdbAPI.Result
 import com.example.quizmaster.data.repo.QuestionsRepository
 import io.reactivex.rxjava3.core.Observable
-import io.reactivex.rxjava3.kotlin.subscribeBy
-import org.junit.After
-import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -14,7 +11,7 @@ import org.junit.runners.JUnit4
 import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.MockitoAnnotations
-import org.mockito.stubbing.OngoingStubbing
+
 
 
 @RunWith(JUnit4::class)

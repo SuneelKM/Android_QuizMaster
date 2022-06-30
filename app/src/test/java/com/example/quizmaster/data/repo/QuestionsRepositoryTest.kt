@@ -3,12 +3,7 @@ package com.example.quizmaster.data.repo
 import com.example.quizmaster.data.api.RetroApiInterface
 import com.example.quizmaster.data.model.OpentdbAPI.Questions
 import com.example.quizmaster.data.model.OpentdbAPI.Result
-import com.example.quizmaster.ui.viewmodel.QuestionsViewModel
 import io.reactivex.rxjava3.core.Observable
-import io.reactivex.rxjava3.kotlin.subscribeBy
-import org.junit.Assert.*
-
-import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
