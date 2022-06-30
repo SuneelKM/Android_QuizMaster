@@ -50,7 +50,7 @@ class SignUpActivity : AppCompatActivity() {
                                 firebaseAuth.currentUser!!.sendEmailVerification()
                                 Toast.makeText(this, "Check your email address", Toast.LENGTH_LONG).show()
 
-                                val user = UserSignup(userName, email)
+                                val user = UserSignup(userName, email, null)
                                 saveToDatabase(user)
 
                                 val intent = Intent(this, SignInActivity::class.java)

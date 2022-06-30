@@ -16,7 +16,8 @@
         app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
         app:srcCompat="@drawable/ic_baseline_account_circle_24"
         app:strokeColor="@color/black"
-        app:strokeWidth="1dp" />
+        app:strokeWidth="1dp"
+        android:scaleType="matrix" />
 
     <TextView
         android:id="@+id/user_name"
