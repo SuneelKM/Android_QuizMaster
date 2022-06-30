@@ -33,7 +33,7 @@ class SignUpActivity : AppCompatActivity() {
         }
 
         binding.button.setOnClickListener {
-         //   val userName = binding.userEt.text.toString()
+            val userName = binding.userEt.text.toString()
             val email = binding.emailEt.text.toString()
             val pass = binding.passET.text.toString()
             val confirmPass = binding.confirmPassEt.text.toString()
@@ -54,26 +54,6 @@ class SignUpActivity : AppCompatActivity() {
                 if (pass == confirmPass) {
                     signup(userName, email, pass)
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-                           //     val user = UserSignup(userName, email)
-                           //     saveToDatabase(user)
-
-                                val intent = Intent(this, SignInActivity::class.java)
-                                startActivity(intent)
-                            }
-                        }
-                        .addOnFailureListener {
-                            Toast.makeText(
-                                this,
-                                "${it.message}",
-                                Toast.LENGTH_LONG
-                            ).show()
-                        }
-=======
->>>>>>> master
-=======
->>>>>>> master
                 } else {
                     Toast.makeText(this, "Passwords does not match", Toast.LENGTH_SHORT).show()
                 }

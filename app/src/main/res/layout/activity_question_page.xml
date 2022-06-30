@@ -7,61 +7,7 @@
     tools:context=".ui.view.QuestionPageActivity"
     android:background="@drawable/ic_bg">
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-    <ImageView
-        android:id="@+id/quiz_logo"
-        android:layout_width="180dp"
-        android:layout_height="148dp"
-        android:layout_marginStart="115dp"
-        android:layout_marginTop="52dp"
-        android:layout_marginEnd="115dp"
-        android:contentDescription="image"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_quiz_logo" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="130dp"
-        android:layout_marginEnd="16dp"
-        android:gravity="start"
-        android:text="Timer : "
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/button"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/quiz_logo" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="150dp"
-        android:layout_marginEnd="16dp"
-        android:background="@color/purple_700"
-        android:gravity="center"
-        android:text="Stop"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toTopOf="parent" />
-=======
-
->>>>>>> master
-=======
-
->>>>>>> master
     <!--<androidx.appcompat.widget.AppCompatButton
         android:id="@+id/signout"
         android:layout_width="0dp"
@@ -282,8 +228,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/textView6" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/submit_btn"
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/button2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
@@ -292,7 +238,6 @@
                 android:layout_marginEnd="200dp"
                 android:background="@drawable/table_background"
                 android:text="@string/submit"
-<<<<<<< HEAD
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -319,41 +264,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/textView7" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/next_btn"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="30dp"
-                android:background="@color/purple_700"
-                android:text="Next"
-=======
->>>>>>> master
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/textView7" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/button3"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginStart="200dp"
-                android:layout_marginTop="60dp"
-                android:layout_marginEnd="13dp"
-                android:background="@drawable/table_background"
-                android:text="@string/next"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.593"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/submit_btn" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
