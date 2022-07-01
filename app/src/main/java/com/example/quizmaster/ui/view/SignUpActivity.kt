@@ -10,8 +10,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.quizmaster.databinding.ActivitySignUpBinding
 import com.example.quizmaster.R
 import com.example.quizmaster.ui.viewmodel.AuthViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class SignUpActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySignUpBinding

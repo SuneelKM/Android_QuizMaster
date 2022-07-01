@@ -1,5 +1,7 @@
 package com.example.quizmaster.data.api
 
+import android.app.Application
+import android.content.Context
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -25,4 +27,8 @@ class AppModule {
             .create(RetroApiInterface::class.java)
     }
 
+    @Singleton
+    @Provides
+    fun provideContext(application: Application): Context = application.applicationContext
 }
+

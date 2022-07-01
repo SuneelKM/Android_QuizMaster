@@ -4,6 +4,4 @@ import com.example.quizmaster.Logs.ApplicationController
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
-class HiltApp : ApplicationController() {
-
-}
+class HiltApp : ApplicationController()
