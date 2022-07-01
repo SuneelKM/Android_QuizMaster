@@ -12,8 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.quizmaster.R
 import com.example.quizmaster.databinding.ActivitySignInBinding
 import com.example.quizmaster.ui.viewmodel.AuthViewModel
-import timber.log.Timber
-import com.google.firebase.database.*
+
 
 class SignInActivity : AppCompatActivity() {
 

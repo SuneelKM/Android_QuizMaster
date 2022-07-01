@@ -8,7 +8,6 @@ import com.example.quizmaster.data.model.UserData.UserSignup
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.delay
 import timber.log.Timber
 
 class AuthViewModel(app: Application) : AndroidViewModel(app) {

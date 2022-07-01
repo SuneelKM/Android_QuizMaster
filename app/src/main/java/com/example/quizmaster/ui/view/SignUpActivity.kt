@@ -1,6 +1,5 @@
 package com.example.quizmaster.ui.view
 
-import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.View.GONE
@@ -8,14 +7,9 @@ import android.view.View.VISIBLE
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.example.quizmaster.data.model.UserData.UserSignup
 import com.example.quizmaster.databinding.ActivitySignUpBinding
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
 import com.example.quizmaster.R
 import com.example.quizmaster.ui.viewmodel.AuthViewModel
-import com.example.quizmaster.ui.viewmodel.QuestionsViewModel
 
 
 class SignUpActivity : AppCompatActivity() {

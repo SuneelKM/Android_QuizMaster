@@ -22,7 +22,6 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import com.example.quizmaster.data.model.OpentdbAPI.Result
 import java.lang.Math.random
 
-import com.example.quizmaster.data.model.OpentdbAPI.Questions
 
 
 
