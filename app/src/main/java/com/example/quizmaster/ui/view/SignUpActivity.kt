@@ -60,12 +60,14 @@ class SignUpActivity : AppCompatActivity() {
         }
 
         vm.signUpState.observe(this) {
-            if(it=="showProgress") binding.progressBar.visibility = VISIBLE
-            else if(it=="error") binding.progressBar.visibility = GONE
-            else if (it == "success") {
-                val intent = Intent(this, SignInActivity::class.java)
-                startActivity(intent)
-                overridePendingTransition(R.anim.try1, R.anim.try2)
+            when (it) {
+                "showProgress" -> binding.progressBar.visibility = VISIBLE
+                "error" -> binding.progressBar.visibility = GONE
+                "success" -> {
+                    val intent = Intent(this, SignInActivity::class.java)
+                    startActivity(intent)
+                    overridePendingTransition(R.anim.try1, R.anim.try2)
+                }
             }
 
         }

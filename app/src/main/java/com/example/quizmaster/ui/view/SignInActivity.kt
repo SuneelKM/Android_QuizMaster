@@ -12,11 +12,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.quizmaster.R
 import com.example.quizmaster.databinding.ActivitySignInBinding
 import com.example.quizmaster.ui.viewmodel.AuthViewModel
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.*
-import kotlinx.coroutines.delay
 import timber.log.Timber
-import java.lang.Thread.sleep
+import com.google.firebase.database.*
 
 class SignInActivity : AppCompatActivity() {
 
@@ -55,6 +52,12 @@ class SignInActivity : AppCompatActivity() {
             email = binding.emailEt.text.toString().trim()
             val pass = binding.passET.text.toString()
 
+            try{
+                throw NullPointerException("Manual")
+            } catch (e:Exception){
+                Timber.e(e)
+            }
+
             if (email.isEmpty()) {
                 binding.emailEt.error = "Please enter a valid email"
             } else if (pass.isEmpty()) {
@@ -66,16 +69,18 @@ class SignInActivity : AppCompatActivity() {
 
         vm.signInState.observe(this){
 
-            if(it == "showProgress") binding.progressBar.visibility = VISIBLE
-            else if(it == "hideProgress") binding.progressBar.visibility = GONE
-            else if(it == "success") {
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
-                overridePendingTransition(R.anim.slide_right, R.anim.slide_left)
+            when (it) {
+                "showProgress" -> binding.progressBar.visibility = VISIBLE
+                "hideProgress" -> binding.progressBar.visibility = GONE
+                "success" -> {
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                    overridePendingTransition(R.anim.slide_right, R.anim.slide_left)
+                }
+                "error" -> alertDialog("Something went wrong")
+                "not found" -> alertDialog("Sorry, we could not find your account")
+                "email sent" -> alertDialog("Email sent to $email")
             }
-            else if(it == "error") alertDialog("Something went wrong")
-            else if(it == "not found") alertDialog("Sorry, we could not find your account")
-            else if(it == "email sent") alertDialog("Email sent to $email")
 
         }
 
