@@ -22,7 +22,6 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import com.example.quizmaster.data.model.OpentdbAPI.Result
 import java.lang.Math.random
 
-import com.example.quizmaster.data.model.OpentdbAPI.Questions
 
 
 
@@ -50,7 +49,7 @@ class QuestionPageActivity : AppCompatActivity() {
 
 
         vmT = QuestionsTimerViewModel()
-        timer = findViewById(R.id.textView)
+//        timer = findViewById(R.id.textView)
         textView2 = findViewById(R.id.textView2)
         textView3 = findViewById(R.id.textView3)
         textView31 = findViewById(R.id.textView31)
