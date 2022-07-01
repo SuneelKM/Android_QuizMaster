@@ -52,12 +52,6 @@ class SignInActivity : AppCompatActivity() {
             email = binding.emailEt.text.toString().trim()
             val pass = binding.passET.text.toString()
 
-            try{
-                throw NullPointerException("Manual")
-            } catch (e:Exception){
-                Timber.e(e)
-            }
-
             if (email.isEmpty()) {
                 binding.emailEt.error = "Please enter a valid email"
             } else if (pass.isEmpty()) {
