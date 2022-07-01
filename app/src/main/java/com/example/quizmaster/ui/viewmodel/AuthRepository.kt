@@ -5,15 +5,20 @@ import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import com.example.quizmaster.data.model.UserData.UserSignup
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import timber.log.Timber
 import javax.inject.Inject
 
-class AuthRepository @Inject constructor(private val context: Context) {
+class AuthRepository @Inject constructor(
+    private val context: Context,
+    private val firebaseAuth: FirebaseAuth,
+    private val myRef: DatabaseReference
+
+) {
     var signUpState = MutableLiveData<String>()
     var signInState = MutableLiveData<String>()
-    var firebaseAuth = FirebaseAuth.getInstance()
 
     fun handleSignUp(userName: String, email: String, pass: String) {
         signUpState.value = "showProgress"
@@ -33,14 +38,17 @@ class AuthRepository @Inject constructor(private val context: Context) {
 
     fun saveToDatabase(userName: String, email: String) {
         val user = UserSignup(userName, email)
-        try{
-            val database = Firebase.database
-            val uid = firebaseAuth.uid
-            val myRef = database.getReference("/Users/$uid")
+        try {
+//            val database = Firebase.database
+//            val uid = firebaseAuth.uid
+//            val myRef = database.getReference("/Users/$uid")
             myRef.setValue(user)
             signUpState.value = "success"
+            Toast.makeText(
+                context, "Registration successful. Check you email.", Toast.LENGTH_LONG
+            ).show()
 
-        }catch (e:Exception){
+        } catch (e: Exception) {
             signUpState.value = "error"
             Toast.makeText(
                 context, "Something went wrong", Toast.LENGTH_LONG
@@ -84,7 +92,7 @@ class AuthRepository @Inject constructor(private val context: Context) {
         return emailVerified
     }
 
-    fun handleResetPassword(email: String){
+    fun handleResetPassword(email: String) {
         signInState.value = "showProgress"
         firebaseAuth.fetchSignInMethodsForEmail(email)
             .addOnCompleteListener {
@@ -97,15 +105,15 @@ class AuthRepository @Inject constructor(private val context: Context) {
             }
             .addOnFailureListener {
                 signInState.value = "error"
-                Toast.makeText( context, "${it.message}", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, "${it.message}", Toast.LENGTH_LONG).show()
             }
     }
 
-    private fun sendPassResetEmail(email:String){
+    private fun sendPassResetEmail(email: String) {
         try {
             firebaseAuth.sendPasswordResetEmail(email)
             signInState.value = "email sent"
-        } catch (e:Exception){
+        } catch (e: Exception) {
             Timber.e(e)
             signInState.value = "error"
         }
