@@ -77,7 +77,6 @@ class SignInActivity : AppCompatActivity() {
             }
 
         }
-
     }
 
     override fun onStart() {
@@ -87,7 +86,6 @@ class SignInActivity : AppCompatActivity() {
                 startActivity(intent)
                 finish()
             }
-
     }
 
     private fun alertDialog(message:String){
