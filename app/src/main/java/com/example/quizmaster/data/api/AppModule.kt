@@ -1,5 +1,11 @@
 package com.example.quizmaster.data.api
 
+import android.app.Application
+import android.content.Context
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -13,10 +19,10 @@ import javax.inject.Singleton
 @Module
 class AppModule {
 
-@Provides
-@Singleton
+    @Provides
+    @Singleton
     fun provideQuestionsApi(): RetroApiInterface {
-    val baseUrl = "https://opentdb.com/"
+        val baseUrl = "https://opentdb.com/"
         return Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
@@ -25,4 +31,23 @@ class AppModule {
             .create(RetroApiInterface::class.java)
     }
 
+    @Singleton
+    @Provides
+    fun provideContext(application: Application): Context = application.applicationContext
+
+    @Provides
+    @Singleton
+    fun provideFirebaseAuthInstance(): FirebaseAuth {
+        return FirebaseAuth.getInstance()
+    }
+
+    @Provides
+    @Singleton
+    fun provideSaveToDatabase(): DatabaseReference {
+        val database = Firebase.database
+        val uid = provideFirebaseAuthInstance().uid
+        return database.getReference("/Users/$uid")
+    }
 }
+
+

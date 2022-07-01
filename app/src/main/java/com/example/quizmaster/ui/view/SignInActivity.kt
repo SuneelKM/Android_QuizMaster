@@ -1,7 +1,6 @@
 package com.example.quizmaster.ui.view
 
 import android.app.AlertDialog
-import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.view.View.GONE
@@ -12,12 +11,13 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.quizmaster.R
 import com.example.quizmaster.databinding.ActivitySignInBinding
 import com.example.quizmaster.ui.viewmodel.AuthViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class SignInActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySignInBinding
-    val vm: AuthViewModel by viewModels()
+    private val vm: AuthViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,6 +69,7 @@ class SignInActivity : AppCompatActivity() {
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                     overridePendingTransition(R.anim.slide_right, R.anim.slide_left)
+                    finish()
                 }
                 "error" -> alertDialog("Something went wrong")
                 "not found" -> alertDialog("Sorry, we could not find your account")
@@ -76,7 +77,6 @@ class SignInActivity : AppCompatActivity() {
             }
 
         }
-
     }
 
     override fun onStart() {
@@ -84,16 +84,16 @@ class SignInActivity : AppCompatActivity() {
             if (vm.isEmailVerified()) {
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
+                finish()
             }
-
     }
 
     private fun alertDialog(message:String){
+        binding.progressBar.visibility = GONE
         val builder = AlertDialog.Builder(this)
         builder.setMessage(message)
         builder.setCancelable(true)
-        builder.setNegativeButton("OK", DialogInterface.OnClickListener
-        { dialog, _ -> dialog.cancel() })
+        builder.setNegativeButton("OK") { dialog, _ -> dialog.cancel() }
         val alertDialog: AlertDialog = builder.create()
         alertDialog.show()
     }

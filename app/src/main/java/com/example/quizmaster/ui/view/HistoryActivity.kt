@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,14 +18,17 @@ import com.example.quizmaster.ui.viewmodel.UserViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import dagger.hilt.android.AndroidEntryPoint
 
+
+@AndroidEntryPoint
 class HistoryActivity : AppCompatActivity() {
 
 
     private lateinit var binding: ActivityHistoryBinding
     var historyList: ArrayList<UserScores> = ArrayList()
     var adapter: HistoryAdapter = HistoryAdapter(historyList)
-    val vm: UserViewModel = UserViewModel()
+    val vm: UserViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,7 +46,7 @@ class HistoryActivity : AppCompatActivity() {
 
         binding.recyclerHistory.adapter = adapter
 
-        vm.getUserScores(this)
+        vm.getUserScores()
 
         vm.userScoreList.observe(this){
             adapter.setItems(it)
