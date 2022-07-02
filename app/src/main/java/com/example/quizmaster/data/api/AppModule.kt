@@ -44,10 +44,10 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun provideSaveToDatabase(): DatabaseReference {
+    fun provideSaveToDatabase(instance:FirebaseAuth): DatabaseReference {
         val database = Firebase.database
-        val uid = provideFirebaseAuthInstance().uid
-        return database.getReference("/Users/$uid")
+        val userid = instance.uid
+        return database.getReference("/Users/$userid")
     }
 
     @Provides
