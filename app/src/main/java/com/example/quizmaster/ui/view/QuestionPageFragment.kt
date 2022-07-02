@@ -93,10 +93,10 @@ class QuestionPageFragment : Fragment() {
 
 
     private fun onSubmitQuestion(){
-        if (selected == null){
+        if (selected == null && !isFinished){
             Toast.makeText(this.requireContext(), "No Answer Selected!", Toast.LENGTH_LONG).show()
         }
-        else{
+        else if(!isFinished){
             vm.setStopTime()
             isSubmitted = true
             vm.submitQuestion(selected!!)
@@ -109,9 +109,8 @@ class QuestionPageFragment : Fragment() {
             Toast.makeText(this.requireContext(), "No Answer Submitted!", Toast.LENGTH_LONG).show()
         }
         else{
-
-
             isSubmitted = false
+
         }
 
     }
