@@ -34,6 +34,11 @@
         <entry key="..\:/Revature/Training/Notes and Class Work/Project3/QuizMaster2/app/src/main/res/layout/dropdown_item.xml" value="0.2682291666666667" />
         <entry key="..\:/Revature/Training/Notes and Class Work/Project3/QuizMaster2/app/src/main/res/layout/layout.xml" value="0.27291666666666664" />
         <entry key="..\:/Revature/Training/Notes and Class Work/Project3/QuizMaster2/app/src/main/res/menu/navigation_menu.xml" value="0.1" />
+        <entry key="..\:/Revature/Training/Notes and Class Work/Project3/QuizMaster3/app/src/main/res/drawable/ic_baseline_arrow_drop_down_24.xml" value="0.1" />
+        <entry key="..\:/Revature/Training/Notes and Class Work/Project3/QuizMaster3/app/src/main/res/layout/activity_history.xml" value="0.1" />
+        <entry key="..\:/Revature/Training/Notes and Class Work/Project3/QuizMaster4/app/src/main/res/layout/activity_question_page.xml" value="0.12552083333333333" />
+        <entry key="..\:/Revature/Training/Notes and Class Work/Project3/QuizMaster4/app/src/main/res/layout/activity_question_page_frame.xml" value="0.27291666666666664" />
+        <entry key="..\:/Revature/Training/Notes and Class Work/Project3/QuizMaster4/app/src/main/res/layout/fragment_question_page.xml" value="0.27291666666666664" />
         <entry key="..\:/Sahil Document/Kotlin Projects/Quiz-Master/QuizMaster/app/src/main/res/layout/activity_choose_quiz.xml" value="0.1" />
         <entry key="..\:/Sahil Document/Kotlin Projects/Quiz-Master/QuizMaster/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Sahil Document/Kotlin Projects/Quiz-Master/QuizMaster/app/src/main/res/layout/activity_sign_in.xml" value="0.1" />
@@ -45,6 +50,10 @@
         <entry key="app/src/main/res/drawable/ic_baseline_logout_24.xml" value="0.138" />
         <entry key="app/src/main/res/drawable/ic_baseline_manage_history_24.xml" value="0.138" />
         <entry key="app/src/main/res/drawable/ic_baseline_menu_36.xml" value="0.138" />
+        <entry key="app/src/main/res/drawable/ic_quiz.xml" value="0.209" />
+        <entry key="app/src/main/res/drawable/ic_quiz_logo.xml" value="0.209" />
+        <entry key="app/src/main/res/drawable/table_backgound.xml" value="0.1605" />
+        <entry key="app/src/main/res/drawable/table_background.xml" value="0.1725" />
         <entry key="app/src/main/res/layout/activity_choose_quiz.xml" value="0.21481481481481482" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2947916666666667" />
         <entry key="app/src/main/res/layout/activity_question_page.xml" value="0.21481481481481482" />
