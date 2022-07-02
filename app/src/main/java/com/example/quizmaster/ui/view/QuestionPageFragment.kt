@@ -21,7 +21,7 @@ class QuestionPageFragment : Fragment() {
     lateinit var questions: List<Result>
     private lateinit var binding: FragmentQuestionPageBinding
     private val vm = QuizPageViewModel()
-    private val isSubmitted = false
+    private var isSubmitted = false
     private var selected: TextView? = null
 
     override fun onCreateView(
@@ -31,6 +31,7 @@ class QuestionPageFragment : Fragment() {
         arguments?.let {
             questions = it.get("results") as List<Result>
             println("From Fragment $questions")
+            vm.setQuestions(questions)
         }
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_question_page, container, false)
@@ -44,6 +45,7 @@ class QuestionPageFragment : Fragment() {
         binding.qpViewModel = vm
         binding.lifecycleOwner = viewLifecycleOwner
 
+
         // Setup a click listener for buttons and textviews.
         binding.submitBtnQp.setOnClickListener { onSubmitQuestion() }
         binding.nextBtnQp.setOnClickListener { onNextQuestion() }
@@ -52,6 +54,9 @@ class QuestionPageFragment : Fragment() {
         binding.choice2Qp.setOnClickListener { onChoiceClick(2) }
         binding.choice3Qp.setOnClickListener { onChoiceClick(3) }
         binding.choice4Qp.setOnClickListener { onChoiceClick(4) }
+
+        //start timer
+        vm.timer()
     }
 
     private fun onChoiceClick(choice: Int){
@@ -81,6 +86,8 @@ class QuestionPageFragment : Fragment() {
             Toast.makeText(this.requireContext(), "No Answer Selected!", Toast.LENGTH_LONG).show()
         }
         else{
+            vm.setStopTime()
+            isSubmitted = true
 
         }
 
@@ -92,6 +99,8 @@ class QuestionPageFragment : Fragment() {
         }
         else{
 
+
+            isSubmitted = false
         }
 
     }

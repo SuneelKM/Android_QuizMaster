@@ -9,4 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="yellow">#FFC801</color>
     <color name="choice_selection">#cc99ff</color>
+    <color name="choice_correct">#EF9A9A</color>
+    <color name="choice_incorrect">#A5D6A7</color>
 </resources>
