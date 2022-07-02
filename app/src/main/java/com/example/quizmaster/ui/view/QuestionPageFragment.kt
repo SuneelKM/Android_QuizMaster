@@ -8,27 +8,21 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.example.quizmaster.R
 import com.example.quizmaster.data.model.OpentdbAPI.Result
 import com.example.quizmaster.databinding.FragmentQuestionPageBinding
 import com.example.quizmaster.ui.viewmodel.QuizPageViewModel
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [QuestionPageFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class QuestionPageFragment : Fragment() {
     lateinit var questions: List<Result>
     private lateinit var binding: FragmentQuestionPageBinding
     private val vm = QuizPageViewModel()
     private val isSubmitted = false
+    private var selected: TextView? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,7 +44,7 @@ class QuestionPageFragment : Fragment() {
         binding.qpViewModel = vm
         binding.lifecycleOwner = viewLifecycleOwner
 
-        // Setup a click listener for buttons.
+        // Setup a click listener for buttons and textviews.
         binding.submitBtnQp.setOnClickListener { onSubmitQuestion() }
         binding.nextBtnQp.setOnClickListener { onNextQuestion() }
         binding.stopButton.setOnClickListener { stopQuiz()}
@@ -61,15 +55,44 @@ class QuestionPageFragment : Fragment() {
     }
 
     private fun onChoiceClick(choice: Int){
+        if(!isSubmitted){
+            when(choice){
+                1 -> choiceColourChange(binding.choice1Qp)
+                2 -> choiceColourChange(binding.choice2Qp)
+                3 -> choiceColourChange(binding.choice3Qp)
+                4 -> choiceColourChange(binding.choice4Qp)
+            }
+        }
+    }
 
+    private fun choiceColourChange(choice: TextView){
+        val choices = listOf<TextView>(binding.choice1Qp, binding.choice2Qp, binding.choice3Qp, binding.choice4Qp)
+        for(c in choices){
+            c.setBackgroundColor(requireActivity().getColor(R.color.white))
+        }
+
+        choice.setBackgroundColor(requireActivity().getColor(R.color.choice_selection))
+        selected = choice
     }
 
 
     private fun onSubmitQuestion(){
+        if (selected == null){
+            Toast.makeText(this.requireContext(), "No Answer Selected!", Toast.LENGTH_LONG).show()
+        }
+        else{
+
+        }
 
     }
 
     private fun onNextQuestion(){
+        if(!isSubmitted){
+            Toast.makeText(this.requireContext(), "No Answer Submitted!", Toast.LENGTH_LONG).show()
+        }
+        else{
+
+        }
 
     }
 
