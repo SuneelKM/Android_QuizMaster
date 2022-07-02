@@ -24,6 +24,7 @@ class AuthRepository @Inject constructor(
         firebaseAuth.createUserWithEmailAndPassword(email, pass)
             .addOnCompleteListener {
                 if (it.isSuccessful)
+                    sendRegistrationEmail()
                     saveToDatabase(userName, email)
             }
             .addOnFailureListener {
@@ -33,6 +34,18 @@ class AuthRepository @Inject constructor(
                 ).show()
             }
 
+    }
+    
+    
+    fun sendRegistrationEmail(){
+        try {
+            firebaseAuth.currentUser!!.sendEmailVerification()
+        }catch (e:Exception){
+            signUpState.value = "error"
+            Toast.makeText(
+                context, "Something went wrong", Toast.LENGTH_LONG
+            ).show()
+        }
     }
 
     fun saveToDatabase(userName: String, email: String) {
