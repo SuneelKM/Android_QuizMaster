@@ -22,7 +22,9 @@ class QuestionPageFragment : Fragment() {
     private lateinit var binding: FragmentQuestionPageBinding
     private val vm = QuizPageViewModel()
     private var isSubmitted = false
+    private var isFinished = false
     private var selected: TextView? = null
+    private lateinit var allChoices: List<TextView>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,12 +37,16 @@ class QuestionPageFragment : Fragment() {
         }
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_question_page, container, false)
+        allChoices = listOf<TextView>(binding.choice1Qp, binding.choice2Qp, binding.choice3Qp, binding.choice4Qp)
+        vm.setAllOptions(allChoices)
         return binding.root
     }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
 
         binding.qpViewModel = vm
         binding.lifecycleOwner = viewLifecycleOwner
@@ -60,7 +66,10 @@ class QuestionPageFragment : Fragment() {
     }
 
     private fun onChoiceClick(choice: Int){
-        if(!isSubmitted){
+        vm.isFinished.observe(viewLifecycleOwner) {
+            isFinished = it
+        }
+        if(!isSubmitted && !isFinished){
             when(choice){
                 1 -> choiceColourChange(binding.choice1Qp)
                 2 -> choiceColourChange(binding.choice2Qp)
@@ -71,11 +80,9 @@ class QuestionPageFragment : Fragment() {
     }
 
     private fun choiceColourChange(choice: TextView){
-        val choices = listOf<TextView>(binding.choice1Qp, binding.choice2Qp, binding.choice3Qp, binding.choice4Qp)
-        for(c in choices){
+        for(c in allChoices){
             c.setBackgroundColor(requireActivity().getColor(R.color.white))
         }
-
         choice.setBackgroundColor(requireActivity().getColor(R.color.choice_selection))
         selected = choice
     }
@@ -88,7 +95,7 @@ class QuestionPageFragment : Fragment() {
         else{
             vm.setStopTime()
             isSubmitted = true
-
+            vm.submitQuestion(selected!!)
         }
 
     }

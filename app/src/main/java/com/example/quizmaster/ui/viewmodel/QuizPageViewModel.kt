@@ -31,15 +31,18 @@ class QuizPageViewModel: ViewModel() {
     var currentQuestion = MutableLiveData<String>()
     var correctAnswer = MutableLiveData<String>()
 
+    var correctAnswerText = ""
+    var allOptions = ArrayList<TextView>()
+
     var submittedQuestions = ArrayList<SubmittedQuestions>()
 
     var score = 0
+    var totalScore = 0
 
     private val _finish= MutableLiveData<String>("Times Up")
     val finish: LiveData<String>
         get() = _finish
 
-    //var countDown = 30
 
 
 
@@ -53,6 +56,7 @@ class QuizPageViewModel: ViewModel() {
                 }
                 override fun onFinish() {
                     isFinished.postValue(true)
+                    timeFinished()
                     started = false
                 }
             }.start()
@@ -65,23 +69,44 @@ class QuizPageViewModel: ViewModel() {
 
     fun setQuestions(results: List<Result>){
         questionList.addAll(results)
+        //TODO: Add these two for next button
         loadQuestion(questionIndex)
+
+    }
+    fun setAllOptions(allOp: List<TextView>){
+        allOptions.addAll(allOp)
     }
 
     fun submitQuestion(selected: TextView){
-        val correctAnsColor = "#EF9A9A"
-        val incorrectAnsColor = "#A5D6A7"
+        val correctAnsColor = "#A5D6A7"
+        val incorrectAnsColor = "#EF9A9A"
         val userAnswer = selected.text.toString()
-        if(userAnswer.equals(correctAnswer)){
+
+        if(userAnswer.equals(correctAnswerText)){
             selected.setBackgroundColor(Color.parseColor(correctAnsColor))
+            score++
         }
         else{
             selected.setBackgroundColor(Color.parseColor(incorrectAnsColor))
+            for(op in allOptions){
+                if(op.text.toString().equals(correctAnswerText)){
+                    op.setBackgroundColor(Color.parseColor(correctAnsColor))
+                }
+            }
 
         }
-
-
         submittedQuestions.add(SubmittedQuestions(currentQuestion.value.toString(), correctAnswer.value.toString(),userAnswer))
+    }
+
+    fun timeFinished(){
+        for(op in allOptions){
+            val correctAnsColor = "#A5D6A7"
+            if(op.text.toString().equals(correctAnswerText)){
+                op.setBackgroundColor(Color.parseColor(correctAnsColor))
+            }else{
+                op.setBackgroundColor(Color.WHITE)
+            }
+        }
     }
 
     fun loadQuestion(questionIndex: Int){
@@ -93,10 +118,11 @@ class QuizPageViewModel: ViewModel() {
             HtmlCompat.fromHtml(questionList.get(questionIndex).question,
                 HtmlCompat.FROM_HTML_MODE_COMPACT
             ).toString())
-        correctAnswer.postValue(
-            HtmlCompat.fromHtml(questionList.get(questionIndex).correctAnswer,
-                HtmlCompat.FROM_HTML_MODE_COMPACT
-            ).toString())
+
+        correctAnswerText = HtmlCompat.fromHtml(questionList.get(questionIndex).correctAnswer,
+            HtmlCompat.FROM_HTML_MODE_COMPACT
+        ).toString()
+        correctAnswer.postValue(correctAnswerText)
 
         var answerArr = listOf(
             HtmlCompat.fromHtml(questionList.get(questionIndex).correctAnswer,
@@ -113,10 +139,9 @@ class QuizPageViewModel: ViewModel() {
             ).toString()
         )
 
+        totalScore++
+
         shuffledAnswers.postValue(answerArr.shuffled())
-
-        println("From Loaded Question: ${currentQuestion.value.toString()}")
-
     }
 
 }
