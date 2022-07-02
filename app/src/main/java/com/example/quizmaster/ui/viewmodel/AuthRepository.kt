@@ -37,7 +37,7 @@ class AuthRepository @Inject constructor(
     }
 
     fun saveToDatabase(userName: String, email: String) {
-        val user = UserSignup(userName, email)
+        val user = UserSignup(userName, email, "")
         try {
 //            val database = Firebase.database
 //            val uid = firebaseAuth.uid

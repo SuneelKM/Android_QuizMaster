@@ -24,6 +24,7 @@ import com.example.quizmaster.databinding.NavHeaderBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.imageview.ShapeableImageView
 import com.example.quizmaster.ui.adapter.HistoryAdapter
+import com.example.quizmaster.ui.viewmodel.UserViewModel
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.ktx.database
@@ -43,6 +44,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var binding: ActivityMainBinding
     val vm: QuestionsViewModel by viewModels()
+    val userVM: UserViewModel by viewModels()
     var allScores = ArrayList<UserScores>()
     lateinit var picture: ShapeableImageView
     private val pickImage = 100
@@ -159,19 +161,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun getUserName(){
-        val database = Firebase.database
-        val uid = firebaseAuth.uid
-        val myRef = database.getReference("/Users/$uid")
-        var username = ""
+        var username = userVM.username
 
         var navbarUserName: TextView = nav_view.getHeaderView(0).findViewById(R.id.user_name)
 
-        myRef.get().addOnSuccessListener {
-            username = it.child("username").value.toString()
-            navbarUserName?.text = username
-            binding.textView4.text = username
+        username.observe(this){
+            navbarUserName?.text = it
+            binding.textView4.text = it
         }
-
 
     }
 
@@ -210,22 +207,20 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private fun getPicture(){
         picture = nav_view.getHeaderView(0).findViewById(R.id.imageView4)
 
-        val database = Firebase.database
-        val uid = firebaseAuth.uid
-        val myRef = database.getReference("/Users/$uid")
-        var image = ""
+        var image = userVM.image
 
-        myRef.get().addOnSuccessListener {
-            image = it.child("imageUrl").value.toString()
-            if (it.child("imageUrl").value != null) {
-                picture.scaleType = ImageView.ScaleType.FIT_XY
-                Picasso.get().load(image).into(picture)
+        if(image != null){
+
+            picture.scaleType = ImageView.ScaleType.FIT_XY
+            image.observe(this){
+                Picasso.get().load(it).into(picture)
                 Timber.tag("Picture").v("Picture attached")
-            }else {
-                picture.setContentPadding(40, 40, 40, 40)
-                picture.setImageResource(R.drawable.ic_baseline_camera_alt_24)
-                Timber.tag("Picture").v("Picture not found")
             }
+
+        }else {
+            picture.setContentPadding(40, 40, 40, 40)
+            picture.setImageResource(R.drawable.ic_baseline_camera_alt_24)
+            Timber.tag("Picture").v("Picture not found")
         }
 
         picture.setOnClickListener{
@@ -252,25 +247,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private fun uploadImage(imageUri: Uri){
         val fileName = UUID.randomUUID().toString()
         val content = MimeTypeMap.getSingleton().getExtensionFromMimeType(contentResolver.getType(imageUri))
-        val reference = FirebaseStorage.getInstance().getReference("images/${fileName}.$content")
-        reference.putFile(imageUri)
-            .addOnSuccessListener {
-                Timber.tag("Upload Photo").d("Successfully loaded: %s", it.metadata?.path)
-
-                reference.downloadUrl.addOnSuccessListener {
-                    Timber.tag("Upload Photo to Firebase").d("File Location: %s", it)
-                    saveImageToDatabase(it.toString())
-                }
-                    .addOnFailureListener {
-                        Timber.tag("No Upload").v("File not found")
-                    }
-            }
+        val file = "$fileName.$content"
+        userVM.uploadImageToStorage(imageUri, file)
     }
 
-    private fun saveImageToDatabase(imageUri: String){
-        val database = Firebase.database
-        val uid = firebaseAuth.uid
-        val myRef = database.getReference("/Users/$uid/imageUrl")
-        myRef.setValue(imageUri)
-    }
 }
