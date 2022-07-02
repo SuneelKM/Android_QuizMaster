@@ -105,12 +105,13 @@ class QuizPageViewModel: ViewModel() {
             for(op in allOptions){
                 op.setBackgroundColor(Color.WHITE)
             }
+            started = false
             isFinished.postValue(false)
             timer()
-            loadQuestion(++questionIndex)
+            loadQuestion(questionIndex)
         }
         else{
-
+            // TODO - end of questions, submit answer
         }
 
     }
