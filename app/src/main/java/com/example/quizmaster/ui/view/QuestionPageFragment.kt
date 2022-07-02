@@ -33,11 +33,7 @@ class QuestionPageFragment : Fragment() {
         arguments?.let {
             questions = it.get("results") as List<Result>
             println("From Fragment $questions")
-            if(questions.isEmpty())
-                vm.setQuestions(questions)
-            else{
-                errorResults()
-            }
+            vm.setQuestions(questions)
         }
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_question_page, container, false)
@@ -110,6 +106,7 @@ class QuestionPageFragment : Fragment() {
         }
         else{
             isSubmitted = false
+            vm.nextQuestion()
 
         }
 
@@ -129,18 +126,18 @@ class QuestionPageFragment : Fragment() {
         alertDialog.show()
     }
 
-    private fun errorResults(){
-        val builder = AlertDialog.Builder(this.requireContext())
-        builder.setMessage("ERROR: Please choose quiz settings again.")
-        builder.setCancelable(true)
-        builder.setPositiveButton("Okay") { _, _ ->
-            var chooseActivityIntent = Intent(this.activity, ChooseQuizActivity::class.java)
-            startActivity(chooseActivityIntent)
-        }
-
-        val alertDialog: AlertDialog = builder.create()
-        alertDialog.show()
-    }
+//    private fun errorResults(){
+//        val builder = AlertDialog.Builder(this.requireContext())
+//        builder.setMessage("ERROR: Please choose quiz settings again.")
+//        builder.setCancelable(true)
+//        builder.setPositiveButton("Okay") { _, _ ->
+//            var chooseActivityIntent = Intent(this.activity, ChooseQuizActivity::class.java)
+//            startActivity(chooseActivityIntent)
+//        }
+//
+//        val alertDialog: AlertDialog = builder.create()
+//        alertDialog.show()
+//    }
 
 
 }

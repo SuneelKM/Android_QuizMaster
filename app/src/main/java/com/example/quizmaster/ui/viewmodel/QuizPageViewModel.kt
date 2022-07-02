@@ -102,6 +102,9 @@ class QuizPageViewModel: ViewModel() {
 
         questionIndex++
         if(questionIndex < questionList.size){
+            for(op in allOptions){
+                op.setBackgroundColor(Color.WHITE)
+            }
             isFinished.postValue(false)
             timer()
             loadQuestion(++questionIndex)
