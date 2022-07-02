@@ -1,24 +1,41 @@
 package com.example.quizmaster.ui.view
 
+import android.content.ContentResolver
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.MediaStore
+import android.util.Log
 import android.view.MenuItem
+import android.webkit.MimeTypeMap
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.core.net.toFile
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.quizmaster.ui.viewmodel.QuestionsViewModel
 import com.example.quizmaster.R
 import com.example.quizmaster.data.model.UserData.UserScores
 import com.example.quizmaster.databinding.ActivityMainBinding
+import com.example.quizmaster.databinding.NavHeaderBinding
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.imageview.ShapeableImageView
 import com.example.quizmaster.ui.adapter.HistoryAdapter
+import com.example.quizmaster.ui.viewmodel.UserViewModel
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+import timber.log.Timber
 import java.util.*
 
 @AndroidEntryPoint
@@ -27,8 +44,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var binding: ActivityMainBinding
     val vm: QuestionsViewModel by viewModels()
+    val userVM: UserViewModel by viewModels()
     var allScores = ArrayList<UserScores>()
-
+    lateinit var picture: ShapeableImageView
+    private val pickImage = 100
+    private var imageUri: Uri? = null
     lateinit var drawer: DrawerLayout
     lateinit var nav_view: NavigationView
     lateinit var toolbar: androidx.appcompat.widget.Toolbar
@@ -136,23 +156,19 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
 
         getUserName()
+        getPicture()
 
     }
 
     private fun getUserName(){
-        val database = Firebase.database
-        val uid = firebaseAuth.uid
-        val myRef = database.getReference("/Users/$uid")
-        var username = ""
+        var username = userVM.username
 
         var navbarUserName: TextView = nav_view.getHeaderView(0).findViewById(R.id.user_name)
 
-        myRef.get().addOnSuccessListener {
-            username = it.child("username").value.toString()
-            navbarUserName?.text = username
-            binding.textView4.text = username
+        username.observe(this){
+            navbarUserName?.text = it
+            binding.textView4.text = it
         }
-
 
     }
 
@@ -187,4 +203,52 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         startActivity(hisIntent)
         finish()
     }
+
+    private fun getPicture(){
+        picture = nav_view.getHeaderView(0).findViewById(R.id.imageView4)
+
+        var image = userVM.image
+
+        if(image != null){
+
+            picture.scaleType = ImageView.ScaleType.FIT_XY
+            image.observe(this){
+                Picasso.get().load(it).into(picture)
+                Timber.tag("Picture").v("Picture attached")
+            }
+
+        }else {
+            picture.setContentPadding(40, 40, 40, 40)
+            picture.setImageResource(R.drawable.ic_baseline_camera_alt_24)
+            Timber.tag("Picture").v("Picture not found")
+        }
+
+        picture.setOnClickListener{
+            MaterialAlertDialogBuilder(this)
+                .setTitle("Alert")
+                .setMessage("Do you want to upload photo from gallery?")
+                .setPositiveButton("Open gallery") { _, _ ->
+                    val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
+                    startActivityForResult(gallery, pickImage)
+                }
+                .setNegativeButton("Cancel", null)
+                .show()
+        }
+    }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == RESULT_OK && requestCode == pickImage && data != null) {
+            imageUri = data.data
+            picture.setImageURI(imageUri)
+            imageUri?.let { uploadImage(it) }
+        }
+    }
+
+    private fun uploadImage(imageUri: Uri){
+        val fileName = UUID.randomUUID().toString()
+        val content = MimeTypeMap.getSingleton().getExtensionFromMimeType(contentResolver.getType(imageUri))
+        val file = "$fileName.$content"
+        userVM.uploadImageToStorage(imageUri, file)
+    }
+
 }

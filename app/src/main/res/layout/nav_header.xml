@@ -14,7 +14,6 @@
         android:layout_width="75dp"
         android:layout_height="75dp"
         app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
-        app:srcCompat="@drawable/ic_baseline_account_circle_24"
         app:strokeColor="@color/black"
         app:strokeWidth="1dp" />
 
