@@ -31,16 +31,13 @@ class QuestionPageActivity : AppCompatActivity(),View.OnClickListener {
     lateinit var textView7: TextView
     lateinit var textView31: TextView
     lateinit var timer: TextView
-<<<<<<< HEAD
+
     lateinit var submit_btn: TextView
     lateinit var next_btn: TextView
     lateinit var button: Button
-=======
+
     lateinit var button2: Button
-<<<<<<< HEAD
->>>>>>> master
-=======
->>>>>>> master
+
     var correctAns = String()
     var score = 0
     private var currentQuestionIndex = 0
@@ -55,7 +52,7 @@ class QuestionPageActivity : AppCompatActivity(),View.OnClickListener {
 
 
         vmT = QuestionsTimerViewModel()
-        timer = findViewById(R.id.textView)
+        timer = findViewById(R.id.timer)
         textView2 = findViewById(R.id.textView2)
         textView3 = findViewById(R.id.textView3)
         textView31 = findViewById(R.id.textView31)
@@ -65,7 +62,7 @@ class QuestionPageActivity : AppCompatActivity(),View.OnClickListener {
         textView7 = findViewById(R.id.textView7)
         submit_btn = findViewById(R.id.submit_btn)
         next_btn = findViewById(R.id.next_btn)
-        button = findViewById(R.id.button)
+        button = findViewById(R.id.stopButton)
         questionPageIntent = Intent()
         textView4.setOnClickListener(this)
         textView5.setOnClickListener(this)
@@ -86,24 +83,23 @@ class QuestionPageActivity : AppCompatActivity(),View.OnClickListener {
 
         }
 
-        this.score = intent.getIntExtra("score", 0)
 
         submit_btn.setOnClickListener {
             if (selectedAnswer == correctAns) {
          //       this.score = intent.getIntExtra("score", 0)
-                score++
+                score += 1
                 println("selectedAnswer == correctAns ${selectedAnswer == correctAns}")
-                println("score++  ${score++}")
-         //       questionPageIntent.putExtra("score", score)
-              var questPageIntent = Intent(this, QuestionPageActivity::class.java)
-                questPageIntent.putExtra("score", score)
+                println("score++  ${score}")
+             println("intent   ${questionPageIntent.putExtra("score", score)}")
 
             }
             submit_btn.setBackgroundColor(Color.parseColor("#cccccc"))
         }
+        var questPageIntent = Intent(this, QuestionPageActivity::class.java)
+        questPageIntent.putExtra("score", score)
 
         if (result != null) {
-            println("From Question Page ${result?.get(1)?.question}")
+//            println("From Question Page ${result?.get(1)?.question}")
             textView3.text = result?.get(0)?.category.toString()
             textView31.text = "Level:  ${result?.get(0)?.difficulty.toString()}"
             correctAns = result?.get(currentQuestionIndex)?.correctAnswer.toString()
@@ -152,7 +148,9 @@ class QuestionPageActivity : AppCompatActivity(),View.OnClickListener {
     fun loadQuestion(result: List<Result>?){
 
         this.currentQuestionIndex = intent.getIntExtra("currentQuestionIndex",0)
-       println("this.currentQuestionIndex  ${this.currentQuestionIndex}")
+        this.score = intent.getIntExtra("score", 0)
+        println("this.score ${this.score}")
+        println("this.currentQuestionIndex  ${this.currentQuestionIndex}")
         if (result != null) {
             if(this.currentQuestionIndex == result.size){
              finishQuiz()
@@ -181,6 +179,7 @@ class QuestionPageActivity : AppCompatActivity(),View.OnClickListener {
     fun finishQuiz(){
         var resultPageIntent = Intent(this, ResultPageActivity::class.java)
 //        resultPageIntent.putExtra("scores", score)
+        resultPageIntent.putExtra("results", result as Serializable)
         startActivity(resultPageIntent)
 
     }
