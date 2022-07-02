@@ -5,11 +5,12 @@ import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import com.example.quizmaster.data.model.UserData.UserScores
 import com.google.firebase.database.DatabaseReference
+import dagger.Lazy
 import javax.inject.Inject
 
 class UserRepository @Inject constructor(
     private val context: Context,
-    private val myRef: DatabaseReference
+    private val myRef: Lazy<DatabaseReference>
 ) {
 
     var loading: MutableLiveData<Boolean> = MutableLiveData<Boolean>()
@@ -17,7 +18,8 @@ class UserRepository @Inject constructor(
     var username = MutableLiveData<String>()
 
     fun getUserName() {
-        myRef.get().addOnSuccessListener {
+        myRef.get().get()
+            .addOnSuccessListener {
             username.postValue(it.child("username").value.toString())
         }
             .addOnFailureListener {
@@ -29,9 +31,8 @@ class UserRepository @Inject constructor(
 
         val usList = ArrayList<UserScores>()
         loading.postValue(true)
-        myRef.get()
+        myRef.get().get()
             .addOnSuccessListener {
-
                 val scores = it.child("scores").children
                 for(score in scores){
                     val date = score.child("date").value.toString()
@@ -41,6 +42,7 @@ class UserRepository @Inject constructor(
                     val profile = score.child("profile").value.toString()
 
                     usList.add(UserScores(date,category,level,points,profile))
+                    println("Hello      $usList")
                     loading.postValue(false)
                 }
                 userScoreList.postValue(usList)

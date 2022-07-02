@@ -6,15 +6,14 @@ import androidx.lifecycle.MutableLiveData
 import com.example.quizmaster.data.model.UserData.UserSignup
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
+import dagger.Lazy
 import timber.log.Timber
 import javax.inject.Inject
 
 class AuthRepository @Inject constructor(
     private val context: Context,
     private val firebaseAuth: FirebaseAuth,
-    private val myRef: DatabaseReference
+    private val myRef: Lazy<DatabaseReference>
 
 ) {
     var signUpState = MutableLiveData<String>()
@@ -42,7 +41,8 @@ class AuthRepository @Inject constructor(
 //            val database = Firebase.database
 //            val uid = firebaseAuth.uid
 //            val myRef = database.getReference("/Users/$uid")
-            myRef.setValue(user)
+            myRef.get().setValue(user)
+//            myRef.setValue(user)
             signUpState.value = "success"
             Toast.makeText(
                 context, "Registration successful. Check you email.", Toast.LENGTH_LONG
