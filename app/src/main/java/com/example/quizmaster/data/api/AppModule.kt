@@ -37,13 +37,13 @@ class AppModule {
     fun provideContext(application: Application): Context = application.applicationContext
 
     @Provides
-    @Singleton
+//    @Singleton
     fun provideFirebaseAuthInstance(): FirebaseAuth {
         return FirebaseAuth.getInstance()
     }
 
     @Provides
-    @Singleton
+//    @Singleton
     fun provideSaveToDatabase(instance:FirebaseAuth): DatabaseReference {
         val database = Firebase.database
         val userid = instance.uid
@@ -51,7 +51,7 @@ class AppModule {
     }
 
     @Provides
-    @Singleton
+//    @Singleton
     fun provideFirebaseStorageInstance(): FirebaseStorage {
         return FirebaseStorage.getInstance()
     }

@@ -23,9 +23,10 @@ class AuthRepository @Inject constructor(
         signUpState.value = "showProgress"
         firebaseAuth.createUserWithEmailAndPassword(email, pass)
             .addOnCompleteListener {
-                if (it.isSuccessful)
+                if (it.isSuccessful) {
                     sendRegistrationEmail()
                     saveToDatabase(userName, email)
+                }
             }
             .addOnFailureListener {
                 signUpState.value = "error"
