@@ -98,6 +98,20 @@ class QuizPageViewModel: ViewModel() {
         submittedQuestions.add(SubmittedQuestions(currentQuestion.value.toString(), correctAnswer.value.toString(),userAnswer))
     }
 
+    fun nextQuestion(){
+
+        questionIndex++
+        if(questionIndex < questionList.size){
+            isFinished.postValue(false)
+            timer()
+            loadQuestion(++questionIndex)
+        }
+        else{
+
+        }
+
+    }
+
     fun timeFinished(){
         for(op in allOptions){
             val correctAnsColor = "#A5D6A7"
