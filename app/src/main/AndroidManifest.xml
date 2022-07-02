@@ -15,6 +15,9 @@
         android:theme="@style/Theme.QuizMaster"
         android:usesCleartextTraffic="false">
         <activity
+            android:name=".ui.view.QuestionPageFrameActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.view.HistoryActivity"
             android:exported="false" />
         <activity
