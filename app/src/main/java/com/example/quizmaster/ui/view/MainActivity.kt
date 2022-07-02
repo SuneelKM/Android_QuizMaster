@@ -209,19 +209,21 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         var image = userVM.image
 
-        if(image != null){
+        image.observe(this){ it ->
+            if(it.isNullOrEmpty()){
+                picture.setContentPadding(40, 40, 40, 40)
+                picture.setImageResource(R.drawable.ic_baseline_camera_alt_24)
+                Timber.tag("Picture").v("Picture not found")
 
-            picture.scaleType = ImageView.ScaleType.FIT_XY
-            image.observe(this){
-                Picasso.get().load(it).into(picture)
-                Timber.tag("Picture").v("Picture attached")
+            }else {
+                picture.scaleType = ImageView.ScaleType.FIT_XY
+                image.observe(this){
+                    Picasso.get().load(it).into(picture)
+                    Timber.tag("Picture").v("Picture attached")
+                }
             }
-
-        }else {
-            picture.setContentPadding(40, 40, 40, 40)
-            picture.setImageResource(R.drawable.ic_baseline_camera_alt_24)
-            Timber.tag("Picture").v("Picture not found")
         }
+
 
         picture.setOnClickListener{
             MaterialAlertDialogBuilder(this)
