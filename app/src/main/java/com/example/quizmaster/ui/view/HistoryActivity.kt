@@ -69,7 +69,7 @@ class HistoryActivity : AppCompatActivity() {
     }
 
     private fun arrowSwitch(field: TextView): Boolean{
-        var arrowDown = if(field.compoundDrawables[3].equals(ContextCompat.getDrawable(this, R.drawable.ic_baseline_arrow_drop_down_24))) true else false
+        var arrowDown = field.compoundDrawables[3].equals(ContextCompat.getDrawable(this, R.drawable.ic_baseline_arrow_drop_down_24))
         if (arrowDown)
             field.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_arrow_drop_up_24, 0)
         else

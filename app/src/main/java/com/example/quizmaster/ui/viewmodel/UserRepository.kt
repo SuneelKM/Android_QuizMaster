@@ -54,9 +54,10 @@ class UserRepository @Inject constructor(
                     val category = score.child("category").value.toString()
                     val level = score.child("level").value.toString()
                     val points = score.child("points").value.toString()
-                    val profile = score.child("profile").value.toString()
+                    //val profile = score.child("profile").value.toString()
 
-                    usList.add(UserScores(date,category,level,points,profile))
+//                    usList.add(UserScores(date,category,level,points,profile))
+                    usList.add(UserScores(date,category,level,points))
                     loading.postValue(false)
                 }
                 userScoreList.postValue(usList)
@@ -99,5 +100,10 @@ class UserRepository @Inject constructor(
     fun saveImageToDatabase(imageUri: String){
         
         myRef.child("imageUrl").setValue(imageUri)
+    }
+
+    fun setUserScores(date:String, category: String, level: String, points: String) {
+        val userScores = UserScores(date,category,level, points)
+        myRef.child("scores").child("${Date()}").setValue(userScores)
     }
 }

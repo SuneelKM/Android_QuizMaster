@@ -1,15 +1,25 @@
 package com.example.quizmaster.ui.viewmodel
 
+import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.os.CountDownTimer
 import android.widget.TextView
+import androidx.activity.viewModels
+import androidx.core.content.ContextCompat.startActivity
 import androidx.core.text.HtmlCompat
+import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.quizmaster.R
 import com.example.quizmaster.data.model.OpentdbAPI.Result
 import com.example.quizmaster.data.model.SubmittedQuestions
+import com.example.quizmaster.ui.view.ResultPageActivity
+import dagger.hilt.android.lifecycle.HiltViewModel
+import java.util.*
+import kotlin.collections.ArrayList
+
 
 class QuizPageViewModel: ViewModel() {
 
@@ -20,6 +30,7 @@ class QuizPageViewModel: ViewModel() {
     val timer: LiveData<Int>
         get() = _timer
 
+    val finish= MutableLiveData<String>("Times Up")
     var isFinished = MutableLiveData(false)
 
     var questionList = ArrayList<Result>()
@@ -31,6 +42,8 @@ class QuizPageViewModel: ViewModel() {
     var currentQuestion = MutableLiveData<String>()
     var correctAnswer = MutableLiveData<String>()
 
+    var qCategory = ""
+    var qLevel = ""
     var correctAnswerText = ""
     var allOptions = ArrayList<TextView>()
 
@@ -39,9 +52,9 @@ class QuizPageViewModel: ViewModel() {
     var score = 0
     var totalScore = 0
 
-    private val _finish= MutableLiveData<String>("Times Up")
-    val finish: LiveData<String>
-        get() = _finish
+    var quizFinished = false
+
+
 
 
 
@@ -69,9 +82,7 @@ class QuizPageViewModel: ViewModel() {
 
     fun setQuestions(results: List<Result>){
         questionList.addAll(results)
-        //TODO: Add these two for next button
         loadQuestion(questionIndex)
-
     }
     fun setAllOptions(allOp: List<TextView>){
         allOptions.addAll(allOp)
@@ -111,7 +122,11 @@ class QuizPageViewModel: ViewModel() {
             loadQuestion(questionIndex)
         }
         else{
-            // TODO - end of questions, submit answer
+            //TODO: end of questions, submit answer
+            println("Date: ${Date()}, Category: $qCategory, Level: $qLevel, Score: $score/$totalScore" )
+            //userVM.setUserScores("${Date()}", qCategory, qLevel, "$score"+"/"+"$totalScore" )
+
+
         }
 
     }
@@ -127,11 +142,12 @@ class QuizPageViewModel: ViewModel() {
         }
     }
 
-    fun loadQuestion(questionIndex: Int){
+    private fun loadQuestion(questionIndex: Int){
         questCategory.postValue(questionList.get(0).category)
-        questLevel.postValue(questionList.get(0).difficulty.replaceFirstChar {
-            it.uppercaseChar()
-        })
+        qCategory = questionList.get(0).category
+        questLevel.postValue(questionList.get(0).difficulty.replaceFirstChar { it.uppercaseChar() })
+        qLevel = questionList.get(0).difficulty.replaceFirstChar { it.uppercaseChar() }
+
         currentQuestion.postValue(
             HtmlCompat.fromHtml(questionList.get(questionIndex).question,
                 HtmlCompat.FROM_HTML_MODE_COMPACT

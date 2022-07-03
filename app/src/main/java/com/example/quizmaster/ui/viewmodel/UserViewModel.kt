@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.quizmaster.data.model.UserData.UserScores
 import dagger.hilt.android.lifecycle.HiltViewModel
+import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
@@ -35,5 +36,9 @@ class UserViewModel @Inject constructor (var repo: UserRepository) : ViewModel()
 
     fun uploadImageToStorage(imageUri: Uri, file: String) {
         repo.uploadImageToStorage(imageUri, file)
+    }
+
+    fun setUserScores(date:String, category: String, level: String, points: String) {
+        repo.setUserScores(date, category, level, points)
     }
 }
