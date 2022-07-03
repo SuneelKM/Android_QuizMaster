@@ -109,6 +109,7 @@ class QuestionPageFragment : Fragment() {
             vm.submitQuestion(selected!!)
         }
 
+
     }
 
     private fun onNextQuestion(){
@@ -117,20 +118,25 @@ class QuestionPageFragment : Fragment() {
             Toast.makeText(this.requireContext(), "No Answer Submitted!", Toast.LENGTH_LONG).show()
         }
         else {
-            isSubmitted = false
-            vm.nextQuestion()
+            if (vm.quizFinished()){
+                var resultIntent = Intent(this.activity, ResultPageActivity::class.java)
+                resultIntent.putExtra("category", vm.qCategory)
+                resultIntent.putExtra("level", vm.qLevel)
+                resultIntent.putExtra("score", vm.score)
+                resultIntent.putExtra("numberOfQuestions", vm.totalScore)
+                resultIntent.putExtra("submittedQuestions", vm.submittedQuestions)
+                startActivity(resultIntent)
+            }
+            else{
+                isSubmitted = false
+                vm.nextQuestion()
+            }
+
         }
 
 //        if (quizFinished){
-//            var resultIntent = Intent(this.activity, ResultPageActivity::class.java)
 //
-//
-//            startActivity(resultIntent)
 //        }
-
-
-
-
 
         }
 

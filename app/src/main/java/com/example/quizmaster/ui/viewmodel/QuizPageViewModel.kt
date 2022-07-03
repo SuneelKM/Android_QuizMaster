@@ -52,12 +52,6 @@ class QuizPageViewModel: ViewModel() {
     var score = 0
     var totalScore = 0
 
-    var quizFinished = false
-
-
-
-
-
 
     fun timer(){
         if (!started) {
@@ -110,25 +104,13 @@ class QuizPageViewModel: ViewModel() {
     }
 
     fun nextQuestion(){
-
-        questionIndex++
-        if(questionIndex < questionList.size){
-            for(op in allOptions){
-                op.setBackgroundColor(Color.WHITE)
-            }
-            started = false
-            isFinished.postValue(false)
-            timer()
-            loadQuestion(questionIndex)
+        for(op in allOptions){
+            op.setBackgroundColor(Color.WHITE)
         }
-        else{
-            //TODO: end of questions, submit answer
-            println("Date: ${Date()}, Category: $qCategory, Level: $qLevel, Score: $score/$totalScore" )
-            //userVM.setUserScores("${Date()}", qCategory, qLevel, "$score"+"/"+"$totalScore" )
-
-
-        }
-
+        started = false
+        isFinished.postValue(false)
+        timer()
+        loadQuestion(++questionIndex)
     }
 
     fun timeFinished(){
@@ -140,6 +122,13 @@ class QuizPageViewModel: ViewModel() {
                 op.setBackgroundColor(Color.WHITE)
             }
         }
+    }
+
+    fun quizFinished(): Boolean{
+        if (questionIndex>= questionList.size-1){
+            return true
+        }
+       return false
     }
 
     private fun loadQuestion(questionIndex: Int){
