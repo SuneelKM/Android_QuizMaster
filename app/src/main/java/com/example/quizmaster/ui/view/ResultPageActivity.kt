@@ -48,7 +48,7 @@ class ResultPageActivity : AppCompatActivity() {
         val level = intent.extras?.get("level") as String
         score = intent.extras?.get("score") as Int
         numOfQuestion = intent.extras?.get("numberOfQuestions") as Int
-        submittedQuestions.addAll(intent.extras?.get("submittedQuestions") as Array<SubmittedQuestions>)
+        submittedQuestions.addAll(intent.extras?.get("submittedQuestions") as List<SubmittedQuestions>)
 
         //setting score in database
         userVM.setUserScores("${Date()}",category, level, "$score/$numOfQuestion")

@@ -24,6 +24,7 @@ import com.example.quizmaster.ui.viewmodel.QuizPageViewModel
 import com.example.quizmaster.ui.viewmodel.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.processor.internal.definecomponent.codegen._dagger_hilt_android_components_FragmentComponent
+import java.io.Serializable
 
 
 class QuestionPageFragment : Fragment() {
@@ -124,7 +125,7 @@ class QuestionPageFragment : Fragment() {
                 resultIntent.putExtra("level", vm.qLevel)
                 resultIntent.putExtra("score", vm.score)
                 resultIntent.putExtra("numberOfQuestions", vm.totalScore)
-                resultIntent.putExtra("submittedQuestions", vm.submittedQuestions)
+                resultIntent.putExtra("submittedQuestions", vm.submittedQuestions as Serializable)
                 startActivity(resultIntent)
             }
             else{
