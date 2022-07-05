@@ -42,7 +42,7 @@
     <string name="level_qp">Level: %s</string>
     <string name="logo_description">Quiz Master Logo</string>
     <string name="your_result">Your Result</string>
-    <string name="question">Question?</string>
+    <string name="question">Q:</string>
     <string name="your_answer">Your answer:</string>
     <string name="correct_answer">Correct answer:</string>
 </resources>
