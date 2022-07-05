@@ -50,7 +50,7 @@ class AuthRepository @Inject constructor(
     }
 
     fun saveToDatabase(userName: String, email: String) {
-        val user = UserSignup(userName, email, null)
+        val user = UserSignup(userName, email, "")
         try {
 //            val database = Firebase.database
 //            val uid = firebaseAuth.uid
@@ -131,5 +131,9 @@ class AuthRepository @Inject constructor(
             Timber.e(e)
             signInState.value = "error"
         }
+    }
+
+    fun handleSignOut(){
+        firebaseAuth.signOut()
     }
 }

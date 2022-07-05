@@ -24,6 +24,7 @@ import com.example.quizmaster.databinding.NavHeaderBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.imageview.ShapeableImageView
 import com.example.quizmaster.ui.adapter.HistoryAdapter
+import com.example.quizmaster.ui.viewmodel.AuthViewModel
 import com.example.quizmaster.ui.viewmodel.UserViewModel
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
@@ -41,10 +42,10 @@ import java.util.*
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
-    private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var binding: ActivityMainBinding
     val vm: QuestionsViewModel by viewModels()
     val userVM: UserViewModel by viewModels()
+    val authVM: AuthViewModel by viewModels()
     var allScores = ArrayList<UserScores>()
     lateinit var picture: ShapeableImageView
     private val pickImage = 100
@@ -57,7 +58,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        firebaseAuth = FirebaseAuth.getInstance()
 
 //        binding.appLogout.setOnClickListener {
 //            firebaseAuth.signOut()
@@ -166,6 +166,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         var navbarUserName: TextView = nav_view.getHeaderView(0).findViewById(R.id.user_name)
 
         username.observe(this){
+            println(it)
             navbarUserName?.text = it
             binding.textView4.text = it
         }
@@ -184,7 +185,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.logout -> {
-                firebaseAuth.signOut()
+                authVM.handleSignOut()
                 val intent = Intent(this, SignInActivity::class.java)
                 startActivity(intent)
                 finish()
