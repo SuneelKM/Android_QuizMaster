@@ -2,8 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.quizmaster">
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:name=".di.HiltApp"
         android:allowBackup="true"
@@ -15,6 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.QuizMaster"
         android:usesCleartextTraffic="false">
+        <activity
+            android:name=".ui.view.DetailedResultsPage"
+            android:exported="false" />
         <activity
             android:name=".ui.view.QuestionPageFrameActivity"
             android:exported="false" />

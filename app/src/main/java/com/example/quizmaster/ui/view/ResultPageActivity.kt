@@ -74,9 +74,9 @@ class ResultPageActivity : AppCompatActivity() {
             startActivity(mainActivityIntent)
         }
         viewResult.setOnClickListener {
-            var mainActivityIntent = Intent(this, MainActivity::class.java)
-            mainActivityIntent.putExtra("submittedQuestions",submittedQuestions)
-            startActivity(mainActivityIntent)
+            var resultActivityIntent = Intent(this, DetailedResultsPage::class.java)
+            resultActivityIntent.putExtra("submittedQuestions",submittedQuestions)
+            startActivity(resultActivityIntent)
         }
         getUserName()
 

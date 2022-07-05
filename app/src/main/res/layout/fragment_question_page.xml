@@ -81,9 +81,9 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
-            android:layout_height="420dp"
+            android:layout_height="470dp"
             android:layout_marginStart="13dp"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="48dp"
             android:layout_marginEnd="13dp"
             android:background="@android:color/darker_gray"
             android:padding="16dp"
@@ -129,24 +129,25 @@
                 <TextView
                     android:id="@+id/question_qp"
                     android:layout_width="match_parent"
-                    android:layout_height="80dp"
-                    android:layout_marginTop="30dp"
+                    android:layout_height="110dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginEnd="10dp"
+                    android:layout_marginStart="10dp"
                     android:gravity="center"
                     android:text="@{qpViewModel.currentQuestion}"
                     android:textColor="@color/black"
-                    android:textSize="25sp"
+                    android:autoSizeTextType="uniform"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@id/category_qp"  />
 
                 <TextView
                     android:id="@+id/choice1_qp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="13dp"
-                    android:layout_marginTop="70dp"
+                    android:layout_marginTop="12dp"
                     android:layout_marginEnd="13dp"
                     android:background="@drawable/default_option_border_bg"
                     android:gravity="center"
@@ -157,7 +158,7 @@
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/question_qp" />
+                    app:layout_constraintTop_toBottomOf="@id/question_qp" />
 
 
                 <TextView
