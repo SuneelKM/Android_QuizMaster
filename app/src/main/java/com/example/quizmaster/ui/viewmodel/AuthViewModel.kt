@@ -27,6 +27,10 @@ class AuthViewModel @Inject constructor (var repo: AuthRepository) : ViewModel()
         repo.handleResetPassword(email)
     }
 
+    fun handleSignOut() {
+        repo.handleSignOut()
+    }
+
 }
 
 
