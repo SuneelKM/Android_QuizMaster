@@ -41,6 +41,10 @@ class SignUpActivity : AppCompatActivity() {
                 binding.emailEt.error = "Please enter a valid email"
             else if (pass.isEmpty())
                 binding.passET.error = "Please enter a valid password"
+            else if (!vm.isValidPassword(pass))
+                binding.passET.error = "Password must have at least 8 characters," +
+                        " one uppercase letter, one lowercase letter, one number," +
+                        " and one special character (@#$%^&+=_.)"
             else if (confirmPass.isEmpty())
                 binding.confirmPassEt.error = "Please enter a valid password"
             else if (!termsCondition)
