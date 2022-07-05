@@ -5,5 +5,5 @@ data class UserScores(
     val category: String,
     val level: String,
     val points: String,
-    val profile: String
+    //val profile: String
 )
