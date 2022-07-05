@@ -46,4 +46,6 @@
     <string name="question">Question ?</string>
     <string name="choice_4">Choice 4</string>
     <string name="correct_answer">Correct Answer:</string>
+    <string name="your_result">Your Result</string>
+    <string name="todo">TODO</string>
 </resources>
