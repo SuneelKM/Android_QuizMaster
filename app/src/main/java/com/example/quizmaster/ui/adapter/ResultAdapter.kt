@@ -26,7 +26,11 @@ class ResultAdapter(private var resultList: List<SubmittedQuestions>) :
         // add current item to the holder
         val result = resultList[position]
         holder.questionView.text = result.question
+
         holder.userAnswerView.text = result.userAnswer
+//        if(result.userAnswer.equals(result.correctAnswer)){
+//
+//        }
         holder.correctAnswerView.text = result.correctAnswer
     }
 
