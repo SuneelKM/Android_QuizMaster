@@ -8,26 +8,6 @@
     android:background="@drawable/ic_bg">
 
 
-    <!--<androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/signout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="200dp"
-        android:layout_marginEnd="16dp"
-        android:background="@color/purple_700"
-        android:gravity="center"
-        android:text="signout"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toTopOf="parent" />
--->
-
-
     <ImageView
         android:id="@+id/quiz_logo"
         android:layout_width="180dp"
@@ -42,19 +22,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_quiz_logo" />
 
-<!--    <TextView-->
-<!--        android:id="@+id/textView"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="44dp"-->
-<!--        android:gravity="start"-->
-<!--        android:text="Timer : "-->
-<!--        android:textSize="24sp"-->
-<!--        android:textStyle="bold"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.0"-->
-<!--        app:layout_constraintStart_toEndOf="@+id/quiz_logo"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/stopButton"

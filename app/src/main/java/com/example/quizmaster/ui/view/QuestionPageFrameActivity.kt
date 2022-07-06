@@ -3,9 +3,7 @@ package com.example.quizmaster.ui.view
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import com.example.quizmaster.R
-import com.example.quizmaster.data.model.OpentdbAPI.Result
 import java.io.Serializable
 
 

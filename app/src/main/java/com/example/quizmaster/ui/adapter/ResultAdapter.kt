@@ -1,20 +1,15 @@
 package com.example.quizmaster.ui.adapter
 
 import android.content.Context
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.cardview.widget.CardView
-import androidx.core.content.ContextCompat
+
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quizmaster.R
 import com.example.quizmaster.data.model.SubmittedQuestions
 
-
-import com.example.quizmaster.data.model.UserData.UserScores
-import com.google.android.material.internal.ContextUtils.getActivity
 
 class ResultAdapter(private var resultList: List<SubmittedQuestions>, val context: Context) :
     RecyclerView.Adapter<ResultAdapter.ViewHolder>() {

@@ -1,25 +1,13 @@
 package com.example.quizmaster.ui.viewmodel
 
 import android.content.Context
-import android.content.Intent
 import android.net.Uri
-import android.util.Log
-import android.webkit.MimeTypeMap
-import android.widget.ImageView
 import android.widget.Toast
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.quizmaster.R
 import com.example.quizmaster.data.model.SubmittedQuestions
 import com.example.quizmaster.data.model.UserData.UserScores
-import com.example.quizmaster.data.model.UserData.UserSignup
-import com.example.quizmaster.ui.view.DetailedResultsPage
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
-import com.squareup.picasso.Picasso
 import timber.log.Timber
 import java.util.*
 import javax.inject.Inject
@@ -38,15 +26,15 @@ class UserRepository @Inject constructor(
     var allSubmittedQuestions = MutableLiveData<List<SubmittedQuestions>>()
 
     fun getUserName() {
-        myRef.get().addOnSuccessListener { 
+        myRef.get().addOnSuccessListener {
             username.postValue(it.child("username").value.toString())
         }
             .addOnFailureListener {
-            Toast.makeText(context, "${it.message}", Toast.LENGTH_LONG).show()
-        }
+                Toast.makeText(context, "${it.message}", Toast.LENGTH_LONG).show()
+            }
     }
 
-    fun getUserScores(){
+    fun getUserScores() {
 
         val usList = ArrayList<UserScores>()
         loading.postValue(true)
@@ -54,7 +42,7 @@ class UserRepository @Inject constructor(
             .addOnSuccessListener {
 
                 val scores = it.child("scores").children
-                for(score in scores){
+                for (score in scores) {
                     val date = score.child("date").value.toString()
                     val category = score.child("category").value.toString()
                     val level = score.child("level").value.toString()
@@ -62,7 +50,7 @@ class UserRepository @Inject constructor(
                     //val profile = score.child("profile").value.toString()
 
 //                    usList.add(UserScores(date,category,level,points,profile))
-                    usList.add(UserScores(date,category,level,points))
+                    usList.add(UserScores(date, category, level, points))
                     loading.postValue(false)
                 }
                 userScoreList.postValue(usList)
@@ -74,8 +62,8 @@ class UserRepository @Inject constructor(
 
     }
 
-    fun getPicture(){
-        var pic: String? =null
+    fun getPicture() {
+        var pic: String? = null
         myRef.get().addOnSuccessListener {
             pic = it.child("imageUrl").value.toString()
             image.postValue(pic)
@@ -85,8 +73,8 @@ class UserRepository @Inject constructor(
             }
     }
 
-    fun uploadImageToStorage(imageUri: Uri, file: String){
-        
+    fun uploadImageToStorage(imageUri: Uri, file: String) {
+
         val reference = firebaseStorage.getReference("images/$file")
         reference.putFile(imageUri)
             .addOnSuccessListener { it ->
@@ -102,31 +90,37 @@ class UserRepository @Inject constructor(
             }
     }
 
-    fun saveImageToDatabase(imageUri: String){
-        
+    fun saveImageToDatabase(imageUri: String) {
+
         myRef.child("imageUrl").setValue(imageUri)
     }
 
-    fun setUserScores(date:String, category: String, level: String, points: String, submittedQuestions:ArrayList<SubmittedQuestions>) {
-        val userScores = UserScores(date,category,level, points)
+    fun setUserScores(
+        date: String,
+        category: String,
+        level: String,
+        points: String,
+        submittedQuestions: ArrayList<SubmittedQuestions>
+    ) {
+        val userScores = UserScores(date, category, level, points)
         val date = Date()
         myRef.child("scores").child("$date").setValue(userScores)
         myRef.child("scores").child("$date/answers").setValue(submittedQuestions)
     }
 
-    fun getSubmittedQuestions(date:String){
+    fun getSubmittedQuestions(date: String) {
         val submittedQuestions = ArrayList<SubmittedQuestions>()
         myRef.child("scores/$date/answers").get()
             .addOnSuccessListener {
-            val allQuestions = it.children
-            for(submittedQuestion in allQuestions){
-                val correctAnswer = submittedQuestion.child("correctAnswer").value.toString()
-                val question = submittedQuestion.child("question").value.toString()
-                val userAnswer = submittedQuestion.child("userAnswer").value.toString()
-                submittedQuestions.add(SubmittedQuestions(question,correctAnswer,userAnswer))
+                val allQuestions = it.children
+                for (submittedQuestion in allQuestions) {
+                    val correctAnswer = submittedQuestion.child("correctAnswer").value.toString()
+                    val question = submittedQuestion.child("question").value.toString()
+                    val userAnswer = submittedQuestion.child("userAnswer").value.toString()
+                    submittedQuestions.add(SubmittedQuestions(question, correctAnswer, userAnswer))
+                }
+                allSubmittedQuestions.postValue(submittedQuestions)
             }
-            allSubmittedQuestions.postValue(submittedQuestions)
-        }
             .addOnFailureListener {
                 Toast.makeText(context, "${it.message}", Toast.LENGTH_LONG).show()
             }

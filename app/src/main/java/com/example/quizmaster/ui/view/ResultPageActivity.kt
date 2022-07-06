@@ -8,16 +8,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.viewModels
 import com.example.quizmaster.R
-import com.example.quizmaster.data.model.OpentdbAPI.Result
 import com.example.quizmaster.data.model.SubmittedQuestions
 import com.example.quizmaster.ui.viewmodel.UserViewModel
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.AndroidEntryPoint
-import java.io.Serializable
 import java.util.*
 import kotlin.collections.ArrayList
 

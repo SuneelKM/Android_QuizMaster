@@ -10,20 +10,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.viewModels
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.core.content.ContextCompat.startActivity
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.quizmaster.R
 import com.example.quizmaster.data.model.OpentdbAPI.Result
 import com.example.quizmaster.databinding.FragmentQuestionPageBinding
-import com.example.quizmaster.ui.viewmodel.QuestionsViewModel
 import com.example.quizmaster.ui.viewmodel.QuizPageViewModel
-import com.example.quizmaster.ui.viewmodel.UserViewModel
-import dagger.hilt.android.AndroidEntryPoint
-import dagger.hilt.processor.internal.definecomponent.codegen._dagger_hilt_android_components_FragmentComponent
 import java.io.Serializable
 
 
@@ -57,7 +48,6 @@ class QuestionPageFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //TODO
         //userVM = ViewModelProvider(this).get(UserViewModel::class.java)
 
         binding.qpViewModel = vm
