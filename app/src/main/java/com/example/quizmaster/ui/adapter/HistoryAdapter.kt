@@ -89,6 +89,6 @@ class HistoryAdapter(private var userHistory: List<UserScores>) :
     }
 
     fun sortDate(arrowDown: Boolean) {
-        //TODO: sort depending on how date is stored
+        // sort by date
     }
 }

@@ -3,13 +3,10 @@ package com.example.quizmaster.ui.view
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.quizmaster.R
 import com.example.quizmaster.data.model.SubmittedQuestions
 import com.example.quizmaster.databinding.ActivityDetailedResultsPageBinding
-import com.example.quizmaster.ui.adapter.HistoryAdapter
 import com.example.quizmaster.ui.adapter.ResultAdapter
 import com.example.quizmaster.ui.viewmodel.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint

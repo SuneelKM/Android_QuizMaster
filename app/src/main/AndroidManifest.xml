@@ -30,12 +30,10 @@
             android:name=".ui.view.ResultPageActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.view.QuestionPageActivity"
-            android:exported="false" />
-        <activity
             android:name=".ui.view.ChooseQuizActivity"
             android:exported="false" />
         <activity
+            android:configChanges="orientation|screenSize|keyboardHidden"
             android:name=".ui.view.SplashActivity"
             android:exported="true">
             <intent-filter>

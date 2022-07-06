@@ -8,12 +8,6 @@
     android:layout_margin="2dp"
     android:stretchColumns="1,2,3,4">
 
-    <!--    <TableLayout-->
-    <!--    android:id="@+id/table_heading_layout"-->
-    <!--    android:layout_width="match_parent"-->
-    <!--    android:layout_height="match_parent"-->
-    <!--    >-->
-
 
     <TextView
         android:id="@+id/date_item"

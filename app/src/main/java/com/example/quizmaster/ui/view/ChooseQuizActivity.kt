@@ -4,15 +4,12 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
-import android.widget.TextView
 import androidx.activity.viewModels
 import com.example.quizmaster.R
-import com.example.quizmaster.data.model.OpentdbAPI.Questions
 import com.example.quizmaster.data.model.OpentdbAPI.Result
 import com.example.quizmaster.databinding.ActivityChooseQuizBinding
 import com.example.quizmaster.ui.viewmodel.QuestionsViewModel
 import com.example.quizmaster.ui.viewmodel.UserViewModel
-import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.kotlin.subscribeBy

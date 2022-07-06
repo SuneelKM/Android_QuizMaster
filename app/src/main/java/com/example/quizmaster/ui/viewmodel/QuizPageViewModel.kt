@@ -1,23 +1,14 @@
 package com.example.quizmaster.ui.viewmodel
 
-import android.content.Context
-import android.content.Intent
 import android.graphics.Color
 import android.os.CountDownTimer
 import android.widget.TextView
-import androidx.activity.viewModels
-import androidx.core.content.ContextCompat.startActivity
 import androidx.core.text.HtmlCompat
-import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.quizmaster.R
 import com.example.quizmaster.data.model.OpentdbAPI.Result
 import com.example.quizmaster.data.model.SubmittedQuestions
-import com.example.quizmaster.ui.view.ResultPageActivity
-import dagger.hilt.android.lifecycle.HiltViewModel
-import java.util.*
 import kotlin.collections.ArrayList
 
 
