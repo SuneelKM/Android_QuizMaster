@@ -1,15 +1,19 @@
 package com.example.quizmaster.ui.viewmodel
 
 import android.content.Context
+import android.content.Intent
 import android.net.Uri
 import android.util.Log
 import android.webkit.MimeTypeMap
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.quizmaster.R
+import com.example.quizmaster.data.model.SubmittedQuestions
 import com.example.quizmaster.data.model.UserData.UserScores
 import com.example.quizmaster.data.model.UserData.UserSignup
+import com.example.quizmaster.ui.view.DetailedResultsPage
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
@@ -31,6 +35,7 @@ class UserRepository @Inject constructor(
     var userScoreList = MutableLiveData<List<UserScores>>()
     var username = MutableLiveData<String>()
     var image = MutableLiveData<String>()
+    var allSubmittedQuestions = MutableLiveData<List<SubmittedQuestions>>()
 
     fun getUserName() {
         myRef.get().addOnSuccessListener { 
@@ -102,8 +107,26 @@ class UserRepository @Inject constructor(
         myRef.child("imageUrl").setValue(imageUri)
     }
 
-    fun setUserScores(date:String, category: String, level: String, points: String) {
+    fun setUserScores(date:String, category: String, level: String, points: String, submittedQuestions:ArrayList<SubmittedQuestions>) {
         val userScores = UserScores(date,category,level, points)
-        myRef.child("scores").child("${Date()}").setValue(userScores)
+        val date = Date()
+        myRef.child("scores").child("$date").setValue(userScores)
+        myRef.child("scores").child("$date/answers").setValue(submittedQuestions)
+    }
+
+    fun getSubmittedQuestions(date:String){
+        val submittedQuestions = ArrayList<SubmittedQuestions>()
+        myRef.child("scores/$date/answers").get()
+            .addOnSuccessListener {
+            val allQuestions = it.children
+            for(submittedQuestion in allQuestions){
+                val correctAnswer = submittedQuestion.child("correctAnswer").value.toString()
+                val question = submittedQuestion.child("question").value.toString()
+                val userAnswer = submittedQuestion.child("userAnswer").value.toString()
+                submittedQuestions.add(SubmittedQuestions(question,correctAnswer,userAnswer))
+            }
+            allSubmittedQuestions.postValue(submittedQuestions)
+        }
+
     }
 }

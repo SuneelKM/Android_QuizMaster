@@ -3,6 +3,7 @@ package com.example.quizmaster.ui.viewmodel
 import android.net.Uri
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.quizmaster.data.model.SubmittedQuestions
 import com.example.quizmaster.data.model.UserData.UserScores
 import dagger.hilt.android.lifecycle.HiltViewModel
 import java.util.*
@@ -15,6 +16,7 @@ class UserViewModel @Inject constructor (var repo: UserRepository) : ViewModel()
     var userScoreList: MutableLiveData<List<UserScores>> = repo.userScoreList
     var username: MutableLiveData<String> = repo.username
     var image: MutableLiveData<String> = repo.image
+    var allSubmittedQuestions = repo.allSubmittedQuestions
 
     init {
         loading.postValue(false)
@@ -38,7 +40,11 @@ class UserViewModel @Inject constructor (var repo: UserRepository) : ViewModel()
         repo.uploadImageToStorage(imageUri, file)
     }
 
-    fun setUserScores(date:String, category: String, level: String, points: String) {
-        repo.setUserScores(date, category, level, points)
+    fun setUserScores(date:String, category: String, level: String, points: String, submittedQuestions:ArrayList<SubmittedQuestions>) {
+        repo.setUserScores(date, category, level, points, submittedQuestions)
+    }
+
+    fun getSubmittedQuestions(date:String){
+        repo.getSubmittedQuestions(date)
     }
 }
