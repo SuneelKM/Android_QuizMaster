@@ -127,6 +127,9 @@ class UserRepository @Inject constructor(
             }
             allSubmittedQuestions.postValue(submittedQuestions)
         }
+            .addOnFailureListener {
+                Toast.makeText(context, "${it.message}", Toast.LENGTH_LONG).show()
+            }
 
     }
 }
