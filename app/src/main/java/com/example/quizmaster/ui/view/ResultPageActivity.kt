@@ -51,7 +51,7 @@ class ResultPageActivity : AppCompatActivity() {
         submittedQuestions.addAll(intent.extras?.get("submittedQuestions") as List<SubmittedQuestions>)
 
         //setting score in database
-        userVM.setUserScores("${Date()}",category, level, "$score/$numOfQuestion")
+        userVM.setUserScores("${Date()}",category, level, "$score/$numOfQuestion", submittedQuestions)
 
 //        firebaseAuth = FirebaseAuth.getInstance()
 

@@ -37,9 +37,19 @@ class DetailedResultsPage : AppCompatActivity() {
         binding.resultRecycler.layoutManager = LinearLayoutManager(this)
         binding.resultRecycler.adapter = adapter
 
-        submittedQuestions.addAll(intent.extras?.get("submittedQuestions") as List<SubmittedQuestions>)
 
-        adapter.setItems(submittedQuestions)
+        val dateTime = intent?.getStringExtra("dateTime")
+        if (dateTime != null) {
+            userVM.getSubmittedQuestions(dateTime)
+                userVM.allSubmittedQuestions.observe(this){
+                    adapter.setItems(it)
+                }
+        }
+
+        else {
+            submittedQuestions.addAll(intent.extras?.get("submittedQuestions") as List<SubmittedQuestions>)
+            adapter.setItems(submittedQuestions)
+        }
 
         getUserName()
 
