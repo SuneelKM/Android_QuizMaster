@@ -44,6 +44,7 @@ class QuizPageViewModel: ViewModel() {
     var totalScore = 0
 
 
+
     fun timer(){
         if (!started) {
             started=true
@@ -68,6 +69,7 @@ class QuizPageViewModel: ViewModel() {
     fun setQuestions(results: List<Result>){
         questionList.addAll(results)
         loadQuestion(questionIndex)
+        timer()
     }
     fun setAllOptions(allOp: List<TextView>){
         allOptions.addAll(allOp)

@@ -63,8 +63,6 @@ class QuestionPageFragment : Fragment() {
         binding.choice3Qp.setOnClickListener { onChoiceClick(3) }
         binding.choice4Qp.setOnClickListener { onChoiceClick(4) }
 
-        //start timer
-        vm.timer()
     }
 
     private fun onChoiceClick(choice: Int){

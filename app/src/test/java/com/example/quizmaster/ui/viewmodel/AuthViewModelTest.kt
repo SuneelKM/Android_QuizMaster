@@ -4,6 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 //import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
+import com.example.quizmaster.data.repo.AuthRepository
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Rule
