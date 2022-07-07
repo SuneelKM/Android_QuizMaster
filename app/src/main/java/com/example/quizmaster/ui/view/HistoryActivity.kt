@@ -44,7 +44,7 @@ class HistoryActivity : AppCompatActivity() {
         vm.getUserScores()
 
         vm.userScoreList.observe(this){
-            adapter.setItems(it)
+            adapter.setItems(it.reversed())
         }
 
         val sorting = arrayOf(binding.category, binding.level, binding.score, binding.date)
