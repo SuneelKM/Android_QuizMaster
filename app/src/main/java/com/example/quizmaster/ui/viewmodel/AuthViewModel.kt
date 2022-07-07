@@ -5,6 +5,7 @@ import android.content.res.Configuration
 import androidx.core.app.ActivityCompat.recreate
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.quizmaster.data.repo.AuthRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import java.util.*
 import java.util.regex.Pattern
