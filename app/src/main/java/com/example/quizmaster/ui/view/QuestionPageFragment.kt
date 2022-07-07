@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.databinding.DataBindingUtil
 import com.example.quizmaster.R
 import com.example.quizmaster.data.model.OpentdbAPI.Result
@@ -36,7 +37,7 @@ class QuestionPageFragment : Fragment() {
         arguments?.let {
             questions = it.get("results") as List<Result>
             println("From Fragment $questions")
-            vm.setQuestions(questions)
+            vm.setQuestions(questions, requireActivity())
         }
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_question_page, container, false)
@@ -81,9 +82,9 @@ class QuestionPageFragment : Fragment() {
 
     private fun choiceColourChange(choice: TextView){
         for(c in allChoices){
-            c.setBackgroundColor(requireActivity().getColor(R.color.white))
+            c.background = AppCompatResources.getDrawable(requireActivity(),R.drawable.default_option_border_bg)
         }
-        choice.setBackgroundColor(requireActivity().getColor(R.color.choice_selection))
+        choice.background = AppCompatResources.getDrawable(requireActivity(), R.drawable.selected_option_border_bg)
         selected = choice
     }
 

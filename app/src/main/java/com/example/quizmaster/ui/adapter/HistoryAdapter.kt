@@ -47,7 +47,11 @@ class HistoryAdapter(private var userHistory: List<UserScores>) :
             date = history.date
         }
         holder.dateView.text = date
-        holder.categoryView.text = history.category
+        holder.categoryView.text = when (history.category) {
+            "Science: Computers" -> "Computer Science"
+            "Entertainment: Film" -> "Movies"
+            else -> history.category
+        }
         holder.levelView.text = history.level
         holder.scoreView.text = history.points
         val context = holder.dateView.context
@@ -80,27 +84,32 @@ class HistoryAdapter(private var userHistory: List<UserScores>) :
 
     fun sortCategory(arrowDown: Boolean) {
         if (arrowDown)
-            this.userHistory.sortedBy { it.category }
+            this.userHistory = this.userHistory.sortedBy { it.category }
         else
-            this.userHistory.sortedBy { it.category }.reversed()
+            this. userHistory = this.userHistory.sortedBy { it.category }.reversed()
 
         notifyDataSetChanged()
     }
 
     fun sortLevel(arrowDown: Boolean) {
         if (arrowDown)
-            this.userHistory.sortedBy { it.level }
+            this.userHistory = this.userHistory.sortedBy { it.level }
         else
-            this.userHistory.sortedBy { it.level }.reversed()
+            this.userHistory = this.userHistory.sortedBy { it.level }.reversed()
 
         notifyDataSetChanged()
     }
 
     fun sortScore(arrowDown: Boolean) {
         if (arrowDown)
-            this.userHistory.sortedBy { it.points }
+            this.userHistory = this.userHistory.sortedBy {
+                val scoreA = it.points.split("/")
+                scoreA[0].toDouble()/scoreA[1].toDouble()
+            }
         else
-            this.userHistory.sortedBy { it.points }.reversed()
+            this.userHistory = this.userHistory.sortedBy {
+                val scoreA = it.points.split("/")
+                scoreA[0].toDouble()/scoreA[1].toDouble() }.reversed()
         notifyDataSetChanged()
     }
 
