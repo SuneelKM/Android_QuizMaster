@@ -1,4 +1,4 @@
-package com.example.quizmaster.ui.viewmodel
+package com.example.quizmaster.data.repo
 
 import android.content.Context
 import android.net.Uri

@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.quizmaster.data.model.SubmittedQuestions
 import com.example.quizmaster.data.model.UserData.UserScores
+import com.example.quizmaster.data.repo.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import java.util.*
 import javax.inject.Inject
