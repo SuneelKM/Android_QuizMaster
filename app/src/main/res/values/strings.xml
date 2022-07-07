@@ -1,14 +1,12 @@
 <resources>
-    <string name="app_name">QuizMaster</string>
+    <string name="app_name" translatable="false">QuizMaster</string>
     <string name="not_registered_yet_sign_up">Not Registered Yet? <b>Sign Up</b></string>
     <string name="already_registered_sign_in">Already Registered? <b>Sign In</b></string>
-    <string name="quiz_master">Quiz Master</string>
+    <string name="quiz_master" translatable="false">Quiz Master</string>
     <string name="sign_in">Sign In</string>
     <string name="enter_your_email">Enter your email</string>
     <string name="enter_your_password">Enter your password</string>
     <string name="sign_in_button">Sign In</string>
-
-
     <string name="forgot_password">Forgot password?</string>
     <string name="sign_up">Sign Up</string>
     <string name="enter_your_username_signup">Enter your Username</string>
@@ -40,9 +38,14 @@
     <string name="home">Home</string>
     <string name="view_result">View Result</string>
     <string name="level_qp">Level: %s</string>
-    <string name="logo_description">Quiz Master Logo</string>
+    <string name="logo_description" translatable="false">Quiz Master Logo</string>
     <string name="your_result">Your Result</string>
-    <string name="question">Q:</string>
+    <string name="question" translatable="false">Q:</string>
     <string name="your_answer">Your answer:</string>
     <string name="correct_answer">Correct answer:</string>
+    <string name="language_menu">EN/हिन्दी</string>
+    <string-array name="languages">
+        <item>English</item>
+        <item>हिन्दी</item>
+    </string-array>
 </resources>

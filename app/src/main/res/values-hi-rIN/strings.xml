@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">QuizMaster</string>
+    <string name="not_registered_yet_sign_up">पंजीकरण नहीं किया? <b>साइन अप करें</b></string>
+    <string name="already_registered_sign_in">पहले से ही पंजीकृत? <b>साइन इन करें</b></string>
+    <string name="sign_in">" साइन इन करें"</string>
+    <string name="enter_your_email">अपना ईमेल दर्ज करें</string>
+    <string name="enter_your_password">अपना पासवर्ड डालें</string>
+    <string name="sign_in_button">" साइन इन करें"</string>
+    <string name="forgot_password">पासवर्ड भूल गए?</string>
+    <string name="enter_your_username_signup">"अपना उपयोगकर्ता नाम दर्ज करें "</string>
+    <string name="sign_up">साइन अप करें</string>
+    <string name="enter_your_email_signup">अपना ईमेल दर्ज करें</string>
+    <string name="enter_your_password_signup">अपना पासवर्ड डालें</string>
+    <string name="sign_up_button">साइन अप करें</string>
+    <string name="i_have_read_and_agree_with_the_terms_and_conditions">मैंने नियम और शर्तों को पढ़ लिया है और उनसे सहमत हूं।</string>
+    <string name="quiz_setup_text">"क्विज "</string>
+    <string name="username_setup_page">उपयोगकर्ता नाम</string>
+    <string name="history_setup_text">इतिहास</string>
+    <string name="setup_your_quiz_text">अपनी प्रश्नोत्तरी सेट करें</string>
+    <string name="choose_your_quiz_text">अपनी प्रश्नोत्तरी चुनें</string>
+    <string name="category">श्रेणी</string>
+    <string name="level">स्तर</string>
+    <string name="questions">प्रशन</string>
+    <string name="image">छवि</string>
+    <string name="play">खेलें</string>
+    <string name="confirm_your_password_signup">अपने पासवर्ड की पुष्टि करें</string>
+    <string name="language">इंग्लिश / हिंदी</string>
+    <string name="history">इतिहास</string>
+    <string name="logout">लॉग आउट</string>
+    <string name="navigation_drawer_open">नेविगेशन ड्रॉअर खोलें <b>साइन इन करें</b></string>
+    <string name="navigation_drawer_close">नेविगेशन ड्रॉअर बंद करें <b>साइन इन करें</b></string>
+    <string name="user_name">उपयोगकर्ता नाम</string>
+    <string name="submit">सबमिट</string>
+    <string name="next">अगला</string>
+    <string name="timer">टाइमर: %d</string>
+    <string name="stop_quiz">प्रश्नोत्तरी बंद करो</string>
+    <string name="home">होम</string>
+    <string name="view_result">परिणाम देख</string>
+    <string name="level_qp">स्तर: %s</string>
+    <string name="your_result">आपका परिणाम</string>
+    <string name="your_answer">आपका उत्तर:</string>
+    <string name="correct_answer">सही उत्तर:</string>
+    <string name="language_menu">EN/हिन्दी</string>
+    <string-array name="languages">
+        <item>English</item>
+        <item>हिन्दी</item>
+    </string-array>
+</resources>
