@@ -15,4 +15,3 @@ data class Result(
     val type: String
 
 ): Serializable
-

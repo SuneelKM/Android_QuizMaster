@@ -42,8 +42,15 @@
     <string name="your_answer">आपका उत्तर:</string>
     <string name="correct_answer">सही उत्तर:</string>
     <string name="language_menu">EN/हिन्दी</string>
-    <string-array name="languages">
-        <item>English</item>
-        <item>हिन्दी</item>
-    </string-array>
+    <string name="date">तारीख</string>
+    <string name="score">अंक</string>
+    <string name="emailError">कृपया एक मान्य ईमेल पता प्रवेश करें</string>
+    <string name="passwordError">"कृपया एक वैध पासवर्ड दर्ज करें"</string>
+    <string name="error">"कुछ गलत हुआ है, दोबारा कोशिश करें"</string>
+    <string name="notFound">"क्षमा करें, हमें आपका खाता नहीं मिला"</string>
+    <string name="emailSend">"ईमेल इसे भेजा गया"</string>
+    <string name="ok">"ठीक"</string>
+
+
+
 </resources>

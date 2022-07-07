@@ -16,7 +16,6 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.quizmaster.ui.viewmodel.QuestionsViewModel
 import com.example.quizmaster.R
-import com.example.quizmaster.data.model.UserData.UserScores
 import com.example.quizmaster.databinding.ActivityMainBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.imageview.ShapeableImageView
@@ -34,8 +33,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private lateinit var binding: ActivityMainBinding
     val vm: QuestionsViewModel by viewModels()
-    val userVM: UserViewModel by viewModels()
-    val authVM: AuthViewModel by viewModels()
+    private val userVM: UserViewModel by viewModels()
+    private val authVM: AuthViewModel by viewModels()
     lateinit var picture: ShapeableImageView
     private val pickImage = 100
     private var imageUri: Uri? = null
@@ -115,26 +114,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
 
             R.id.language -> {
-                setLanguage()
+                authVM.setLanguage(baseContext)
+                recreate()
                 true
             }
         }
         return true
     }
 
-    private fun setLanguage() {
-        var l = ""
-        val config: Configuration = baseContext.resources.configuration
-        val localLang = config.locales[0].toString()
-        if(localLang == "en_us" || localLang == "en_US")
-            l = "hi"
-        else if(localLang == "hi")
-            l = "en_us"
-        val locale = Locale(l)
-        config.setLocale(locale)
-        baseContext.resources.updateConfiguration(config, baseContext.resources.displayMetrics)
-        recreate()
-    }
 
     private fun historyStartActivity() {
         val hisIntent = Intent(this, HistoryActivity::class.java)

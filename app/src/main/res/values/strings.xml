@@ -44,8 +44,14 @@
     <string name="your_answer">Your answer:</string>
     <string name="correct_answer">Correct answer:</string>
     <string name="language_menu">EN/हिन्दी</string>
-    <string-array name="languages">
-        <item>English</item>
-        <item>हिन्दी</item>
-    </string-array>
+    <string name="startLanguage" translatable="false">EN/हिन्दी</string>
+    <string name="date">Date</string>
+    <string name="score">score</string>
+    <string name="emailError">Please enter a valid email</string>
+    <string name="passwordError">"Please enter a valid password"</string>
+    <string name="error">"Something went wrong"</string>
+    <string name="notFound">"Sorry, we could not find your account"</string>
+    <string name="emailSend">"Email sent to"</string>
+    <string name="ok">"OK"</string>
+
 </resources>

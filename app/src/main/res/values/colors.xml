@@ -11,4 +11,5 @@
     <color name="choice_selection">#cc99ff</color>
     <color name="choice_incorrect">#EF9A9A</color>
     <color name="choice_correct">#A5D6A7</color>
+    <color name="transparent">#00000000</color>
 </resources>

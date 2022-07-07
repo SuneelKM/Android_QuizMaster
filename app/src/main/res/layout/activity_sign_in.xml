@@ -178,5 +178,20 @@
 
     </androidx.cardview.widget.CardView>
 
+    <Button
+        android:id="@+id/languageSignIn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:backgroundTint="@color/transparent"
+        android:text="@string/startLanguage"
+        android:textColor="@color/black"
+        android:elevation="0dp"
+        android:stateListAnimator="@null"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 
