@@ -50,7 +50,7 @@
                 android:gravity="center"
                 android:text="Date"
                 android:textColor="@color/white"
-                app:drawableRightCompat="@drawable/ic_baseline_arrow_drop_down_24"
+                app:drawableRightCompat="@drawable/ic_baseline_arrow_drop_up_24"
                 app:layout_constraintBottom_toTopOf="@+id/recycler_history"
                 app:layout_constraintEnd_toStartOf="@+id/category"
                 app:layout_constraintStart_toStartOf="parent" />
