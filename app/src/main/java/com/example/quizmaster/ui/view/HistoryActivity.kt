@@ -1,6 +1,7 @@
 package com.example.quizmaster.ui.view
 
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
@@ -24,7 +25,7 @@ class HistoryActivity : AppCompatActivity() {
     var historyList: ArrayList<UserScores> = ArrayList()
     var adapter: HistoryAdapter = HistoryAdapter(historyList)
     val vm: UserViewModel by viewModels()
-    var arrowDownArray = arrayOf(true, true, true, true)//Date, Category, Level, Points
+    var arrowDownArray = arrayOf(false, true, true, true)//Date, Category, Level, Points
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,6 +54,9 @@ class HistoryActivity : AppCompatActivity() {
 
         for(sort in sorting){
             sort.setOnClickListener {
+                for(s in sorting){
+                    s.setTextColor(Color.WHITE)
+                }
                 var arrowSwitchSort = arrowSwitch(sort)
                 when(sort){
                     binding.category -> adapter.sortCategory(arrowSwitchSort)
@@ -84,6 +88,7 @@ class HistoryActivity : AppCompatActivity() {
                 arrowDownArray[0]
             }
         }
+        field.setTextColor(resources.getColor(R.color.choice_incorrect))
         if (!arrowDown)
             field.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_arrow_drop_up_24, 0)
         else

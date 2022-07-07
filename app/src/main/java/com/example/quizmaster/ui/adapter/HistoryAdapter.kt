@@ -84,9 +84,19 @@ class HistoryAdapter(private var userHistory: List<UserScores>) :
 
     fun sortCategory(arrowDown: Boolean) {
         if (arrowDown)
-            this.userHistory = this.userHistory.sortedBy { it.category }
+            this.userHistory = this.userHistory.sortedBy {
+                when(it.category){
+                    "Science: Computers" -> "Computer Science"
+                    "Entertainment: Film" -> "Movies"
+                    else ->it.category
+                } }
         else
-            this. userHistory = this.userHistory.sortedBy { it.category }.reversed()
+            this. userHistory = this.userHistory.sortedBy {
+                when(it.category){
+                "Science: Computers" -> "Computer Science"
+                "Entertainment: Film" -> "Movies"
+                else ->it.category
+            }  }.reversed()
 
         notifyDataSetChanged()
     }
@@ -114,6 +124,17 @@ class HistoryAdapter(private var userHistory: List<UserScores>) :
     }
 
     fun sortDate(arrowDown: Boolean) {
-        // sort by date
+        if (arrowDown)
+            this.userHistory = this.userHistory.sortedBy {
+                    val dateFormat = SimpleDateFormat("E MMM dd HH:mm:ss zzz yyyy")
+                    val dateObj = dateFormat.parse(it.date)
+                    dateObj.time
+            }
+        else
+            this.userHistory = this.userHistory.sortedBy {
+                val dateFormat = SimpleDateFormat("E MMM dd HH:mm:ss zzz yyyy")
+                val dateObj = dateFormat.parse(it.date)
+                dateObj.time }.reversed()
+        notifyDataSetChanged()
     }
 }
