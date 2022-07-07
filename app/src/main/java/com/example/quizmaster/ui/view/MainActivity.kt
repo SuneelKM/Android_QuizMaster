@@ -1,6 +1,7 @@
 package com.example.quizmaster.ui.view
 
 import android.content.Intent
+import android.content.res.Configuration
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -15,7 +16,6 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.quizmaster.ui.viewmodel.QuestionsViewModel
 import com.example.quizmaster.R
-import com.example.quizmaster.data.model.UserData.UserScores
 import com.example.quizmaster.databinding.ActivityMainBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.imageview.ShapeableImageView
@@ -27,14 +27,14 @@ import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 import java.util.*
 
+@Suppress("DEPRECATION")
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var binding: ActivityMainBinding
     val vm: QuestionsViewModel by viewModels()
-    val userVM: UserViewModel by viewModels()
-    val authVM: AuthViewModel by viewModels()
-    var allScores = ArrayList<UserScores>()
+    private val userVM: UserViewModel by viewModels()
+    private val authVM: AuthViewModel by viewModels()
     lateinit var picture: ShapeableImageView
     private val pickImage = 100
     private var imageUri: Uri? = null
@@ -46,75 +46,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-//        binding.appLogout.setOnClickListener {
-//            firebaseAuth.signOut()
-//            val intent = Intent(this, SignInActivity::class.java)
-//            startActivity(intent)
-//            finish()
-////            firebaseAuth.currentUser?.delete()
-//        }
-//
-//        vm.getQuestions("5","9","medium", "multiple")
-//            .subscribeOn(Schedulers.io())
-//            .observeOn(AndroidSchedulers.mainThread())
-//            .subscribeBy(
-//                onNext ={
-//                    println(it)
-//                    binding.textView1.text=it.toString()
-////                  Html.fromHtml(it.results[0].question)
-//                },
-//                onError = {e -> println("this is error $e")}
-//            )
-//
-//        val date = SimpleDateFormat("dd MMM").format(Date())
-//        setUserScores(date,"Science", "hard", "8/10", "avatar")
-//
-//        getUserScores()
-//    }
-//
-//    private fun setUserScores(date:String, category: String, level: String, points: String, profile:String) {
-//        val userScores = UserScores(date,category,level, points, profile)
-//        val database = Firebase.database
-//        val uid = firebaseAuth.uid
-//        val myRef = database.getReference("/Users/$uid/scores/${Date()}")
-//        myRef.setValue(userScores)
-//    }
-//
-//    private fun getUserScores(){
-//        val database = Firebase.database
-//        val uid = firebaseAuth.uid
-//        val myRef = database.getReference("/Users/$uid")
-//
-//        myRef.get()
-//            .addOnSuccessListener {
-//                val username = it.child("username").value.toString()
-//                val email = it.child("email").value.toString()
-//
-//                val scores = it.child("scores").children
-//                for(score in scores){
-//                    val date = score.child("date").value.toString()
-//                    val category = score.child("category").value.toString()
-//                    val level = score.child("level").value.toString()
-//                    val points = score.child("points").value.toString()
-//                    val profile = score.child("profile").value.toString()
-//
-//                    // Added into an array so to be used in recycler view
-//                    allScores.add(UserScores(date,category,level,points,profile))
-//
-//                }
-//                println(allScores)
-//                println(username)
-//                println(email)
-//                binding.userName.text = "User: $username"
-//                binding.userEmail.text = "Email: $email"
-//                binding.userScore.text = "Past Scores: $allScores"
-//
-//
-//        }
-//            .addOnFailureListener {
-//                Toast.makeText(this, "${it.message}", Toast.LENGTH_LONG).show()
-//            }
 
         drawer = binding.drawer
         nav_view = binding.navMenu
@@ -132,14 +63,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         nav_view.setNavigationItemSelectedListener(this)
 
-        binding.quizSetupButton.setOnClickListener{
+        binding.quizSetupButton.setOnClickListener {
             var quizSetupIntent = Intent(this, ChooseQuizActivity::class.java)
             startActivity(quizSetupIntent)
             overridePendingTransition(R.anim.slide_right, R.anim.slide_left)
             finish()
         }
 
-        binding.historySetupButton.setOnClickListener{
+        binding.historySetupButton.setOnClickListener {
             historyStartActivity()
         }
 
@@ -148,13 +79,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     }
 
-    private fun getUserName(){
+    private fun getUserName() {
         var username = userVM.username
 
         var navbarUserName: TextView = nav_view.getHeaderView(0).findViewById(R.id.user_name)
 
-        username.observe(this){
-            println(it)
+        username.observe(this) {
             navbarUserName?.text = it
             binding.textView4.text = it
         }
@@ -162,16 +92,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onBackPressed() {
-        if(drawer.isDrawerOpen(GravityCompat.START)){
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer((GravityCompat.START))
-        }
-        else{
+        } else {
             super.onBackPressed()
         }
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        when(item.itemId){
+        when (item.itemId) {
             R.id.logout -> {
                 authVM.handleSignOut()
                 val intent = Intent(this, SignInActivity::class.java)
@@ -179,34 +108,41 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 finish()
                 true
             }
-            R.id.history ->{
+            R.id.history -> {
                 historyStartActivity()
+                true
+            }
+
+            R.id.language -> {
+                authVM.setLanguage(baseContext)
+                recreate()
                 true
             }
         }
         return true
     }
 
-    private fun historyStartActivity(){
+
+    private fun historyStartActivity() {
         val hisIntent = Intent(this, HistoryActivity::class.java)
         startActivity(hisIntent)
         finish()
     }
 
-    private fun getPicture(){
+    private fun getPicture() {
         picture = nav_view.getHeaderView(0).findViewById(R.id.imageView4)
 
         var image = userVM.image
 
-        image.observe(this){ it ->
-            if(it.isNullOrEmpty()){
+        image.observe(this) { it ->
+            if (it.isNullOrEmpty()) {
                 picture.setContentPadding(40, 40, 40, 40)
                 picture.setImageResource(R.drawable.ic_baseline_camera_alt_24)
                 Timber.tag("Picture").v("Picture not found")
 
-            }else {
+            } else {
                 picture.scaleType = ImageView.ScaleType.FIT_XY
-                image.observe(this){
+                image.observe(this) {
                     Picasso.get().load(it).into(picture)
                     Timber.tag("Picture").v("Picture attached")
                 }
@@ -214,18 +150,20 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
 
 
-        picture.setOnClickListener{
+        picture.setOnClickListener {
             MaterialAlertDialogBuilder(this)
                 .setTitle("Alert")
                 .setMessage("Do you want to upload photo from gallery?")
                 .setPositiveButton("Open gallery") { _, _ ->
-                    val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
+                    val gallery =
+                        Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
                     startActivityForResult(gallery, pickImage)
                 }
                 .setNegativeButton("Cancel", null)
                 .show()
         }
     }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == RESULT_OK && requestCode == pickImage && data != null) {
@@ -235,9 +173,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
     }
 
-    private fun uploadImage(imageUri: Uri){
+    private fun uploadImage(imageUri: Uri) {
         val fileName = UUID.randomUUID().toString()
-        val content = MimeTypeMap.getSingleton().getExtensionFromMimeType(contentResolver.getType(imageUri))
+        val content =
+            MimeTypeMap.getSingleton().getExtensionFromMimeType(contentResolver.getType(imageUri))
         val file = "$fileName.$content"
         userVM.uploadImageToStorage(imageUri, file)
     }

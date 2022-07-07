@@ -1,9 +1,13 @@
 package com.example.quizmaster.ui.viewmodel
 
+import android.content.Context
+import android.content.res.Configuration
+import androidx.core.app.ActivityCompat.recreate
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.quizmaster.data.repo.AuthRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import java.util.*
 import java.util.regex.Pattern
 import javax.inject.Inject
 
@@ -44,6 +48,19 @@ class AuthViewModel @Inject constructor (var repo: AuthRepository) : ViewModel()
                 ".{8,}" +               //at least 8 characters
                 "$")
         return passwordREGEX.matcher(password).matches()
+    }
+
+    fun setLanguage(baseContext: Context) {
+        var l = ""
+        val config: Configuration = baseContext.resources.configuration
+        val localLang = config.locales[0].toString()
+        if(localLang == "en_us" || localLang == "en_US")
+            l = "hi"
+        else if(localLang == "hi")
+            l = "en_us"
+        val locale = Locale(l)
+        config.setLocale(locale)
+        baseContext.resources.updateConfiguration(config, baseContext.resources.displayMetrics)
     }
 }
 

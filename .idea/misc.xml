@@ -68,9 +68,12 @@
         <entry key="app/src/main/res/drawable/ic_quiz_logo.xml" value="0.209" />
         <entry key="app/src/main/res/drawable/table_backgound.xml" value="0.1605" />
         <entry key="app/src/main/res/drawable/table_background.xml" value="0.1725" />
-        <entry key="app/src/main/res/layout/activity_choose_quiz.xml" value="0.21481481481481482" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.2947916666666667" />
-        <entry key="app/src/main/res/layout/activity_question_page.xml" value="0.21481481481481482" />
+        <entry key="app/src/main/res/layout/activity_choose_quiz.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/activity_detailed_results_page.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/activity_history.xml" value="0.20555555555555555" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.2408026755852843" />
+        <entry key="app/src/main/res/layout/activity_question_page.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/activity_question_page_frame.xml" value="0.20555555555555555" />
         <entry key="app/src/main/res/layout/activity_result_page.xml" value="0.21481481481481482" />
         <entry key="app/src/main/res/layout/activity_sign_in.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.25" />
@@ -85,12 +88,5 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
-  </component>
-  <component name="VisualizationToolProject">
-    <option name="state">
-      <ProjectState>
-        <option name="scale" value="0.2947916666666667" />
-      </ProjectState>
-    </option>
   </component>
 </project>

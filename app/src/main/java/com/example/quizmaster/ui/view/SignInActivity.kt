@@ -39,11 +39,16 @@ class SignInActivity : AppCompatActivity() {
             if (email.isEmpty()) {
                 Toast.makeText(
                     this@SignInActivity,
-                    "Please enter your email ",
+                    resources.getString(R.string.emailError),
                     Toast.LENGTH_LONG).show()
 
             } else vm.handleResetPassword(email)
 
+        }
+
+        binding.languageSignIn.setOnClickListener {
+            vm.setLanguage(baseContext)
+            recreate()
         }
 
 // Login
@@ -52,9 +57,9 @@ class SignInActivity : AppCompatActivity() {
             val pass = binding.passET.text.toString()
 
             if (email.isEmpty()) {
-                binding.emailEt.error = "Please enter a valid email"
+                binding.emailEt.error = resources.getString(R.string.emailError)
             } else if (pass.isEmpty()) {
-                binding.passET.error = "Please enter a valid password"
+                binding.passET.error = resources.getString(R.string.passwordError)
             } else
                 vm.handleSignIn(email, pass)
 
@@ -71,9 +76,9 @@ class SignInActivity : AppCompatActivity() {
                     overridePendingTransition(R.anim.slide_right, R.anim.slide_left)
                     finish()
                 }
-                "error" -> alertDialog("Something went wrong")
-                "not found" -> alertDialog("Sorry, we could not find your account")
-                "email sent" -> alertDialog("Email sent to $email")
+                "error" -> alertDialog(resources.getString(R.string.error))
+                "not found" -> alertDialog(resources.getString(R.string.notFound))
+                "email sent" -> alertDialog("${resources.getString(R.string.emailSend)} $email")
             }
 
         }
@@ -93,10 +98,9 @@ class SignInActivity : AppCompatActivity() {
         val builder = AlertDialog.Builder(this)
         builder.setMessage(message)
         builder.setCancelable(true)
-        builder.setNegativeButton("OK") { dialog, _ -> dialog.cancel() }
+        builder.setNegativeButton(resources.getString(R.string.ok)) { dialog, _ -> dialog.cancel() }
         val alertDialog: AlertDialog = builder.create()
         alertDialog.show()
     }
-
 
 }
