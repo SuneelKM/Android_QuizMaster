@@ -117,6 +117,7 @@ class QuizPageViewModel(): ViewModel() {
                 op.background = AppCompatResources.getDrawable(context, R.drawable.default_option_border_bg)
             }
         }
+        submittedQuestions.add(SubmittedQuestions(currentQuestion.value.toString(), correctAnswer.value.toString(),"No answer submitted"))
     }
 
     fun quizFinished(): Boolean{

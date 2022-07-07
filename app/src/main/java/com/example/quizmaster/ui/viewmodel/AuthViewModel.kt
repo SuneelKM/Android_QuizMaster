@@ -1,8 +1,9 @@
+@file:Suppress("DEPRECATION")
+
 package com.example.quizmaster.ui.viewmodel
 
 import android.content.Context
 import android.content.res.Configuration
-import androidx.core.app.ActivityCompat.recreate
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.quizmaster.data.repo.AuthRepository
