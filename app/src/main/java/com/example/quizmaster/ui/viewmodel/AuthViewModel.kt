@@ -9,7 +9,6 @@ import androidx.lifecycle.ViewModel
 import com.example.quizmaster.data.repo.AuthRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import java.util.*
-import java.util.regex.Pattern
 import javax.inject.Inject
 
 @HiltViewModel
@@ -38,17 +37,21 @@ class AuthViewModel @Inject constructor (var repo: AuthRepository) : ViewModel()
         repo.handleSignOut()
     }
 
-    fun isValidPassword(password: String) : Boolean {
-        val passwordREGEX = Pattern.compile("^" +
-                "(?=.*[0-9])" +         //at least 1 digit
-                "(?=.*[a-z])" +         //at least 1 lower case letter
-                "(?=.*[A-Z])" +         //at least 1 upper case letter
-                "(?=.*[a-zA-Z])" +      //any letter
-                "(?=.*[@#$%^&+=_.])" +    //at least 1 special character
-                "(?=\\S+$)" +           //no white spaces
-                ".{8,}" +               //at least 8 characters
-                "$")
-        return passwordREGEX.matcher(password).matches()
+
+    fun isValidPassword(pass:String):Boolean{
+        if(pass.length<8) return false
+        var u = 0
+        var l = 0
+        var d = 0
+        var s = 0
+        for (char in pass){
+            if(char.isUpperCase()) u++
+            else if(char.isLowerCase()) l++
+            else if(char.isDigit()) d++
+            else if(char in "@#$%^&+=_.") s++
+        }
+        if(u==0|| l==0 || s==0 || d==0) return false
+        return true
     }
 
     fun setLanguage(baseContext: Context) {
@@ -63,6 +66,19 @@ class AuthViewModel @Inject constructor (var repo: AuthRepository) : ViewModel()
         config.setLocale(locale)
         baseContext.resources.updateConfiguration(config, baseContext.resources.displayMetrics)
     }
+
+    //    fun isValidPassword(password: String) : Boolean {
+//        val passwordREGEX = Pattern.compile("^" +
+//                "(?=.*[0-9])" +         //at least 1 digit
+//                "(?=.*[a-z])" +         //at least 1 lower case letter
+//                "(?=.*[A-Z])" +         //at least 1 upper case letter
+//                "(?=.*[a-zA-Z])" +      //any letter
+//                "(?=.*[@#$%^&+=_.])" +    //at least 1 special character
+//                "(?=\\S+$)" +           //no white spaces
+//                ".{8,}" +               //at least 8 characters
+//                "$")
+//        return passwordREGEX.matcher(password).matches()
+//    }
 }
 
 
