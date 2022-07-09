@@ -36,7 +36,6 @@ class QuestionPageFragment : Fragment() {
     ): View? {
         arguments?.let {
             questions = it.get("results") as List<Result>
-            println("From Fragment $questions")
             vm.setQuestions(questions, requireActivity())
         }
         // Inflate the layout for this fragment
@@ -124,9 +123,6 @@ class QuestionPageFragment : Fragment() {
 
         }
 
-//        if (quizFinished){
-//
-//        }
 
         }
 

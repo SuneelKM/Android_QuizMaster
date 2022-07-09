@@ -52,11 +52,7 @@ class AuthRepository @Inject constructor(
     fun saveToDatabase(userName: String, email: String) {
         val user = UserSignup(userName, email, "")
         try {
-//            val database = Firebase.database
-//            val uid = firebaseAuth.uid
-//            val myRef = database.getReference("/Users/$uid")
             myRef.get().setValue(user)
-//            myRef.setValue(user)
             signUpState.value = "success"
             Toast.makeText(
                 context, "Registration successful. Check you email.", Toast.LENGTH_LONG

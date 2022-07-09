@@ -11,10 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.quizmaster.R
 import com.example.quizmaster.data.model.UserData.UserScores
 import com.example.quizmaster.ui.view.DetailedResultsPage
-import com.google.firebase.crashlytics.internal.model.CrashlyticsReport
 import java.text.SimpleDateFormat
-import java.util.*
-
 
 class HistoryAdapter(private var userHistory: List<UserScores>) :
     RecyclerView.Adapter<HistoryAdapter.ViewHolder>() {

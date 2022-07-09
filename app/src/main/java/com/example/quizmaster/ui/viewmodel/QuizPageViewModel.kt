@@ -110,7 +110,6 @@ class QuizPageViewModel(): ViewModel() {
 
     fun timeFinished(){
         for(op in allOptions){
-            val correctAnsColor = "#A5D6A7"
             if(op.text.toString().equals(correctAnswerText)){
                 op.background = AppCompatResources.getDrawable(context,R.drawable.correct_option_border_bg)
             }else{
