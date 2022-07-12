@@ -58,7 +58,7 @@ class AuthViewModel @Inject constructor (var repo: AuthRepository) : ViewModel()
         var l = ""
         val config: Configuration = baseContext.resources.configuration
         val localLang = config.locales[0].toString()
-        if(localLang == "en_us" || localLang == "en_US")
+        if(localLang.equals("en_us", true))
             l = "hi"
         else if(localLang == "hi")
             l = "en_us"

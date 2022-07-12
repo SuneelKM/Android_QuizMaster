@@ -104,8 +104,8 @@ class UserRepository @Inject constructor(
     ) {
         val userScores = UserScores(date, category, level, points)
         val date = Date()
-        myRef.child("scores").child("$date").setValue(userScores)
-        myRef.child("scores").child("$date/answers").setValue(submittedQuestions)
+        myRef.child("scores/$date").setValue(userScores)
+        myRef.child("scores/$date/answers").setValue(submittedQuestions)
     }
 
     fun getSubmittedQuestions(date: String) {
