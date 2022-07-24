@@ -11,7 +11,7 @@ An android Quiz application written in Kotlin
 | Firebase Authentication           | Firebase Realtime Database         | Firebase Storage  |
 | Firebase Crashlytics          | RxKotlin       | Retrofit2 |
 | Dagger - Hilt         | Picasso      | Timber Tree logger|
-| Mockito          | JUnit 4       | Espresso|
+| Mockito           | JUnit 4       | Espresso|
 
 ## APIs Used
 * Open Trivia DB (https://opentdb.com) to fetch the quiz questions. No registration required.
