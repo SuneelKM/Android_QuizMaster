@@ -23,6 +23,7 @@ An android Quiz application written in Kotlin
 <img src = "https://github.com/SuneelKM/QuizMaster/blob/master/screenshot/3.png" width=1200 height=500>
 
 ## Features
+* Used SonarQube for vulnerability testing.
 * Layout designed using constraint layout.
 * User can login with their existing account or register a new account. Firebase Authentication is used for login, logout, and registration.
 * Added field validation checks and password strength check.
