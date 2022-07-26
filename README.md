@@ -39,7 +39,7 @@ An android Quiz application written in Kotlin
 * User have ability to change profile picture.
 
 
-## To run the App
+## To run the App 
 * Clone the Repo
 * Open the Repo in Android Studio
 * Let the Gradle to build
