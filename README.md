@@ -14,7 +14,7 @@ An android Quiz application written in Kotlin
 | SonarQube           | JUnit 4 & Mockito      | Espresso|
 
 ## APIs Used
-* Open Trivia DB (https://opentdb.com) to fetch the quiz questions. No registration required.
+* Open Trivia DB (https://opentdb.com) api to fetch the quiz questions. No registration required.
 
 ## Screenshots
 
